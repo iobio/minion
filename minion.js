@@ -1,7 +1,21 @@
-exports.tool = undefined;
-exports.addTool = function(newTool){ this.tool = newTool };
+module.exports = function() {
+   var express = require('express'),
+       app = express();
+       
+   // add status service
+   app.get('/status', function(req, res){
+     res.header('Content-Type', 'application/json');
+     res.header('Charset', 'utf-8')
+     res.send(req.query.callback + '({"status": "running"});');
+   });
+       
+   return app;
+}
 
-exports.listen = function(io) {
+module.exports.tool = undefined;
+module.exports.addTool = function(newTool){ this.tool = newTool };
+
+module.exports.listen = function(io) {
    io.sockets.on('connection', function (socket) {
          // socket.emit('news', { hello: 'server talking!'});
       socket.on('run', function (params) {
