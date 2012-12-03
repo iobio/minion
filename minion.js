@@ -49,35 +49,38 @@ module.exports.listen = function(io) {
               args.unshift( opt );
             }
          }
-         
+         console.log('options')
          // add default options
-         for ( var opt in exports.tool.options ) {
-           if ( exports.tool.options.hasOwnProperty(opt) ) {
+         for ( var opt in module.exports.tool.options ) {
+           if ( module.exports.tool.options.hasOwnProperty(opt) ) {
               // add param
-              if (exports.tool.options[opt] != undefined)
-                args.unshift(exports.tool.options[opt]);
+              if (module.exports.tool.options[opt] != undefined)
+                args.unshift(module.exports.tool.options[opt]);
               // add option flag
               args.unshift( opt );
             }
          }
          
+         console.log('subUtils')
          // add subutils
          if (params.subUtils != undefined)
             for ( var j=0; j < params.subUtils.length; j++)
                args.unshift(params.subUtils[j]);
          
-
+console.log('start')
          socket.emit('start');
 
-         // console.log('ARRRRRRRG = ' + args);
-         console.log(exports.tool.path + ' ' + args);
+          console.log('ARRRRRRRG = ' + args);
+         console.log(module.exports.tool.path + ' ' + args);
          
-         var prog = spawn(exports.tool.path, args);        
+         var prog = spawn(module.exports.tool.path, args);        
 
          for ( var j=0; j < remotes.length; j++ ) {
                         
               var ioClient = require('socket.io-client');
-              var clientUrl = remotes[j].protocol + '//' + remotes[j].pathname;
+              var pathname = remotes[j].host || remotes[j].pathname;
+              var clientUrl = remotes[j].protocol + '//' + pathname;
+              console.log('url = ' + clientUrl);
               var clientSocket = ioClient.connect(clientUrl);
               var fs = require('fs');
               
@@ -98,7 +101,7 @@ module.exports.listen = function(io) {
          }
          
           prog.stdout.on('data', function (data) {
-             exports.tool.send(socket, data);
+             module.exports.tool.send(socket, data);
            });
 
            prog.stderr.on('data', function (data) {
@@ -118,7 +121,7 @@ module.exports.listen = function(io) {
 };
 
 
-// exports.parsers = {
+// module.exports.parsers = {
 //    vcf: function(chunk) {
 //       var lines = chunk.split('\n');
 //       var numLines = lines.length

@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 // temporary until i understand why freebayes seg faults on the stream
-// process.on('uncaughtException', function (exception) {
-//    // handle or ignore error
-// });
+process.on('uncaughtException', function (exception) {
+   // handle or ignore error
+});
 
 var minion = require('./minion'),
     http = require('http'),
@@ -15,7 +15,7 @@ var minion = require('./minion'),
 var io = require('socket.io').listen(server);
 
 // start server
-server.listen(8080);
+server.listen(8060);
 
 // define tool
 var tool = {
