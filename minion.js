@@ -19,23 +19,25 @@ module.exports.listen = function(io) {
    io.sockets.on('connection', function (socket) {
          // socket.emit('news', { hello: 'server talking!'});
       socket.on('run', function (params) {
+         console.log("I'm ruuuuunnnninnng");
          var spawn = require('child_process').spawn,
              urlParser = require('url');
          var remotes = [];
          var args = [];
-
-         for ( var i=0; i < params.arguments.length; i++ ) {
-            var arg = params.arguments[i];
-            console.log('arg = ' + arg);
-            var pattern = new RegExp(/^http:/);
-            if ( arg.match(pattern) ) {
-            // if ( check(arg).isUrl() ) {
-               var parts = urlParser.parse(arg, true);
-               // console.log('parts = ' + parts.query.arguments);
-               remotes.push(parts);
-               // console.log('remot = ' + remotes[0].params.arguments);
-            } else {
-               args.push(params.arguments[i]);
+         if (params.arguments != undefined) {
+            for ( var i=0; i < params.arguments.length; i++ ) {
+               var arg = params.arguments[i];
+               console.log('arg = ' + arg);
+               var pattern = new RegExp(/^http:/);
+               if ( arg.match(pattern) ) {
+               // if ( check(arg).isUrl() ) {
+                  var parts = urlParser.parse(arg, true);
+                  // console.log('parts = ' + parts.query.arguments);
+                  remotes.push(parts);
+                  // console.log('remot = ' + remotes[0].params.arguments);
+               } else {
+                  args.push(params.arguments[i]);
+               }
             }
          }
 
@@ -49,7 +51,7 @@ module.exports.listen = function(io) {
               args.unshift( opt );
             }
          }
-         console.log('options')
+         
          // add default options
          for ( var opt in module.exports.tool.options ) {
            if ( module.exports.tool.options.hasOwnProperty(opt) ) {
@@ -61,13 +63,12 @@ module.exports.listen = function(io) {
             }
          }
          
-         console.log('subUtils')
          // add subutils
          if (params.subUtils != undefined)
             for ( var j=0; j < params.subUtils.length; j++)
                args.unshift(params.subUtils[j]);
          
-console.log('start')
+
          socket.emit('start');
 
           console.log('ARRRRRRRG = ' + args);
@@ -85,7 +86,25 @@ console.log('start')
               var fs = require('fs');
               
               //convert arguments string into array
-              remotes[j].query.arguments = remotes[j].query.arguments.split(',');
+              if(remotes[j].query && remotes[j].query.arguments)
+                 remotes[j].query.arguments = remotes[j].query.arguments.split(',');
+
+              //convert options string into hash
+              if(remotes[j].query && remotes[j].query.options) {
+                 var optionArray = remotes[j].query.options.split(',');
+                 remotes[j].query.options = {};
+                 for (var i=0; i < optionArray.length; i++) {
+                    remotes[j].query.options[optionArray[i]] = optionArray[i+1];
+                    i++;
+                 }
+              }
+              
+              //convert arguments string into array
+                if(remotes[j].query && remotes[j].query.subUtils)
+                   remotes[j].query.subUtils = remotes[j].query.subUtils.split(',');
+                 
+              
+              console.log(remotes[j].query);
               
               clientSocket.emit('run', remotes[j].query);
 
@@ -100,7 +119,7 @@ console.log('start')
               });
          }
          
-          prog.stdout.on('data', function (data) {
+          prog.stdout.on('data', function (data) {             
              module.exports.tool.send(socket, data);
            });
 
