@@ -5,6 +5,7 @@
    <script src="js/jquery.min.js"></script>
    <script src="js/jquery-ui.min.js"></script>
    <script src="js/Scribl.1.1.3.min.js"> </script>
+   <script src="js/alignments.js"> </script>
    <script src="/socket.io/lib/socket.io.js"></script>
    <link rel="stylesheet" href="css/jquery.ui.aristo.all.css">
    
@@ -96,13 +97,19 @@
          var socket1 = io.connect(url);
          socket1.on('results', function(args) {
             var data = args.data;
-            var gene = scribl1.addGene(parseInt(data.pos), 5000, '+');
+            if (data.pos < parseInt($('#scaleMin').val()) || data.pos > parseInt($('#scaleMax').val())) return;            
+            var ntSize = 1;
+            if (scribl1.pixelsToNts() < window.minPxSize)
+               ntSize = Math.round(window.minPxSize / scribl1.pixelsToNts() * ntSize);
+            var gene = scribl1.addGene(parseInt(data.pos), ntSize, '+');
             geneHash1[data.pos] = gene;
             if(geneHash2[data.pos]) {
                var color = gene.color;
                gene.color = ['#ADFF99', '#327424'];
                // geneHash2[data.pos].erase();
             }
+            scribl1.scale.min = parseInt($('#scaleMin').val());
+            scribl1.scale.max = parseInt($('#scaleMax').val());
             gene.redraw();
             gene.color = color;
          });
@@ -113,8 +120,9 @@
             scribl1 = new Scribl(document.getElementById("canvas"), 760);
             scribl1.canvas.width = scribl1.canvas.width;
             scribl1.laneSizes = 8;
-            scribl1.scale.min = 22000000;
-            scribl1.scale.max = 23500000;
+            scribl1.scale.auto = false;
+            scribl1.scale.min = parseInt($('#scaleMin').val());
+            scribl1.scale.max = parseInt($('#scaleMax').val());
             scribl1.tick.major.color = 'white';
             scribl1.tick.minor.color = 'white';
             scribl1.scale.font.color = 'white';
@@ -136,13 +144,21 @@
          var socket2 = io.connect(url);
          socket2.on('results', function(args) {
             var data = args.data;
-            var gene = scribl2.addGene(parseInt(data.pos), 5000, '+');
+            if (data.pos < parseInt($('#scaleMin').val()) || data.pos > parseInt($('#scaleMax').val())) return;
+            var ntSize = 1;
+            if (scribl2.pixelsToNts() < window.minPxSize)
+               ntSize = Math.round(window.minPxSize / scribl2.pixelsToNts() * ntSize);
+            var gene = scribl2.addGene(parseInt(data.pos), ntSize, '+');
+            // make sure feature is in correct spot
+
             geneHash2[data.pos] = gene;
             if(geneHash1[data.pos]) {
                var color = gene.color;
                gene.color = ['#ADFF99', '#327424'];
                // geneHash1[data.pos].erase();
             }
+            scribl2.scale.min = parseInt($('#scaleMin').val());
+            scribl2.scale.max = parseInt($('#scaleMax').val());
             gene.redraw();
             gene.color = color;
          });
@@ -155,8 +171,9 @@
             scribl2 = new Scribl(document.getElementById("canvas"), 760);
             scribl2.canvas.width = scribl2.canvas.width;
             scribl2.laneSizes = 8;
-            scribl2.scale.min = 22000000;
-            scribl2.scale.max = 23500000;
+            scribl2.scale.auto = false;
+            scribl2.scale.min = parseInt($('#scaleMin').val());
+            scribl2.scale.max = parseInt($('#scaleMax').val());
             scribl2.tick.major.color = 'white';
             scribl2.tick.minor.color = 'white';
             scribl2.scale.font.color = 'white';
@@ -172,11 +189,46 @@
          
          return(socket2);
       }
+      
+      function getDataUrl() {
+        var url = "http://0.0.0.0:8050?options=-u,"
+         + $('#data').val() 
+         + "&arguments="
+         + window.chr +":"+ $('#scaleMin').val() +"-"+ $('#scaleMax').val()
+         + "&subUtils=view";
+         return url;
+      }
     
       $(document).ready(function(){
          geneHash1 = {};
          geneHash2 = {};         
         window.debug = function(str){ $("#debug").append("<p>"+str+"</p>"); };
+        window.chr = 11;
+        window.minValue = 108473;
+        window.maxValue = 188673;
+        window.minPxSize = 1;
+        var bamFiles = ['hi', 'bye'];
+        $('#data').autocomplete({ 
+            source: window.alignments,
+            select: function( event, ui ) {
+               window.chr = parseInt(ui.item.value.match(/chrom(\S\S)/)[1]);
+            }
+         });
+         $('#scaleMin').val(window.minValue);
+         $('#scaleMax').val(window.maxValue);
+         scribl2 = new Scribl(document.getElementById("canvas"), 760);
+         scribl1 = new Scribl(document.getElementById("canvas"), 760);
+        
+       // $('#data').click( function() { $("#data").autocomplete( "search", "" ); });
+        //$('#data').val("http://0.0.0.0:8050?options=-u,http://s3.amazonaws.com/1000genomes/data/HG00096/alignment/HG00096.chrom11.ILLUMINA.bwa.GBR.low_coverage.20111114.bam&arguments="+ window.chr +":"+ window.minValue +"-"+ window.maxValue +"&subUtils=view");
+                                                // var dataObj = { 'options' : 
+        //                 {
+        //                  '-in' : '/Users/chase/Tools/freebayes/data/NA06985.REF_13.bam' ,
+        //                  '-region' : '13:22000000..23500000'
+        //                 }
+        //              };
+        //              
+        // $('#data').val('http://0.0.0.0:8090?' + $.param(dataObj));
         
          // min-alternate-count
         $("#tool1Slider1").slider({ min: 1, max: 10, value: 1, 
@@ -261,15 +313,15 @@
          //              $('#slider3').slider('value') + "," +
          //              $('#slider4').slider('value');
          var params = {  'options' : {
-                            '-r': '13:22000000..23500000',
-                            '--fasta-reference': '/Users/chase/Tools/freebayes/data/hs_ref_chr13.fa',
+                            // '-r': '13:22000000..23500000',
+                            '--fasta-reference': '/Users/chase/Tools/freebayes/data/hs_ref_chr' + window.chr + ".fa",
                             '--min-alternate-count': $('#' + slider + '1').slider('value'), 
                             '--min-base-qual': $('#' + slider + '2').slider('value'), 
                             '--min-mapping-quality': $('#' + slider + '3').slider('value'),
                             '--pvar': $('#' + slider + '4').slider('value')
                          },
                          // 'arguments' : [ '/Users/chase/Tools/freebayes/data/NA06985.REF_13.bam' ]                     
-                         'arguments' : [ $('#data').val() ]                     
+                         'arguments' : [ getDataUrl() ]
          };             
          //ws.send($('#slider1').slider('value'));
          socket.emit('run', params);
@@ -287,15 +339,15 @@
          //              $('#slider4').slider('value');
          var params = {  'subUtils': [ 'mpileup' ],
                          'options' : {
-                            '-r': '13:22000000..23500000',
-                            '-f': '/Users/chase/Tools/freebayes/data/hs_ref_chr13.fa',
+                            // '-r': '13:22000000..23500000',
+                            '-uf': '/Users/chase/Tools/freebayes/data/hs_ref_chr' + window.chr + ".fa",
                             // '--min-alternate-count': $('#' + slider + '1').slider('value'), 
                             // '--min-base-qual': $('#' + slider + '2').slider('value'), 
                             // '--min-mapping-quality': $('#' + slider + '3').slider('value'),
                             // '--pvar': $('#' + slider + '4').slider('value')
                          },
                          // 'arguments' : [ '/Users/chase/Tools/freebayes/data/NA06985.REF_13.bam' ]                     
-                         'arguments' : [ $('#data').val(), '-' ]                     
+                         'arguments' : [ getDataUrl(), '-' ]                     
          };             
          //ws.send($('#slider1').slider('value'));
          socket.emit('run', params);
@@ -397,12 +449,21 @@
           <div style="clear:both"></div>
           <div class="sub-title" style="margin-top: -30px">
              Data
-             <input id="data" class="tool-url" value='http://0.0.0.0:8090?arguments=/Users/chase/Tools/freebayes/data/NA06985.REF_13.bam'/ style="width:100%; text-align:center; border:none">
+             <!-- <input id="data" class="tool-url" value="http://0.0.0.0:8090?options=-in,http://s3./HG00096/alignment/HG00096.chrom11.ILLUMINA.bwa.GBR.low_coverage.20111114.bam,-region,13:22000000..23500000&subUtils=merge"  style="width:100%; text-align:center; border:none"/> -->
+                          <!-- <input id="data" class="tool-url" value="http://0.0.0.0:8090?options=-in,http://s3.amazonaws.com/1000genomes/data/HG00096/alignment/HG00096.chrom11.ILLUMINA.bwa.GBR.low_coverage.20111114.bam,-region,11:188473..189473&subUtils=merge"  style="width:100%; text-align:center; border:none"/>
+          </div> -->
+          
+                          <input id="data" class="tool-url"  style="width:100%; text-align:center; border:none"/>
           </div>
        
     </div>
     <div style="width:100%;text-align:center;margin-top:15px">
-       <canvas id="canvas" width=800 height=500 />
+       <div style="width: 1002px; margin-left:auto;margin-right:auto">
+          <input id='scaleMin' class="tool-url" style="float:left; width:100px; text-align:center; border:none; font-size: 15px"/>
+          <canvas id="canvas" width="800" height="500" style="float:left"> </canvas>
+          <input id='scaleMax' class="tool-url" style="float:left; width:100px; text-align:center; border:none; font-size: 15px"/>
+          <div style="clear:both"></div>
+       </div>
     </div>
     <div id="msg"></div>
   </body>

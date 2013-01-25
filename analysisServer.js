@@ -15,7 +15,7 @@ var minion = require('./minion'),
 var io = require('socket.io').listen(server);
 
 // start server
-server.listen(8060);
+server.listen(8080);
 
 // define tool
 var tool = {

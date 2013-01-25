@@ -119,9 +119,41 @@ module.exports.listen = function(io) {
               });
          }
          
-          prog.stdout.on('data', function (data) {             
-             module.exports.tool.send(socket, data);
-           });
+         // if tool has pipe
+         if (module.exports.tool.pipe != undefined) {
+            var progPipe = spawn("bcftools", ["view", "-vcg", "-"]);
+            progPipe.stdout.on('data', function(data) {
+               module.exports.tool.send(socket, data);
+            });
+            prog.stdout.pipe(progPipe.stdin);            
+            progPipe.stderr.pipe(process.stdout);
+         } else { // no pipe 
+            prog.stdout.on('data', function (data) {
+               module.exports.tool.send(socket, data);
+            });                        
+         }
+         
+
+          // prog.stdout.on('data', function (data) {
+          //    // run through pipe
+          //    if (module.exports.tool.pipe) {
+          //      var pipe = module.exports.tool.pipe;
+          //      var cmd = pipe.split(' ')[0];
+          //      var args = pipe.split(' ').splice(1, pipe.split(' ').length-1);
+          //      var pipeProg = spawn(cmd, args);
+          //      pipeProg.stdout.on('data', function(data) {
+          //         module.exports.tool.send(socket, data);
+          //      })
+          //      pipeProg.stderr.on('data', function (data) {
+          //        console.log('pipeprog stderr: ' + data);
+          //      });
+          //      pipeProg.stdin.write(data);
+          //      
+          //      prog.stdout.pipe(pipeProg.stdin);
+          //      
+          //    } else             
+          //      module.exports.tool.send(socket, data);
+          //  });
 
            prog.stderr.on('data', function (data) {
              console.log('prog stderr: ' + data);
