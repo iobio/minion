@@ -20,7 +20,7 @@ server.listen(8080);
 // define tool
 var tool = {
    path: '/Users/chase/Tools/freebayes/bin/freebayes',
-   options: { '--stdin' : undefined },
+   options: ['--stdin'],
    send : function(socket, data) {
       data = String(data)
       var lines = data.split("\n");

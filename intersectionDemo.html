@@ -132,11 +132,6 @@
             scribl1.draw();            
 
          });
-         // ws.onclose = function() { debug("socket closed"); };
-         // ws.onopen = function() {
-         //   window.debug("socket connected...");
-         // };
-         
          return(socket1);
       }
       
@@ -182,21 +177,15 @@
             scribl2.draw();
             if (scribl1 != undefined) scribl1.draw();
          });
-         // ws.onclose = function() { debug("socket closed"); };
-         // ws.onopen = function() {
-         //   window.debug("socket connected...");
-         // };
          
          return(socket2);
       }
       
       function getDataUrl() {
-        var url = "http://0.0.0.0:8050?options=-u,"
-         + $('#data').val() 
-         + "&arguments="
-         + window.chr +":"+ $('#scaleMin').val() +"-"+ $('#scaleMax').val()
-         + "&subUtils=view";
-         return url;
+        var url = "http://0.0.0.0:8050?cmd=view -u "
+         + "'" + $('#data').val() + "' "
+         + window.chr +":"+ $('#scaleMin').val() +"-"+ $('#scaleMax').val()         
+        return encodeURI(url);
       }
     
       $(document).ready(function(){
@@ -219,16 +208,6 @@
          scribl2 = new Scribl(document.getElementById("canvas"), 760);
          scribl1 = new Scribl(document.getElementById("canvas"), 760);
         
-       // $('#data').click( function() { $("#data").autocomplete( "search", "" ); });
-        //$('#data').val("http://0.0.0.0:8050?options=-u,http://s3.amazonaws.com/1000genomes/data/HG00096/alignment/HG00096.chrom11.ILLUMINA.bwa.GBR.low_coverage.20111114.bam&arguments="+ window.chr +":"+ window.minValue +"-"+ window.maxValue +"&subUtils=view");
-                                                // var dataObj = { 'options' : 
-        //                 {
-        //                  '-in' : '/Users/chase/Tools/freebayes/data/NA06985.REF_13.bam' ,
-        //                  '-region' : '13:22000000..23500000'
-        //                 }
-        //              };
-        //              
-        // $('#data').val('http://0.0.0.0:8090?' + $.param(dataObj));
         
          // min-alternate-count
         $("#tool1Slider1").slider({ min: 1, max: 10, value: 1, 
@@ -304,54 +283,27 @@
       });
       
       function run(socket, slider, scribl) {
-         // scribl = new Scribl(document.getElementById("canvas"), 760);
-         // scribl.laneSizes = 8;
-         // scribl.scale.min = 22000000;
-         // scribl.scale.max = 23500000;
-         // var params = $('#slider1').slider('value') + "," +
-         //              $('#slider2').slider('value') + "," +
-         //              $('#slider3').slider('value') + "," +
-         //              $('#slider4').slider('value');
-         var params = {  'options' : {
-                            // '-r': '13:22000000..23500000',
-                            '--fasta-reference': '/Users/chase/Tools/freebayes/data/hs_ref_chr' + window.chr + ".fa",
-                            '--min-alternate-count': $('#' + slider + '1').slider('value'), 
-                            '--min-base-qual': $('#' + slider + '2').slider('value'), 
-                            '--min-mapping-quality': $('#' + slider + '3').slider('value'),
-                            '--pvar': $('#' + slider + '4').slider('value')
-                         },
-                         // 'arguments' : [ '/Users/chase/Tools/freebayes/data/NA06985.REF_13.bam' ]                     
-                         'arguments' : [ getDataUrl() ]
-         };             
-         //ws.send($('#slider1').slider('value'));
+
+         
+         var params = {
+               'cmd' : '-f /Users/chase/Tools/freebayes/data/hs_ref_chr' + window.chr + ".fa"
+                        + ' --min-alternate-count ' + $('#' + slider + '1').slider('value')
+                        + ' --min-base-qual ' + $('#' + slider + '2').slider('value')
+                        + ' --min-mapping-quality ' + $('#' + slider + '3').slider('value')
+                        + ' --pvar ' + $('#' + slider + '4').slider('value')
+                        + ' ' + getDataUrl()
+         };
          socket.emit('run', params);
-         //ws.send($('#defaultSlider').val());
       }
       
       function run2(socket, slider, scribl) {
-         // scribl = new Scribl(document.getElementById("canvas"), 760);
-         // scribl.laneSizes = 8;
-         // scribl.scale.min = 22000000;
-         // scribl.scale.max = 23500000;
-         // var params = $('#slider1').slider('value') + "," +
-         //              $('#slider2').slider('value') + "," +
-         //              $('#slider3').slider('value') + "," +
-         //              $('#slider4').slider('value');
-         var params = {  'subUtils': [ 'mpileup' ],
-                         'options' : {
-                            // '-r': '13:22000000..23500000',
-                            '-uf': '/Users/chase/Tools/freebayes/data/hs_ref_chr' + window.chr + ".fa",
-                            // '--min-alternate-count': $('#' + slider + '1').slider('value'), 
-                            // '--min-base-qual': $('#' + slider + '2').slider('value'), 
-                            // '--min-mapping-quality': $('#' + slider + '3').slider('value'),
-                            // '--pvar': $('#' + slider + '4').slider('value')
-                         },
-                         // 'arguments' : [ '/Users/chase/Tools/freebayes/data/NA06985.REF_13.bam' ]                     
-                         'arguments' : [ getDataUrl(), '-' ]                     
-         };             
-         //ws.send($('#slider1').slider('value'));
+         var params = { 
+            'cmd' : 'view -vcg ' 
+                      + encodeURI('http://0.0.0.0:8060?cmd=mpileup -uf /Users/chase/Tools/freebayes/data/hs_ref_chr'
+                      + window.chr + ".fa " + getDataUrl())                    
+         };         
+
          socket.emit('run', params);
-         //ws.send($('#defaultSlider').val());
       }
       
     </script>
@@ -408,7 +360,7 @@
           <div style="width:566px; float:right; margin: 44px 0px 0px 0px">
                  <div class="sub-title" style="margin-left: auto; margin-right:auto">
                     Tool 2
-                    <input id="tool-2" class="tool-url" value='http://0.0.0.0:8060'/ style="width:100%; text-align:center; border:none">
+                    <input id="tool-2" class="tool-url" value='http://0.0.0.0:8040'/ style="width:100%; text-align:center; border:none">
                  </div>
 
                     <div style="float:right">
@@ -449,9 +401,7 @@
           <div style="clear:both"></div>
           <div class="sub-title" style="margin-top: -30px">
              Data
-             <!-- <input id="data" class="tool-url" value="http://0.0.0.0:8090?options=-in,http://s3./HG00096/alignment/HG00096.chrom11.ILLUMINA.bwa.GBR.low_coverage.20111114.bam,-region,13:22000000..23500000&subUtils=merge"  style="width:100%; text-align:center; border:none"/> -->
-                          <!-- <input id="data" class="tool-url" value="http://0.0.0.0:8090?options=-in,http://s3.amazonaws.com/1000genomes/data/HG00096/alignment/HG00096.chrom11.ILLUMINA.bwa.GBR.low_coverage.20111114.bam,-region,11:188473..189473&subUtils=merge"  style="width:100%; text-align:center; border:none"/>
-          </div> -->
+
           
                           <input id="data" class="tool-url"  style="width:100%; text-align:center; border:none"/>
           </div>
