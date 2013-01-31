@@ -2,11 +2,24 @@ module.exports = function() {
    var express = require('express'),
        app = express();
        
+       
+   // add public folder
+   app.use('/', express.static(__dirname + '/public'));
+   
    // add status service
    app.get('/status', function(req, res){
      res.header('Content-Type', 'application/json');
      res.header('Charset', 'utf-8')
      res.send(req.query.callback + '({"status": "running"});');
+   });
+   
+   // app.get("/", function(req, res, next) {
+   //     next("Could not find page");
+   //     console.log(req.query);
+   // });
+   
+   app.get('/', function (req, res) {
+     res.sendfile(__dirname + '/minion.html');
    });
        
    return app;
@@ -17,6 +30,7 @@ module.exports.addTool = function(newTool){ this.tool = newTool };
 
 module.exports.listen = function(io) {
    io.sockets.on('connection', function (socket) {
+      
          // socket.emit('news', { hello: 'server talking!'});
       socket.on('run', function (params) {
 
@@ -24,13 +38,14 @@ module.exports.listen = function(io) {
          var minions = [];
          var rawArgs = [];
          var args = [];
-         if (params['cmd'] != undefined) rawArgs = params['cmd'].split(" ");
+         var cmd = params['cmd'] || module.exports.url.parse(params['url']).query.cmd;
+         if (cmd != undefined) rawArgs = cmd.split(" ");
 
          // look for minion remote sources
          rawArgs.filter( function(arg) { 
             if ( arg.match(/^http:\/\/\S+/) ) {
                console.log('mArg = ' + arg);
-               minions.push( decodeURI(arg) );
+               minions.push( arg );
             }
             else if ( arg.match(/^[\'\"]http:\/\/\S+[\'\"]$/) )
                args.push( arg.slice(1,arg.length-1) ); // remove quotes
@@ -133,7 +148,7 @@ module.exports.url.parse = function(url) {
       var parameterPair = parameterPairs[x];
       console.log('parameterPair = ' + parameterPair);
       parameterPair = parameterPair.split(/=(.+)?/);
-      parsed.query[parameterPair[0]] = parameterPair[1];
+      parsed.query[parameterPair[0]] = decodeURI(parameterPair[1]);
    }
    return parsed;   
 }
