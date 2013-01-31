@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+   <head>
+      <script src="/socket.io/lib/socket.io.js"></script>
+      <script src="js/minion-client.js"></script>      
+      <script>      
+         function go() {
+            var url = document.URL;
+            var socket = io.connect(url);
+            socket.on('results', function(res) {
+               document.getElementById('results').insertAdjacentHTML( 'beforeEnd', res.data );
+            });
+            socket.emit('run', { 'url': url })
+         }
+      </script>
+   </head>
+   <body onLoad="go()">
+     <div id="results" style="word-wrap: break-word"/>
+   </body>
+<html>

@@ -1,3 +1,4 @@
+
 module.exports = function() {
    var express = require('express'),
        app = express();
@@ -29,16 +30,16 @@ module.exports.tool = undefined;
 module.exports.addTool = function(newTool){ this.tool = newTool };
 
 module.exports.listen = function(io) {
-   io.sockets.on('connection', function (socket) {
-      
-         // socket.emit('news', { hello: 'server talking!'});
+   io.sockets.on('connection', function (socket) {      
+      var minionClient = require('./public/js/minion-client');
       socket.on('run', function (params) {
 
          var spawn = require('child_process').spawn;
          var minions = [];
          var rawArgs = [];
          var args = [];
-         var cmd = params['cmd'] || module.exports.url.parse(params['url']).query.cmd;
+         var cmd = params['cmd'];
+         if (cmd == undefined && params['url'] != undefined) cmd = minionClient.url.parse(params['url']).query.cmd;
          if (cmd != undefined) rawArgs = cmd.split(" ");
 
          // look for minion remote sources
@@ -74,7 +75,7 @@ module.exports.listen = function(io) {
          for ( var j=0; j < minions.length; j++ ) {
                         
               var ioClient = require('socket.io-client');
-              var source = module.exports.url.parse( minions[j] );
+              var source = minionClient.url.parse( minions[j] );
               console.log('host = ' + source.host);
               var clientSocket = ioClient.connect( source.host );
 
@@ -129,26 +130,7 @@ module.exports.sanitize = function(cmd) {
    // TODO
 }
 
-module.exports.url = {};
 
-module.exports.url.parse = function(url) {
-   var parsed = { query: {} };
-   parsed.protocol = url.split('://')[0]
-   console.log('parUrl = ' + url)
-   var parts = url.split(/\?(.+)?/);
-   parsed.host = parts[0];
-   var urlParams = parts[1]
-   console.log('parts1 = ' + urlParams);
 
-   if (!urlParams || urlParams.length == 0) {return parsed}
-   console.log('urlParams = ' + urlParams);
-   var parameterPairs = urlParams.split('&');
-   var x;
-   for (x in parameterPairs) {
-      var parameterPair = parameterPairs[x];
-      console.log('parameterPair = ' + parameterPair);
-      parameterPair = parameterPair.split(/=(.+)?/);
-      parsed.query[parameterPair[0]] = decodeURI(parameterPair[1]);
-   }
-   return parsed;   
-}
+
+
