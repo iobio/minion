@@ -9,7 +9,7 @@
             var url = document.URL;
             var socket = io.connect(url);
             socket.on('results', function(res) {
-               document.getElementById('results').insertAdjacentHTML( 'beforeEnd', res.data );
+               document.getElementById('results').insertAdjacentHTML( 'beforeEnd', JSON.stringify(res.data) );
             });
             socket.emit('run', { 'url': url })
          }

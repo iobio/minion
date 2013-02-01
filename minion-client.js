@@ -5,15 +5,16 @@ var minionClient = {};
 
 // url methods
 minionClient.url = {};
-minionClient.url.construct = function(host, params) {
-   var url = host + "?";
-   for ( var x in params ) {
-      url += x + "=" + params[x] + "&"
-   }
-   // remove trailing &
-   url = url.slice(0, -1);
-   return url;
-};
+// figure out how i want this to help??
+// minionClient.url.construct = function(host, params) {
+//    var url = host + "?";
+//    for ( var x in params ) {
+//       url += x + "=" + params[x] + "&"
+//    }
+//    // remove trailing &
+//    url = url.slice(0, -1);
+//    return url;
+// };
 minionClient.url.parse = function(url) {
    var parsed = { query: {} };
    parsed.protocol = url.split('://')[0]
