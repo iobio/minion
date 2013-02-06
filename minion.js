@@ -20,7 +20,10 @@ module.exports = function() {
    // });
    
    app.get('/', function (req, res) {
-     res.sendfile(__dirname + '/minion.html');
+     res.writeHead(200, {
+       "Content-Type": 'application/octet-stream'
+     });
+     module.exports.runCommand(req.query, function(data) {res.write(data);}, undefined, function() {res.end() });
    });
        
    return app;
@@ -30,101 +33,115 @@ module.exports.tool = undefined;
 module.exports.addTool = function(newTool){ this.tool = newTool };
 
 module.exports.listen = function(io) {
-   io.sockets.on('connection', function (socket) {      
-      var minionClient = require('./public/js/minion-client');
+   io.sockets.on('connection', function (socket) {            
       socket.on('run', function (params) {
-
-         var spawn = require('child_process').spawn;
-         var minions = [];
-         var rawArgs = [];
-         var args = [];
-         var cmd = params['cmd'];
-         if (cmd == undefined && params['url'] != undefined) cmd = minionClient.url.parse(params['url']).query.cmd;
-         if (cmd != undefined) rawArgs = cmd.split(" ");
-
-         // look for minion remote sources
-         rawArgs.filter( function(arg) { 
-            if ( arg.match(/^http:\/\/\S+/) ) {
-               console.log('mArg = ' + arg);
-               minions.push( arg );
+         module.exports.runCommand(params, 
+            function(data) {
+               if (module.exports.tool.binary)
+                  socket.emit( 'results', { data : new Buffer(data, 'binary').toString('base64'), options : { binary:true } });
+               else
+                  socket.emit( 'results', { data : data } );
+            },
+            function() {
+               socket.emit('start');
             }
-            else if ( arg.match(/^[\'\"]http:\/\/\S+[\'\"]$/) )
-               args.push( arg.slice(1,arg.length-1) ); // remove quotes
-            else
-               args.push( arg );
-         });
-         
-         // add default options of tool
-         if (module.exports.tool.options != undefined)
-            args = module.exports.tool.options.concat( args );
-         
-         // add default arguments of tool
-         if (module.exports.tool.args != undefined)
-            args = args.concat( module.exports.tool.args );
-         
-         // send start event
-         socket.emit('start');
-
-         console.log('ARRRRRRRG = ' + args);
-         console.log(module.exports.tool.path + ' ' + args);
-         
-         // spawn tool as new process
-         var prog = spawn(module.exports.tool.path, args);        
-         
-         // handle minion sources
-         for ( var j=0; j < minions.length; j++ ) {
-                        
-              var ioClient = require('socket.io-client');
-              var source = minionClient.url.parse( minions[j] );
-              console.log('host = ' + source.host);
-              var clientSocket = ioClient.connect( source.host );
-
-              
-              console.log('query = ' + source.query.cmd);
-              
-              clientSocket.emit('run', source.query);
-
-              clientSocket.on('results', function(args) {
-                 var data = args.data,
-                     options = args.options;
-                     
-                 if (options && options.convert)  {
-                    prog.stdin.write( new Buffer(data, options.convert.from).toString(options.convert.to), options.convert.to );
-                 }
-                 else
-                     prog.stdin.write( data );
-              });
-         }
-         
-         // if tool has pipe
-         if (module.exports.tool.pipe != undefined) {
-            var progPipe = spawn("bcftools", ["view", "-vcg", "-"]);
-            progPipe.stdout.on('data', function(data) {
-               module.exports.tool.send(socket, data);
-            });
-            prog.stdout.pipe(progPipe.stdin);            
-            progPipe.stderr.pipe(process.stdout);
-         } else { // no pipe 
-            prog.stdout.on('data', function (data) {
-               module.exports.tool.send(socket, data);
-            });                        
-         }
-
-         prog.stderr.on('data', function (data) {
-            console.log('prog stderr: ' + data);
-         });
-
-         prog.on('exit', function (code) {
-            if (code !== 0) {
-               console.log('prog process exited with code ' + code);
-            }
-         });
-         
-
+         );
       });
-
    });
 };
+
+module.exports.runCommand = function(params, onSend, onStart, onExit) {      
+   var spawn = require('child_process').spawn;
+   var minionClient = require('./public/js/minion-client');
+   var minions = [];
+   var rawArgs = [];
+   var args = [];
+   var cmd = params['cmd'];
+   // if (cmd == undefined && params['url'] != undefined) cmd = minionClient.url.parse(params['url']).query.cmd;
+   if (cmd != undefined) rawArgs = cmd.split(" ");
+
+   // look for minion remote sources
+   rawArgs.filter( function(arg) { 
+      if ( arg.match(/^http:\/\/\S+/) ) {
+         console.log('mArg = ' + arg);
+         minions.push( arg );
+      }
+      else if ( arg.match(/^[\'\"]http:\/\/\S+[\'\"]$/) )
+         args.push( arg.slice(1,arg.length-1) ); // remove quotes
+      else
+         args.push( arg );
+   });
+   
+   // add default options of tool
+   if (module.exports.tool.options != undefined)
+      args = module.exports.tool.options.concat( args );
+   
+   // add default arguments of tool
+   if (module.exports.tool.args != undefined)
+      args = args.concat( module.exports.tool.args );
+   
+   // send start event
+   if (onStart != undefined) onStart();
+
+   console.log('ARRRRRRRG = ' + args);
+   console.log(module.exports.tool.path + ' ' + args);
+   
+   // spawn tool as new process
+   var prog = spawn(module.exports.tool.path, args);        
+   
+   // handle minion sources
+   for ( var j=0; j < minions.length; j++ ) {
+                  
+        var ioClient = require('socket.io-client');
+        var source = minionClient.url.parse( minions[j] );
+        console.log('host = ' + source.host);
+        var clientSocket = ioClient.connect( source.host );
+
+        
+        console.log('query = ' + source.query.cmd);
+        
+        clientSocket.emit('run', source.query);
+
+        clientSocket.on('results', function(args) {
+           var data = args.data,
+               options = args.options || {};
+               
+           if (options.binary)  {
+              prog.stdin.write( new Buffer(data, 'base64').toString('binary'), 'binary' );
+           }
+           else
+               prog.stdin.write( data );
+        });
+   }
+   
+   // if tool has pipe
+   if (module.exports.tool.pipe != undefined) {
+      var progPipe = spawn("bcftools", ["view", "-vcg", "-"]);
+      progPipe.stdout.on('data', function(data) {
+         module.exports.tool.send(socket, data);
+      });
+      prog.stdout.pipe(progPipe.stdin);            
+      progPipe.stderr.pipe(process.stdout);
+   } else { // no pipe 
+      prog.stdout.on('data', function (data) {
+         if (module.exports.tool.send != undefined) {
+               onSend( module.exports.tool.send(data) )
+         } else
+            onSend( data );
+      });                        
+   }
+
+   prog.stderr.on('data', function (data) {
+      console.log('prog stderr: ' + data);
+   });
+
+   prog.on('exit', function (code) {
+      if (onExit != undefined) onExit();
+      if (code !== 0) {
+         console.log('prog process exited with code ' + code);
+      }
+   }); 
+}
 
 module.exports.sanitize = function(cmd) {
    // TODO

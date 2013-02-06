@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 // temporary until i understand why freebayes seg faults on the stream
-process.on('uncaughtException', function (exception) {
-   // handle or ignore error
-});
+// process.on('uncaughtException', function (exception) {
+//    // handle or ignore error
+// });
 
 var minion = require('./minion'),
     http = require('http'),
@@ -21,7 +21,7 @@ server.listen(8080);
 var tool = {
    path: '/Users/chase/Tools/freebayes/bin/freebayes',
    options: ['--stdin'],
-   send : function(socket, data) {
+   send : function(data) {
       data = String(data)
       var lines = data.split("\n");
       var numLines = lines.length;
@@ -40,7 +40,8 @@ var tool = {
                filter: values[6],
                info  : values[7]
             };
-            if (data) socket.emit( 'results', { data : data });
+            //if (data) socket.emit( 'results', { data : data });
+            return data;
          }
       }
    }
