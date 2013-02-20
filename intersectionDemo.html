@@ -4,6 +4,7 @@
    <link href='css/ubuntu.css' rel='stylesheet' type='text/css'>    
    <script src="js/jquery.min.js"></script>
    <script src="js/jquery-ui.min.js"></script>
+   <script src="http://underscorejs.org/underscore-min.js"> </script>
    <script src="js/Scribl.1.1.3.min.js"> </script>
    <script src="js/alignments.js"> </script>
    <script src="/socket.io/lib/socket.io.js"></script>
@@ -96,22 +97,25 @@
       function openWs(url) {
          var socket1 = io.connect(url);
          socket1.on('results', function(args) {
-            var data = args.data;
-            if (data.pos < parseInt($('#scaleMin').val()) || data.pos > parseInt($('#scaleMax').val())) return;            
-            var ntSize = 1;
-            if (scribl1.pixelsToNts() < window.minPxSize)
-               ntSize = Math.round(window.minPxSize / scribl1.pixelsToNts() * ntSize);
-            var gene = scribl1.addGene(parseInt(data.pos), ntSize, '+');
-            geneHash1[data.pos] = gene;
-            if(geneHash2[data.pos]) {
-               var color = gene.color;
-               gene.color = ['#ADFF99', '#327424'];
-               // geneHash2[data.pos].erase();
+            var data = JSON.parse(args.data);
+            for ( var i=0; i < data.length; i++) {
+               var variant = data[i]
+               if (variant.pos < parseInt($('#scaleMin').val()) || variant.pos > parseInt($('#scaleMax').val())) return;            
+               var ntSize = 1;
+               if (scribl1.pixelsToNts() < window.minPxSize)
+                  ntSize = Math.round(window.minPxSize / scribl1.pixelsToNts() * ntSize);
+               var gene = scribl1.addGene(parseInt(variant.pos), ntSize, '+');
+               geneHash1[variant.pos] = gene;
+               if(geneHash2[variant.pos]) {
+                  var color = gene.color;
+                  gene.color = ['#ADFF99', '#327424'];
+                  // geneHash2[data.pos].erase();
+                  }
+               scribl1.scale.min = parseInt($('#scaleMin').val());
+               scribl1.scale.max = parseInt($('#scaleMax').val());
+               gene.redraw();
+               gene.color = color;
             }
-            scribl1.scale.min = parseInt($('#scaleMin').val());
-            scribl1.scale.max = parseInt($('#scaleMax').val());
-            gene.redraw();
-            gene.color = color;
          });
          
          
@@ -138,24 +142,26 @@
       function openWs1(url) {
          var socket2 = io.connect(url);
          socket2.on('results', function(args) {
-            var data = args.data;
-            if (data.pos < parseInt($('#scaleMin').val()) || data.pos > parseInt($('#scaleMax').val())) return;
-            var ntSize = 1;
-            if (scribl2.pixelsToNts() < window.minPxSize)
-               ntSize = Math.round(window.minPxSize / scribl2.pixelsToNts() * ntSize);
-            var gene = scribl2.addGene(parseInt(data.pos), ntSize, '+');
-            // make sure feature is in correct spot
+            var data = JSON.parse(args.data);
+            for (var i=0; i < data.length; i++) {               
+               var variant = data[i];
+               if (variant.pos < parseInt($('#scaleMin').val()) || variant.pos > parseInt($('#scaleMax').val())) return;
+               var ntSize = 1;
+               if (scribl2.pixelsToNts() < window.minPxSize)
+                  ntSize = Math.round(window.minPxSize / scribl2.pixelsToNts() * ntSize);
+               var gene = scribl2.addGene(parseInt(variant.pos), ntSize, '+');
+               // make sure feature is in correct spot
 
-            geneHash2[data.pos] = gene;
-            if(geneHash1[data.pos]) {
-               var color = gene.color;
-               gene.color = ['#ADFF99', '#327424'];
-               // geneHash1[data.pos].erase();
+               geneHash2[variant.pos] = gene;
+               if(geneHash1[variant.pos]) {
+                  var color = gene.color;
+                  gene.color = ['#ADFF99', '#327424'];
+               }
+               scribl2.scale.min = parseInt($('#scaleMin').val());
+               scribl2.scale.max = parseInt($('#scaleMax').val());
+               gene.redraw();
+               gene.color = color;
             }
-            scribl2.scale.min = parseInt($('#scaleMin').val());
-            scribl2.scale.max = parseInt($('#scaleMax').val());
-            gene.redraw();
-            gene.color = color;
          });
          
 
@@ -292,7 +298,7 @@
                         + ' --min-mapping-quality ' + $('#' + slider + '3').slider('value')
                         + ' --pvar ' + $('#' + slider + '4').slider('value')
                         + ' ' + getDataUrl()
-         };
+         };         
          socket.emit('run', params);
       }
       
@@ -301,7 +307,7 @@
             'cmd' : 'view -vcg ' 
                       + encodeURI('http://0.0.0.0:8060?cmd=mpileup -uf /Users/chase/Tools/freebayes/data/hs_ref_chr'
                       + window.chr + ".fa " + getDataUrl())                    
-         };         
+         };             
          socket.emit('run', params);
       }
       
