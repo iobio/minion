@@ -14,16 +14,25 @@ module.exports = function() {
      res.send(req.query.callback + '({"status": "running"});');
    });
    
-   // app.get("/", function(req, res, next) {
-   //     next("Could not find page");
-   //     console.log(req.query);
-   // });
-   
+
+   // handle http requests
    app.get('/', function (req, res) {
      res.writeHead(200, {
-       "Content-Type": 'application/octet-stream'
+       // "Content-Type": 'application/octet-stream'
+       "Content-Type": 'text/plain'
      });
-     module.exports.runCommand(req.query, function(data) {res.write(data);}, undefined, function() {res.end() });
+// res.write('hi');
+// res.end();     
+console.log('req.query.cmd = ' + req.query.cmd );
+
+console.log('req.query.protocol = ' + req.query.protocol);
+     req.query.protocol = req.query.protocol || 'http';
+     module.exports.runCommand(
+             req.query,
+             {   data: function(data) {res.write(data);},
+                 end:  function() {res.end() }
+             }
+          );
    });
        
    return app;
@@ -32,32 +41,36 @@ module.exports = function() {
 module.exports.tool = undefined;
 module.exports.addTool = function(newTool){ this.tool = newTool };
 
+// handle websocket requests
 module.exports.listen = function(io) {
    io.sockets.on('connection', function (socket) {            
       socket.on('run', function (params) {
-         module.exports.runCommand(params, 
-            function(data) {
-               if (module.exports.tool.binary)
-                  socket.emit( 'results', { data : new Buffer(data, 'binary').toString('base64'), options : { binary:true } });
-               else
-                  socket.emit( 'results', { data : data } );
-            },
-            function() {
-               socket.emit('start');
+         params.protocol = params.protocol || 'websocket';
+         module.exports.runCommand(
+            params, 
+            {  data: function(data) {
+                        if (module.exports.tool.binary)
+                           socket.emit( 'results', { data : new Buffer(data, 'binary').toString('base64'), options : { binary:true } });
+                        else
+                           socket.emit( 'results', { data : data } );
+                     },
+               start: function() { socket.emit('start'); },
+               end: function() { socket.emit('end'); }
             }
          );
       });
    });
 };
 
-module.exports.runCommand = function(params, onSend, onStart, onExit) {      
+// run command
+module.exports.runCommand = function(params, options) {      
    var spawn = require('child_process').spawn;
    var minionClient = require('./public/js/minion-client');
    var minions = [];
    var rawArgs = [];
    var args = [];
    var cmd = params['cmd'];
-   // if (cmd == undefined && params['url'] != undefined) cmd = minionClient.url.parse(params['url']).query.cmd;
+   if (cmd == undefined && params['url'] != undefined) cmd = minionClient.url.parse(params['url']).query.cmd;
    if (cmd != undefined) rawArgs = cmd.split(" ");
 
    // look for minion remote sources
@@ -81,7 +94,7 @@ module.exports.runCommand = function(params, onSend, onStart, onExit) {
       args = args.concat( module.exports.tool.args );
    
    // send start event
-   if (onStart != undefined) onStart();
+   if (options.start != undefined) options.start();
 
    console.log('ARRRRRRRG = ' + args);
    console.log(module.exports.tool.path + ' ' + args);
@@ -89,30 +102,11 @@ module.exports.runCommand = function(params, onSend, onStart, onExit) {
    // spawn tool as new process
    var prog = spawn(module.exports.tool.path, args);        
    
-   // handle minion sources
-   for ( var j=0; j < minions.length; j++ ) {
-                  
-        var ioClient = require('socket.io-client');
-        var source = minionClient.url.parse( minions[j] );
-        console.log('host = ' + source.host);
-        var clientSocket = ioClient.connect( source.host );
-
-        
-        console.log('query = ' + source.query.cmd);
-        
-        clientSocket.emit('run', source.query);
-
-        clientSocket.on('results', function(args) {
-           var data = args.data,
-               options = args.options || {};
-               
-           if (options.binary)  {
-              prog.stdin.write( new Buffer(data, 'base64').toString('binary'), 'binary' );
-           }
-           else
-               prog.stdin.write( data );
-        });
-   }
+   // send requests to minion sources
+   if (params.protocol == 'websocket')
+      module.exports.websocketRequest(minions, prog)
+   else if (params.protocol == 'http')
+      module.exports.httpRequest(minions, prog)
    
    // if tool has pipe
    if (module.exports.tool.pipe != undefined) {
@@ -125,9 +119,9 @@ module.exports.runCommand = function(params, onSend, onStart, onExit) {
    } else { // no pipe 
       prog.stdout.on('data', function (data) {
          if (module.exports.tool.send != undefined) {
-               onSend( module.exports.tool.send(data) )
+               options.data( module.exports.tool.send(data) )
          } else
-            onSend( data );
+            options.data( data );
       });                        
    }
 
@@ -136,11 +130,60 @@ module.exports.runCommand = function(params, onSend, onStart, onExit) {
    });
 
    prog.on('exit', function (code) {
-      if (onExit != undefined) onExit();
+      if (options.end != undefined) options.end();
       if (code !== 0) {
          console.log('prog process exited with code ' + code);
       }
    }); 
+}
+
+module.exports.httpRequest = function(sources, prog) {
+   var http = require('http');
+   console.log('HHHTTTTTTTPPPPPPP');
+   // handle minion sources
+   for ( var j=0; j < sources.length; j++ ) {
+                  
+        
+        var url = sources[j];
+        console.log('url = ' + url);
+        var req = http.request(url, function(res) {
+            res.on('data', function(chunk) {
+               prog.stdin.write( chunk );
+            })
+        });
+        req.end();
+   }
+}
+
+//
+module.exports.websocketRequest = function(sources, prog) {
+   var minionClient = require('./public/js/minion-client');
+   console.log('WEBSOCKCKCKCKCKCKCKCK');
+   // handle minion sources
+   for ( var j=0; j < sources.length; j++ ) {
+                  
+        var ioClient = require('socket.io-client');
+        var source = minionClient.url.parse( sources[j] );
+        console.log('host = ' + source.host);
+        var clientSocket = ioClient.connect( source.host );
+
+        
+        console.log('query = ' + source.query.cmd);
+        
+        clientSocket.emit('run', source.query);
+
+        clientSocket.on('results', function(args) {
+           var data = args.data,
+               options = args.options || {};
+
+           if (options.binary)  {
+              prog.stdin.write( new Buffer(data, 'base64').toString('binary'), 'binary' );
+           }
+           else {
+              prog.stdin.write( data );
+            }
+        });
+   }  
 }
 
 module.exports.sanitize = function(cmd) {
