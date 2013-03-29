@@ -10,19 +10,15 @@ var minion = require('./minion'),
 var io = require('socket.io').listen(server);
 
 // start server
-server.listen(8020);
+server.listen(8030);
 
 
 // define tool
 tool = {
    apiVersion : "0.1",
    name : 'bamtools',
-   path :  '/Users/chase/Desktop/tmp_workspace/minion/bamHelperJson.sh',
-   send: function(data) {
-      data = String(data);
-      var results = data.trim().split("\n")
-      return JSON.stringify(results);
-   }
+   path :  '/Users/chase/Desktop/tmp_workspace/minion/bamHelper.sh',
+   binary: true,
 };
 
 // add tool to minion server
