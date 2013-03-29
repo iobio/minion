@@ -21,7 +21,7 @@ server.listen(8080);
 var tool = {
    path: '/Users/chase/Tools/freebayes/bin/freebayes',
    options: ['--stdin'],
-   send : function(data) {
+   json : function(data) {
       data = String(data);      
       var lines = data.split("\n");
       var numLines = lines.length;
@@ -31,14 +31,16 @@ var tool = {
          if (line && line.charAt(0) != '#') {
             var values = line.split("\t");
             results.push ({
-                chrom : values[0],
-                pos   : values[1],
-                id    : values[2],
-                ref   : values[3],
-                alt   : values[4],
-                qual  : values[5],
-                filter: values[6],
-                info  : values[7]
+                chrom    : values[0],
+                pos      : values[1],
+                id       : values[2],
+                ref      : values[3],
+                alt      : values[4],
+                qual     : values[5],
+                filter   : values[6],
+                info     : values[7],
+                format   : values[8],
+                genotypes: values.slice(9, values.length)
             });
          }
       }
