@@ -21,11 +21,10 @@ module.exports = function() {
        // "Content-Type": 'application/octet-stream'
        "Content-Type": 'text/plain'
      });
-// res.write('hi');
-// res.end();     
-console.log('req.query.cmd = ' + req.query.cmd );
+     // console.log(req);
+    console.log('req.query.cmd = ' + req.query.cmd );
 
-console.log('req.query.protocol = ' + req.query.protocol);
+    console.log('req.query.protocol = ' + req.query.protocol);
      req.query.protocol = req.query.protocol || 'websocket';
      module.exports.runCommand(
              req.query,
@@ -73,13 +72,18 @@ module.exports.runCommand = function(params, options) {
    var minions = [];
    var rawArgs = [];
    var args = [];   
+   var path = module.exports.tool.path;
    
    if (params['cmd'] == undefined && params['url'] != undefined) {
       var q = minionClient.url.parse(params['url']).query;
       params = _und.extend( q, params);
    }
    var cmd = params['cmd'];
-   if (cmd != undefined) rawArgs = cmd.split(" ");
+   // split commands by space into array, while escaping spaces inside double quotes
+   console.log('cmad = ' + params['url']);
+   if (cmd != undefined) rawArgs = cmd.match(/(?:[^\s"]+|"[^"]*")+/g)
+   
+   console.log("raw args = " + rawArgs);
 
    // look for minion remote sources
    rawArgs.filter( function(arg) { 
@@ -87,11 +91,17 @@ module.exports.runCommand = function(params, options) {
          console.log('mArg = ' + arg);
          minions.push( arg );
       }
-      else if ( arg.match(/^[\'\"]http:\/\/\S+[\'\"]$/) )
+      else if ( arg.match(/^[\'\"].*[\'\"]$/) )
          args.push( arg.slice(1,arg.length-1) ); // remove quotes
       else
          args.push( arg );
    });
+   
+   // check if path is to a directory and if so remove
+   // the first argument and append to path as program name
+   if (path[path.length -1] == "/") {
+       path += args.splice(0,1);
+   }
    
    // add default options of tool
    if (module.exports.tool.options != undefined)
@@ -103,12 +113,13 @@ module.exports.runCommand = function(params, options) {
    
    // send start event
    if (options.start != undefined) options.start();
+   
 
    console.log('ARRRRRRRG = ' + args);
-   console.log(module.exports.tool.path + ' ' + args);
+   console.log(path + ' ' + args);
    
    // spawn tool as new process
-   var prog = spawn(module.exports.tool.path, args);        
+   var prog = spawn(path, args);        
    
    // handle prog output
    var reader = params.parseByLine ? module.exports.lineReader : module.exports.chunkReader
