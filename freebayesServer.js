@@ -26,30 +26,28 @@ server.listen(8080);
 var tool = {
    path: '/Users/chase/Tools/freebayes/bin/freebayes',
    options: ['--stdin'],
-   json : function(data) {
-      data = String(data);      
-      var lines = data.split("\n");
-      var numLines = lines.length;
-      var results = [];
-      for (var i=0; i < numLines; i++) {
-         var line = lines[i];
-         if (line && line.charAt(0) != '#') {
-            var values = line.split("\t");
-            results.push ({
-                chrom    : values[0],
-                pos      : values[1],
-                id       : values[2],
-                ref      : values[3],
-                alt      : values[4],
-                qual     : values[5],
-                filter   : values[6],
-                info     : values[7],
-                format   : values[8],
-                genotypes: values.slice(9, values.length)
-            });
-         }
-      }
-      return JSON.stringify(results);
+   json : function(line) {
+      if( line[line.length-1] == "\n" ) line = line.slice(0,-1);
+      var fields = line.split("\t");
+      if (line && line.charAt(0) != '#') {
+         return JSON.stringify(
+            { 
+               data : {
+                chrom    : fields[0],
+                pos      : fields[1],
+                id       : fields[2],
+                ref      : fields[3],
+                alt      : fields[4],
+                qual     : fields[5],
+                filter   : fields[6],
+                info     : fields[7],
+                format   : fields[8],
+                genotypes: fields.slice(9, fields.length)
+               }
+            }
+         );
+      } else if(line.slice(0,6) == "#CHROM") 
+         return JSON.stringify( {header: { samples : fields.slice(9, fields.length) } } );
    }
 };
 
