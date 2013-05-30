@@ -4,21 +4,26 @@
 var minion = require('./minion'),
     http = require('http'),
     app = minion(),
-    server = http.createServer(app);    
+    server = http.createServer(app);
 
 // setup socket
 var io = require('socket.io').listen(server);
 
 // start server
-server.listen(8030);
-
+server.listen(8050);
 
 // define tool
 tool = {
    apiVersion : "0.1",
-   name : 'bamtools',
-   path :  '/Users/chase/Desktop/tmp_workspace/minion/bamHelper.sh',
-   binary: true,
+   name : 'samtools',
+   path :  'samtools',
+   binary: true
+   // send : function(socket, data) {
+   //    socket.emit( 'results', { 
+   //       data : new Buffer(data, 'binary').toString('base64'),
+   //       options : { convert: {from:'base64', to:'binary'} }
+   //    });
+   // } 
 };
 
 // add tool to minion server
