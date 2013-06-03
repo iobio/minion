@@ -67,7 +67,7 @@ module.exports.listen = function(io) {
 // run command
 module.exports.runCommand = function(params, options) {      
    var spawn = require('child_process').spawn,
-       minionClient = require('./public/js/minion-client');
+       minionClient = require('./minion-client');
    var minions = [];
    var rawArgs = [];
    var args = [];   
@@ -177,7 +177,7 @@ module.exports.httpRequest = function(sources, prog) {
 
 //
 module.exports.websocketRequest = function(sources, prog) {
-   var minionClient = require('./public/js/minion-client');
+   var minionClient = require('./minion-client');
    console.log('WEBSOCKCKCKCKCKCKCKCK');
    // handle minion sources
    for ( var j=0; j < sources.length; j++ ) {
