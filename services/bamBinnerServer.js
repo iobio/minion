@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // initialize server
-var minion = require('./minion'),
+var minion = require('../minion'),
     http = require('http'),
     app = minion(),
     server = http.createServer(app);    

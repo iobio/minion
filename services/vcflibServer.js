@@ -10,7 +10,7 @@ process.on('uncaughtException', function (exception) {
    // handle or ignore error
 });
 
-var minion = require('./minion'),
+var minion = require('../minion'),
     http = require('http'),
     app = minion(),
     server = http.createServer(app);
