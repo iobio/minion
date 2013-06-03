@@ -67,8 +67,7 @@ module.exports.listen = function(io) {
 // run command
 module.exports.runCommand = function(params, options) {      
    var spawn = require('child_process').spawn,
-       _und = require("./public/js/underscore-min");       
-   var minionClient = require('./public/js/minion-client');
+       minionClient = require('./public/js/minion-client');
    var minions = [];
    var rawArgs = [];
    var args = [];   
@@ -76,7 +75,7 @@ module.exports.runCommand = function(params, options) {
    
    if (params['cmd'] == undefined && params['url'] != undefined) {
       var q = minionClient.url.parse(params['url']).query;
-      params = _und.extend( q, params);
+      for (var attr in q) { params[attr] = q[attr]; } // merge params in query into params object
    }
    var cmd = params['cmd'];
    // split commands by space into array, while escaping spaces inside double quotes
