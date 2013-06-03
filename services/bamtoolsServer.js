@@ -9,13 +9,19 @@
 var minion = require('../minion'),
     http = require('http'),
     app = minion(),
-    server = http.createServer(app);    
+    server = http.createServer(app),
+    port = 8030;
+    
+// process command line options
+process.argv.forEach(function (val, index, array) {
+  if(val == '--port' && array[index+1]) port = array[index+1];
+});    
 
 // setup socket
 var io = require('socket.io').listen(server);
 
 // start server
-server.listen(8030);
+server.listen(port);
 
 
 // define tool
