@@ -28,7 +28,7 @@ server.listen(port);
 tool = {
    apiVersion : "0.1",
    name : 'bamtools',
-   path :  '/Users/chase/Desktop/tmp_workspace/minion/bamHelper.sh',
+   path :  './minion/services/bamHelper.sh',
    binary: true,
 };
 
