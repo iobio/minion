@@ -13,8 +13,8 @@ do
 done
 
 # cmd="-in <(samtools view -u http://s3.amazonaws.com/1000genomes/data/HG00096/alignment/HG00096.chrom11.ILLUMINA.bwa.GBR.low_coverage.20111114.bam 11:108473-188673)"
-min=$(echo $region | grep -oP '(?<=\d:)\d+(?=-\d+)')
-max=$(echo $region | grep -oP '(?!.*-)\d+')
+min=$(echo $region | cut  -d: -f2 | cut -d- -f1)
+max=$(echo $region | cut  -d: -f2 | cut -d- -f2)
 
 cmd=$bamtools" merge "$cmd" | "$bamtools" coverage | cut -f3 |./binner.sh $min $max 100"
 eval $cmd
