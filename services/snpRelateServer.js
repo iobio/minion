@@ -39,7 +39,7 @@ var tool = {
       }
       return JSON.stringify(results);
    },
-   path: '/Users/chase/Tools/snpRelate/pcaStream2.R'
+   path: './minion/helpers/snpRelateHelper.R'
 };
 
 // add tool to minion server
