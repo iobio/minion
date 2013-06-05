@@ -26,7 +26,7 @@ server.listen(port);
 var tool = {
    apiVersion : "0.1",
    name : 'tabix',
-   path: '/Users/chase/Tools/tabix-0.2.6/tabix',
+   path: 'tabix',
    json : function(line) { 
       if( line[line.length-1] == "\n" ) line = line.slice(0,-1);
       var fields = line.split("\t");

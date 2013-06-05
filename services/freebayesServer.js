@@ -29,7 +29,7 @@ server.listen(port);
 
 // define tool
 var tool = {
-   path: '/Users/chase/Tools/freebayes/bin/freebayes',
+   path: 'freebayes',
    options: ['--stdin'],
    json : function(line) {
       if( line[line.length-1] == "\n" ) line = line.slice(0,-1);
