@@ -26,7 +26,7 @@ server.listen(port);
 var tool = {
    apiVersion : "0.1",
    name : 'gds2pca',
-   path: '/Users/chase/Tools/snpRelate/pca.R',
+   path: './iobio/helpers/gdsHelper.R',
    json: function(data) {
       if( data[data.length-1] == "\n" ) data = data.slice(0,-1);
       var samples = data.split("\t");

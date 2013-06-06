@@ -39,7 +39,7 @@ var tool = {
       }
       return JSON.stringify(results);
    },
-   path: './minion/helpers/snpRelateHelper.R'
+   path: './iobio/helpers/snpRelateHelper.R'
 };
 
 // add tool to minion server

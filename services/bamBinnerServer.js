@@ -23,7 +23,7 @@ server.listen(port);
 tool = {
    apiVersion : "0.1",
    name : 'bamtools',
-   path :  './minion/helpers/bamBinnerHelper.sh',
+   path :  './iobio/helpers/bamBinnerHelper.sh',
    json: function(data) {
       data = String(data);
       var results = data.trim().split("\n")
