@@ -38,6 +38,9 @@ var tool = {
       }
       return JSON.stringify(results);
    },
+   // instructional data used in /help
+   description : 'performs fast pca on the .gds format which is used by the SNPRelate R package',
+   exampleUrl : ""
    
 };
 

@@ -14,6 +14,17 @@ module.exports = function() {
      res.send(req.query.callback + '({"status": "running"});');
    });
    
+   // add status service
+   app.get('/help', function(req, res){
+     var fs = require("fs");
+     var ejs = require("ejs");
+     var fullUrl = req.protocol + "://" + req.get('host');
+     var compiled = ejs.compile(fs.readFileSync(__dirname + '/help.ejs', 'utf8'));
+     module.exports.tool['serviceUrl'] = fullUrl;
+     var html = compiled( module.exports.tool );
+     res.send(html);
+   });
+   
 
    // handle http requests
    app.get('/', function (req, res) {

@@ -53,7 +53,10 @@ var tool = {
          );
       } else if(line.slice(0,6) == "#CHROM") 
          return JSON.stringify( {header: { samples : fields.slice(9, fields.length) } } );
-   }
+   },
+   // instructional data used in /help
+   description : 'variant caller',
+   exampleUrl : ""
 };
 
 // add tool to minion server
