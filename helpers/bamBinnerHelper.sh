@@ -16,6 +16,6 @@ done
 min=$(echo $region | cut  -d: -f2 | cut -d- -f1)
 max=$(echo $region | cut  -d: -f2 | cut -d- -f2)
 
-cmd=$bamtools" merge "$cmd" | "$bamtools" coverage | cut -f3 |./binner.sh $min $max 100"
+cmd=$bamtools" merge "$cmd" | "$bamtools" coverage | cut -f3 |./iobio/helpers/binner.sh $min $max 100"
 eval $cmd
 
