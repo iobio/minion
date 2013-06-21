@@ -29,6 +29,7 @@ server.listen(port);
 
 // define tool
 var tool = {
+   name: 'freebayes',
    path: 'freebayes',
    options: ['--stdin'],
    json : function(line) {

@@ -32,7 +32,7 @@ server.listen(port);
 var tool = {
    apiVersion : "0.1",
    name : 'vcflib',   
-   path: '/Users/chase/Tools/vcflib/',
+   path: '/home/ubuntu/tools/vcflib/',
    json : function(line) { 
       if( line[line.length-1] == "\n" ) line = line.slice(0,-1);
       var fields = line.split("\t");

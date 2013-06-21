@@ -9,7 +9,7 @@ var minion = require('../minion'),
     http = require('http'),
     app = minion(),
     server = http.createServer(app),
-    port = 8040;
+    port = 8061;
 
 // process command line options
 process.argv.forEach(function (val, index, array) {

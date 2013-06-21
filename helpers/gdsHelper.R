@@ -5,7 +5,7 @@ suppressMessages(library(SNPRelate))
 library(rjson)
 
 args <- commandArgs(trailingOnly = TRUE)
-gds.fn <- paste("cache/",args[1], sep="")
+gds.fn <- paste("iobio/cache/",args[1], sep="")
 ld.in <- as.numeric(args[2]) # 0.4
 maf.in <- as.numeric(args[3]) # 0.03
 

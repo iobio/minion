@@ -7,7 +7,7 @@ args <- commandArgs(trailingOnly = TRUE)
 
 # theFifo <- fifo(description=args[1], open="read") 
 vcf.fn <- args[1]
-gds.fn <- paste("cache/",args[2], sep="")
+gds.fn <- paste("iobio/cache/",args[2], sep="")
 mr.in <- as.numeric(args[3])
 maf.in <- as.numeric(args[4])
 

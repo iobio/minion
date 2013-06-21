@@ -39,7 +39,7 @@ var tool = {
       }
       return JSON.stringify(results);
    },
-   path: './iobio/helpers/snpRelateHelper.R',
+   path: require('path').resolve(__dirname, '../helpers/snpRelateHelper.sh'),
    // instructional data used in /help
    description : 'R package for performing PCA analysis on variant data',
    exampleUrl : ""

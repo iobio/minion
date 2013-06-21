@@ -23,7 +23,7 @@ server.listen(port);
 tool = {
    apiVersion : "0.1",
    name : 'bam binner',
-   path :  './iobio/helpers/bamBinnerHelper.sh',
+   path :  require('path').resolve(__dirname, '../helpers/bamBinnerHelper.sh'),
    json: function(data) {
       data = String(data);
       var results = data.trim().split("\n")
