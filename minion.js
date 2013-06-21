@@ -28,21 +28,33 @@ module.exports = function() {
 
    // handle http requests
    app.get('/', function (req, res) {
-     res.writeHead(200, {
-       // "Content-Type": 'application/octet-stream'
-       "Content-Type": 'text/plain'
-     });
-     // console.log(req);
-    console.log('req.query.cmd = ' + req.query.cmd );
+     if(req.query.cmd == undefined) {
+        // return instructions for empty commands
+        var fs = require("fs");
+        var ejs = require("ejs");
+        var fullUrl = req.protocol + "://" + req.get('host');
+        var compiled = ejs.compile(fs.readFileSync(__dirname + '/help.ejs', 'utf8'));
+        module.exports.tool['serviceUrl'] = fullUrl;
+        var html = compiled( module.exports.tool );
+        res.send(html);
+     } else {
+        // execute command
+        res.writeHead(200, {
+          // "Content-Type": 'application/octet-stream'
+          "Content-Type": 'text/plain'
+        });
+        // console.log(req);
+        console.log('req.query.cmd = ' + req.query.cmd );
 
-    console.log('req.query.protocol = ' + req.query.protocol);
-     req.query.protocol = req.query.protocol || 'websocket';
-     module.exports.runCommand(
+        console.log('req.query.protocol = ' + req.query.protocol);
+        req.query.protocol = req.query.protocol || 'websocket';
+        module.exports.runCommand(
              req.query,
              {   data: function(data) {if(data!= undefined) res.write(data);},
-                 end:  function() {res.end() }
+                 end:  function() { setTimeout(function() {res.end()}, 2000); }
              }
           );
+     }
    });
        
    return app;
@@ -155,7 +167,7 @@ module.exports.runCommand = function(params, options) {
                        
 
    prog.stderr.on('data', function (data) {
-      console.log('prog stderr: ' + data);
+      console.log(module.exports.tool['name'] + ' ERROR: ' + data);
    });
 
    prog.on('exit', function (code) {
@@ -206,7 +218,7 @@ module.exports.websocketRequest = function(sources, prog) {
            var data = args.data,
                options = args.options || {};
 
-           if (options.binary)
+           if (options.binary) 
               prog.stdin.write( new Buffer(data, 'base64').toString('binary'), 'binary' );
            else 
               prog.stdin.write( data );
