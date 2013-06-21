@@ -26,7 +26,7 @@ server.listen(port);
 var tool = {
    apiVersion : "0.1",
    name : 'gds2pca',
-   path: require('path').resolve(__dirname, '../helpers/gdsHelper.sh'),
+   path: 'gdsHelper.sh',
    json: function(data) {
       if( data[data.length-1] == "\n" ) data = data.slice(0,-1);
       var samples = data.split("\t");

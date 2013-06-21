@@ -26,8 +26,7 @@ server.listen(port);
 var tool = {
    apiVersion : "0.1",
    name : 'pca',
-   // path: '/Users/chase/Desktop/tmp_workspace/PCAminion/test.R'
-   // path: 'cat'
+   path: 'snpRelateHelper.sh',   
    json: function(data) {
       var samples = data.split("\t");
       // console.log(JSON.stringify(samples));
@@ -39,7 +38,6 @@ var tool = {
       }
       return JSON.stringify(results);
    },
-   path: require('path').resolve(__dirname, '../helpers/snpRelateHelper.sh'),
    // instructional data used in /help
    description : 'R package for performing PCA analysis on variant data',
    exampleUrl : ""

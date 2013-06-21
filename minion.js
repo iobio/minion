@@ -94,7 +94,8 @@ module.exports.runCommand = function(params, options) {
    var minions = [];
    var rawArgs = [];
    var args = [];   
-   var path = module.exports.tool.path;
+   var binPath = require('path').resolve(__dirname, 'bin/');
+   var path = require('path').resolve(binPath, module.exports.tool.path);
    
    if (params['cmd'] == undefined && params['url'] != undefined) {
       var q = minionClient.url.parse(params['url']).query;
@@ -135,10 +136,16 @@ module.exports.runCommand = function(params, options) {
    
    // send start event
    if (options.start != undefined) options.start();
+      
+   // check that executable path is in bin sandbox for security
+   var resolvedPath = require("path").resolve(path);
+   if ( binPath != resolvedPath.substr(0, binPath.length) ) {
+      options.data( "command not found" );
+      options.end();
+      return; // return and do not execute command if outside bin sandbox
+   }
    
-
-   console.log('ARRRRRRRG = ' + args);
-   console.log(path + ' ' + args);
+   console.log('command: ' + path + ' ' + args);
    
    // spawn tool as new process
    var prog = spawn(path, args);        

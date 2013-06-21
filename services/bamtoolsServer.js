@@ -28,7 +28,7 @@ server.listen(port);
 tool = {
    apiVersion : "0.1",
    name : 'Bam Downloader',
-   path :  require('path').resolve(__dirname, '../helpers/bamHelper.sh'),
+   path :  'bamHelper.sh',
    binary: true,
    // instructional data used in /help
    description : 'download and merge a region of multiple bam files',
