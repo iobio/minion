@@ -96,7 +96,12 @@ module.exports.runCommand = function(params, options) {
    var args = [];   
    var binPath = require('path').resolve(__dirname, 'bin/');
    var path = require('path').resolve(binPath, module.exports.tool.path);
+   var isDirectory = false;
    
+   // test if directory
+   if ( module.exports.tool.path[ module.exports.tool.path.length -1 ] == '/' )
+      var isDirectory = true;   
+
    if (params['cmd'] == undefined && params['url'] != undefined) {
       var q = minionClient.url.parse(params['url']).query;
       for (var attr in q) { params[attr] = q[attr]; } // merge params in query into params object
@@ -122,8 +127,8 @@ module.exports.runCommand = function(params, options) {
    
    // check if path is to a directory and if so remove
    // the first argument and append to path as program name
-   if (path[path.length -1] == "/") {
-       path += args.splice(0,1);
+   if (isDirectory) {
+       path += "/" + args.splice(0,1);
    }
    
    // add default options of tool
@@ -144,7 +149,7 @@ module.exports.runCommand = function(params, options) {
       options.end();
       return; // return and do not execute command if outside bin sandbox
    }
-   
+  
    console.log('command: ' + path + ' ' + args);
    
    // spawn tool as new process
