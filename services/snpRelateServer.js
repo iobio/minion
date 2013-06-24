@@ -26,7 +26,7 @@ server.listen(port);
 var tool = {
    apiVersion : "0.1",
    name : 'pca',
-   path: 'snpRelateHelper.sh',   
+   path: 'snpRelateHelper.R',   
    json: function(data) {
       var samples = data.split("\t");
       // console.log(JSON.stringify(samples));
