@@ -1,0 +1,43 @@
+body {
+   font-family: Quicksand;
+   font-weight: 300;
+   margin: 10px 20px 0px 20px;
+}
+
+#header {
+   position: relative;
+}
+
+#header #title {
+   font-size: 96px;
+   color:#2d8fc1;
+   float:left;
+}
+
+#header #menu {
+   font-size: 20px;
+   margin-left: 150px;
+   position:absolute;
+   left: 250px;
+   top: 40px;
+}
+
+#header #menu ul {
+   list-style-type: none;
+   padding: 0;
+   margin-left: 0;
+}
+
+#header #menu li {
+   display: inline;
+   margin-right: 30px;
+}
+
+#header #menu li a {
+   padding-bottom:3px;
+}
+
+a {text-decoration: none;color: black;}
+a:visited {color:black;}  /* visited link */
+a:hover {border-bottom: 2px solid #2d8fc1;}  /* mouse over link */
+a:active {border-bottom: 2px solid #2d8fc1;}  /* selected link */
