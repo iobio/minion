@@ -114,16 +114,21 @@ module.exports.runCommand = function(params, options) {
    console.log("raw args = " + rawArgs);
 
    // look for minion remote sources
-   rawArgs.filter( function(arg) { 
+   for( var i=0; i < rawArgs.length; i++) {
+      var arg = rawArgs[i];      
       if ( arg.match(/^http:\/\/\S+/) ) {
          console.log('mArg = ' + arg);
-         minions.push( arg );
+         minions.push( arg );         
+         var inOpt = module.exports.tool.inputOption;
+         if( inOpt != undefined && inOpt == args[args.length-1]) {
+            args.splice(-1);
+         }
       }
       else if ( arg.match(/^[\'\"].*[\'\"]$/) )
          args.push( arg.slice(1,arg.length-1) ); // remove quotes
       else
          args.push( arg );
-   });
+   }
    
    // check if path is to a directory and if so remove
    // the first argument and append to path as program name
