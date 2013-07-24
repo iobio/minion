@@ -34,7 +34,6 @@ var tool = {
    name : 'samtools',   
    path: 'samtools',
    args: ['-'],
-   binary: true,
    // instructional data used in /help
    description : 'utility for manipulating sam formate files',
    exampleUrl : ""

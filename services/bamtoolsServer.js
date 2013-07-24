@@ -35,7 +35,6 @@ tool = {
    apiVersion : "0.1",
    name : 'bamtools',
    path :  'bamtools',
-   binary: true,
    inputOption: '-in',
    // instructional data used in /help
    description : 'utility for bam files',

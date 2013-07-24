@@ -73,7 +73,7 @@ module.exports.listen = function(io) {
             params, 
             {  data: function(data) {
                         if(data != undefined ) {
-                           if (module.exports.tool.binary)
+                           if (params.binary)
                               socket.emit( 'results', { data : new Buffer(data, 'binary').toString('base64'), options : { binary:true } });
                            else
                               socket.emit( 'results', { data : String(data) } );
