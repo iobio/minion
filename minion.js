@@ -45,9 +45,8 @@ module.exports = function() {
         });
         // console.log(req);
         console.log('req.query.cmd = ' + req.query.cmd );
-
-        console.log('req.query.protocol = ' + req.query.protocol);
         req.query.protocol = req.query.protocol || 'websocket';
+        console.log('params = ' + JSON.stringify(req.query));
         module.exports.runCommand(
              req.query,
              {   data: function(data) {if(data!= undefined) res.write(data);},
@@ -67,7 +66,7 @@ module.exports.addTool = function(newTool){ this.tool = newTool };
 module.exports.listen = function(io) {
    io.sockets.on('connection', function (socket) {            
       socket.on('run', function (params) {
-         console.log("here params = " + params.format);
+         console.log("here params = " + JSON.stringify(params));
          params.protocol = params.protocol || 'websocket';
          module.exports.runCommand(
             params, 
@@ -115,10 +114,11 @@ module.exports.runCommand = function(params, options) {
 
    // look for minion remote sources
    for( var i=0; i < rawArgs.length; i++) {
-      var arg = rawArgs[i];      
-      if ( arg.match(/^http:\/\/\S+/) ) {
+      var arg = rawArgs[i];
+      // if ( arg.match(/^http:\/\/\S+/) ) {   
+      if ( arg.match(/^http%3A%2F%2F\S+/) ) {   
          console.log('mArg = ' + arg);
-         minions.push( arg );         
+         minions.push( decodeURIComponent(arg) );         
          var inOpt = module.exports.tool.inputOption;
          if( inOpt != undefined && inOpt == args[args.length-1]) {
             args.splice(-1);
@@ -235,9 +235,9 @@ module.exports.websocketRequest = function(sources, prog) {
            var data = args.data,
                options = args.options || {};
 
-           if (options.binary) 
+           if (options.binary)
               prog.stdin.write( new Buffer(data, 'base64').toString('binary'), 'binary' );
-           else 
+           else
               prog.stdin.write( data );
         });
         
