@@ -58,7 +58,7 @@ var tool = {
    },
    // instructional data used in /help
    description : 'stream sections of static vcf.gz files',
-   exampleUrl : "?cmd=-h%20'http://s3.amazonaws.com/1000genomes/release/20101123/interim_phase1_release/ALL.chr2.phase1.projectConsensus.genotypes.vcf.gz'%202:4000000-4050000"   
+   exampleUrl : "http://tabix.iobio.io?cmd=-h%20'http://s3.amazonaws.com/1000genomes/release/20101123/interim_phase1_release/ALL.chr2.phase1.projectConsensus.genotypes.vcf.gz'%202:4000000-4050000"   
 };
 
 // add tool to minion server
