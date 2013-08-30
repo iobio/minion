@@ -68,14 +68,15 @@ module.exports.listen = function(io) {
       socket.on('run', function (params) {
          console.log("here params = " + JSON.stringify(params));
          params.protocol = params.protocol || 'websocket';
+         params.event = params.event || 'results';
          module.exports.runCommand(
             params, 
             {  data: function(data) {
                         if(data != undefined ) {
                            if (params.binary)
-                              socket.emit( 'results', { data : new Buffer(data, 'binary').toString('base64'), options : { binary:true } });
+                              socket.emit( params.event, { data : new Buffer(data, 'binary').toString('base64'), options : { binary:true } });
                            else
-                              socket.emit( 'results', { data : String(data) } );
+                              socket.emit( params.event, { data : String(data) } );
                         }
                      },
                start: function() { socket.emit('start'); },
