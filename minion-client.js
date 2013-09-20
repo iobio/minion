@@ -21,6 +21,7 @@ minionClient.url.parse = function(url) {
    console.log('parUrl = ' + url)
    var parts = url.split(/\?(.+)?/);
    parsed.host = parts[0];
+   if(parsed.host == "http://client") parsed.isClient = true;
    var urlParams = parts[1]
    console.log('parts1 = ' + urlParams);
 
