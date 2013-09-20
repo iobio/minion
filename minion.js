@@ -64,7 +64,9 @@ module.exports.addTool = function(newTool){ this.tool = newTool };
 
 // handle websocket requests
 module.exports.listen = function(io) {
-   io.sockets.on('connection', function (socket) {            
+
+   io.sockets.on('connection', function (socket) {    
+      module.exports.socket = socket;        
       socket.on('run', function (params) {
          console.log("here params = " + JSON.stringify(params));
          params.protocol = params.protocol || 'websocket';
@@ -73,10 +75,11 @@ module.exports.listen = function(io) {
             params, 
             {  data: function(data) {
                         if(data != undefined ) {
-                           if (params.binary)
-                              socket.emit( params.event, { data : new Buffer(data, 'binary').toString('base64'), options : { binary:true } });
+                           if (params.binary) {
+                              socket.emit( params.event, { data : new Buffer(data, 'binary').toString('base64'), options : { binary:true }, 'params' :params });
+                           }
                            else
-                              socket.emit( params.event, { data : String(data) } );
+                              socket.emit( params.event, { data : String(data), 'params' : params  } );
                         }
                      },
                start: function() { socket.emit('start'); },
@@ -151,7 +154,7 @@ module.exports.runCommand = function(params, options) {
    // check that executable path is in bin sandbox for security
    var resolvedPath = require("path").resolve(path);
    if ( binPath != resolvedPath.substr(0, binPath.length) ) {
-      options.data( "command not found" );
+      options.data( "ERROR: command not found or program not in executable directory. Only programs iobio/bin/ directory are executable" );
       options.end();
       return; // return and do not execute command if outside bin sandbox
    }
@@ -164,6 +167,8 @@ module.exports.runCommand = function(params, options) {
    // handle prog output
    var reader = params.parseByLine ? module.exports.lineReader : module.exports.chunkReader
    reader(prog, function(data) {
+         var fs = require('fs');
+         fs.appendFile('test2.bam', data)
           if (params.format != undefined) {
                if (module.exports.tool[params.format] == undefined) {
                   // ADD ERROR HANDLING - SEND ERROR HASH BACK TO CLIENT
@@ -189,6 +194,7 @@ module.exports.runCommand = function(params, options) {
    });
 
    prog.on('exit', function (code) {
+      console.log('exiting samtools');
       if (options.end != undefined) options.end();
       if (code !== 0) {
          console.log('prog process exited with code ' + code);
@@ -219,6 +225,11 @@ module.exports.httpRequest = function(sources, prog) {
 //
 module.exports.websocketRequest = function(sources, prog) {
    var minionClient = require('./minion-client');
+   // var fs = require('fs');
+   // var rs = fs.createReadStream("/Users/chase/Desktop/tmp_workspace/iobio/bintest.bin");
+   // rs.on('data', function(chunk) {
+   //    prog.stdin.write(chunk);
+   // })
    console.log('WEBSOCKCKCKCKCKCKCKCK');
    // handle minion sources
    for ( var j=0; j < sources.length; j++ ) {
@@ -226,25 +237,45 @@ module.exports.websocketRequest = function(sources, prog) {
         var ioClient = require('socket.io-client');
         var source = minionClient.url.parse( sources[j] );
         console.log('host = ' + source.host);
-        var clientSocket = ioClient.connect( source.host,  {'force new connection': true} );
+        if(source.isClient) {
+           console.log('getting data from browser client');
+            var upstreamSocket = module.exports.socket;
+         }
+        else {
+           console.log('normal client');
+            var upstreamSocket = ioClient.connect( source.host,  {'force new connection': true} );
+         }
         
         // start
-        clientSocket.emit('run', source.query);
+        upstreamSocket.emit('run', source.query);
         
         // handle results
-        clientSocket.on('results', function(args) {
+        upstreamSocket.on('results', function(args) {
            var data = args.data,
                options = args.options || {};
 
-           if (options.binary)
-              prog.stdin.write( new Buffer(data, 'base64').toString('binary'), 'binary' );
-           else
+           if (options.binary) {
+              console.log('recieinv binary data');
+              // fs = require('fs');
+              // var hex = new Buffer(data, 'binary').toString('base64');
+              // fs.appendFile("bintest.hex.bin", new Buffer(hex, 'base64').toString('binary'));
+              // fs.appendFile("bintest.bin", new Buffer(data, 'base64'), {encoding : 'binary'});     
+              // rs.pipe(prog.stdin);  
+              // rs.pipe(ws);       
+              prog.stdin.write( new Buffer(data, 'base64'), 'binary' );
+           }
+           else {
+              console.log('recieing reg data');
+              fs = require('fs');
+              fs.appendFile("test.sam", data);
               prog.stdin.write( data );
+           }
         });
         
         // client finished
-        clientSocket.on('end', function() {
-           prog.stdin.end()
+        upstreamSocket.on('end', function() {
+           console.log('ending stream')
+           prog.stdin.end();
         });
    }  
 }
