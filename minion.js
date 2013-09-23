@@ -2,8 +2,7 @@
 module.exports = function() {
    var express = require('express'),
        app = express();
-       
-       
+            
    // add public folder
    app.use('/', express.static(__dirname + '/public'));
    
@@ -23,8 +22,7 @@ module.exports = function() {
      module.exports.tool['serviceUrl'] = fullUrl;
      var html = compiled( module.exports.tool );
      res.send(html);
-   });
-   
+   });   
 
    // handle http requests
    app.get('/', function (req, res) {
@@ -64,35 +62,18 @@ module.exports.addTool = function(newTool){ this.tool = newTool };
 
 // handle websocket requests
 module.exports.listen = function(bs) {
-
-
+   module.exports.bs = bs;
    bs.on('connection', function(client) {
-      console.log('connected');
       module.exports.client = client;        
       client.on('stream', function(stream,options) { 
-         console.log('my oppys = ' + options);
+         if(options.event == "setID") client.connectionID = options.connectionID;
          if(options.event == 'run') {
             var params = options.params;
-            console.log("here params = " + JSON.stringify(params));
-            console.log('url = ' + params.url)
             params.protocol = params.protocol || 'websocket';
             params.returnEvent = params.returneEvent || 'results';
             if (params.binary) {params.encoding = 'binary';} // backwards compatibility fix
             params.encoding = params.encoding || 'utf8';
-            module.exports.runCommand(
-               params, 
-               {  
-                  data: function(data) {//if(data != undefined ) { 
-                     // if(params.encoding == 'binary')
-                        //stream.write(data, {event: params.returnEvent} )
-                     // else
-                     //                       stream.write(data.toString(), {event: params.returnEvent} ) 
-                     //}
-                  },
-                  start: function() { /*socket.emit('start');*/ },
-                  end: function() { stream.end() }
-               },stream
-            );
+            module.exports.runCommand(params,stream);
          }
       })
    });
@@ -127,7 +108,6 @@ module.exports.runCommand = function(params, options,stream) {
    // look for minion remote sources
    for( var i=0; i < rawArgs.length; i++) {
       var arg = rawArgs[i];
-      // if ( arg.match(/^http:\/\/\S+/) ) {   
       if ( arg.match(/^http%3A%2F%2F\S+/) ) {   
          console.log('mArg = ' + arg);
          minions.push( decodeURIComponent(arg) );         
@@ -187,10 +167,10 @@ module.exports.runCommand = function(params, options,stream) {
    //             options.data( data );
    //          }
    //    });
-  // stream.setEncoding('utf8');
+
    if(params.encoding != 'binary') prog.stdout.setEncoding(params.encoding);
    prog.stdout.pipe(stream);
-   // prog.stdout.pipe(process.stdout);
+
    
    // send requests to minion sources
    if (params.protocol == 'websocket')
@@ -214,11 +194,10 @@ module.exports.runCommand = function(params, options,stream) {
 
 module.exports.httpRequest = function(sources, prog) {
    var http = require('http');
-   console.log('HHHTTTTTTTPPPPPPP');
+
    // handle minion sources
    for ( var j=0; j < sources.length; j++ ) {                
         var url = sources[j];
-        console.log('url = ' + url);
         var req = http.request(url, function(res) {           
             res.on('data', function(chunk) {
                prog.stdin.write( chunk );
@@ -237,36 +216,35 @@ module.exports.websocketRequest = function(sources, prog) {
    var minionClient = require('./minion-client');
    var BinaryClient = require('binaryjs').BinaryClient;
 
-   console.log('WEBSOCKCKCKCKCKCKCKCK');
    // handle minion sources
    for ( var j=0; j < sources.length; j++ ) {
                   
         // var ioClient = require('socket.io-client');
         var source = minionClient.url.parse( sources[j] );
-        console.log('host = ' + source.host);
         if(source.isClient) {
-           console.log('getting data from browser client');
-            var client = module.exports.client;
-            client.send("", {event:'run', params:source.query});
-            client.streams[0].pipe(prog.stdin)
+           if (source.query.id != undefined) {
+              var bs = module.exports.bs;
+              var client;
+              for ( var c in bs.clients) {
+                 if(bs.clients[c].connectionID == source.query.id)
+                    client = bs.clients[c];
+              }              
+            } else {
+               var client = module.exports.client;
+            }
+            var ustream = client.createStream({event:'run', params: source.query });
+            ustream.pipe(prog.stdin);
+            ustream.on('end', function() { 
+               prog.stdin.end() 
+            })
          }
         else {
-           console.log('normal client');
             var upstreamClient = new BinaryClient(source.host);
             upstreamClient.on("open", function() {
                var ustream = upstreamClient.createStream({event:'run', params: source.query });
                ustream.pipe(prog.stdin);
             });
          }
-        
-        // start
-           //ustream.write(null, {event:'run', params:source.query});
-
-           // upstreamSocket.on('end', function() {
-           //    console.log('ending stream')
-           //    prog.stdin.end();
-           // });
-        //});
    }  
 }
 
