@@ -9,6 +9,7 @@ var minion = require('../minion'),
     http = require('http'),
     app = minion(),
     server = http.createServer(app),
+    BinaryServer = require('binaryjs').BinaryServer,
     port = 8060;
     
 // process command line options
@@ -16,12 +17,11 @@ process.argv.forEach(function (val, index, array) {
   if(val == '--port' && array[index+1]) port = array[index+1];
 });
 
+// setup socket
+var bs = BinaryServer({server: server});
 
 // start server
 server.listen(port);
-
-// setup socket
-var bs = new BinaryServer({server: server, path: '/binary-endpoint'});
 
 // define tool
 var tool = {
@@ -39,3 +39,4 @@ minion.addTool(tool);
 
 // start minion socket
 minion.listen(bs);
+console.log('iobio server started on port ' + port);

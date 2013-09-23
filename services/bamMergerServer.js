@@ -41,5 +41,4 @@ minion.addTool(tool);
 
 // start minion socket
 minion.listen(bs);
-
-console.log('HTTP and BinaryJS server started on port ' + port);
+console.log('iobio server started on port ' + port);
