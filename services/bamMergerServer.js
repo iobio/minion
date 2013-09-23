@@ -5,30 +5,26 @@
 // samtools is used b\c it is quicker than bamtools at remote slices
 
 
+
 // initialize server
 var minion = require('../minion'),
     http = require('http'),
     app = minion(),
     server = http.createServer(app),
+    BinaryServer = require('binaryjs').BinaryServer,
     port = 8030;
+    
     
 // process command line options
 process.argv.forEach(function (val, index, array) {
   if(val == '--port' && array[index+1]) port = array[index+1];
 });    
 
-// setup socket
-var io = require('socket.io').listen(server);
-
-// set production environment
-io.enable('browser client minification');  // send minified client
-io.enable('browser client etag');          // apply etag caching logic based on version number
-io.enable('browser client gzip');          // gzip the file
-io.set('log level', 1);                    // reduce logging
+//setup socket
+var bs = BinaryServer({server: server});
 
 // start server
 server.listen(port);
-
 
 // define tool
 tool = {
@@ -44,4 +40,6 @@ tool = {
 minion.addTool(tool);
 
 // start minion socket
-minion.listen(io);
+minion.listen(bs);
+
+console.log('HTTP and BinaryJS server started on port ' + port);

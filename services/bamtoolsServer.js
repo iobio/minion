@@ -4,12 +4,19 @@
 // grab a region of mulitple bam files and merge
 // samtools is used b\c it is quicker than bamtools at remote slices
 
+// temporary until i understand why freebayes seg faults on the stream
+// process.on('uncaughtException', function (exception) {
+//    console.log("my error: " + exception)
+// });
+
+
 
 // initialize server
 var minion = require('../minion'),
     http = require('http'),
     app = minion(),
     server = http.createServer(app),
+    BinaryServer = require('binaryjs').BinaryServer,
     port = 7030;
     
 // process command line options
@@ -18,17 +25,10 @@ process.argv.forEach(function (val, index, array) {
 });    
 
 // setup socket
-var io = require('socket.io').listen(server);
-
-// set production environment
-// io.enable('browser client minification');  // send minified client
-// io.enable('browser client etag');          // apply etag caching logic based on version number
-// io.enable('browser client gzip');          // gzip the file
-// io.set('log level', 1);                    // reduce logging
+var bs = BinaryServer({server: server});
 
 // start server
 server.listen(port);
-
 
 // define tool
 tool = {
@@ -53,4 +53,6 @@ tool = {
 minion.addTool(tool);
 
 // start minion socket
-minion.listen(io);
+minion.listen(bs);
+
+console.log('HTTP and BinaryJS server started on port ' + port);

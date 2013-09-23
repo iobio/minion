@@ -63,35 +63,43 @@ module.exports.tool = undefined;
 module.exports.addTool = function(newTool){ this.tool = newTool };
 
 // handle websocket requests
-module.exports.listen = function(io) {
+module.exports.listen = function(bs) {
 
-   io.sockets.on('connection', function (socket) {    
-      module.exports.socket = socket;        
-      socket.on('run', function (params) {
-         console.log("here params = " + JSON.stringify(params));
-         params.protocol = params.protocol || 'websocket';
-         params.event = params.event || 'results';
-         module.exports.runCommand(
-            params, 
-            {  data: function(data) {
-                        if(data != undefined ) {
-                           if (params.binary) {
-                              socket.emit( params.event, { data : new Buffer(data, 'binary').toString('base64'), options : { binary:true }, 'params' :params });
-                           }
-                           else
-                              socket.emit( params.event, { data : String(data), 'params' : params  } );
-                        }
-                     },
-               start: function() { socket.emit('start'); },
-               end: function() { socket.emit('end'); }
-            }
-         );
-      });
+
+   bs.on('connection', function(client) {
+      console.log('connected');
+      module.exports.client = client;        
+      client.on('stream', function(stream,options) { 
+         console.log('my oppys = ' + options);
+         if(options.event == 'run') {
+            var params = options.params;
+            console.log("here params = " + JSON.stringify(params));
+            console.log('url = ' + params.url)
+            params.protocol = params.protocol || 'websocket';
+            params.returnEvent = params.returneEvent || 'results';
+            if (params.binary) {params.encoding = 'binary';} // backwards compatibility fix
+            params.encoding = params.encoding || 'utf8';
+            module.exports.runCommand(
+               params, 
+               {  
+                  data: function(data) {//if(data != undefined ) { 
+                     // if(params.encoding == 'binary')
+                        //stream.write(data, {event: params.returnEvent} )
+                     // else
+                     //                       stream.write(data.toString(), {event: params.returnEvent} ) 
+                     //}
+                  },
+                  start: function() { /*socket.emit('start');*/ },
+                  end: function() { stream.end() }
+               },stream
+            );
+         }
+      })
    });
 };
 
 // run command
-module.exports.runCommand = function(params, options) {      
+module.exports.runCommand = function(params, options,stream) {      
    var spawn = require('child_process').spawn,
        minionClient = require('./minion-client');
    var minions = [];
@@ -165,21 +173,24 @@ module.exports.runCommand = function(params, options) {
    var prog = spawn(path, args);        
    
    // handle prog output
-   var reader = params.parseByLine ? module.exports.lineReader : module.exports.chunkReader
-   reader(prog, function(data) {
-         var fs = require('fs');
-         fs.appendFile('test2.bam', data)
-          if (params.format != undefined) {
-               if (module.exports.tool[params.format] == undefined) {
-                  // ADD ERROR HANDLING - SEND ERROR HASH BACK TO CLIENT
-                  // send raw data anyway
-                  options.data( data );
-               } else
-                  options.data( module.exports.tool[params.format](data) )
-            } else {
-               options.data( data );
-            }
-      });
+   // var reader = params.parseByLine ? module.exports.lineReader : module.exports.chunkReader
+   // reader(prog, function(data) {
+   //       var fs = require('fs');
+   //        if (params.format != undefined) {
+   //             if (module.exports.tool[params.format] == undefined) {
+   //                // ADD ERROR HANDLING - SEND ERROR HASH BACK TO CLIENT
+   //                // send raw data anyway
+   //                options.data( data );
+   //             } else
+   //                options.data( module.exports.tool[params.format](data) )
+   //          } else {
+   //             options.data( data );
+   //          }
+   //    });
+  // stream.setEncoding('utf8');
+   if(params.encoding != 'binary') prog.stdout.setEncoding(params.encoding);
+   prog.stdout.pipe(stream);
+   // prog.stdout.pipe(process.stdout);
    
    // send requests to minion sources
    if (params.protocol == 'websocket')
@@ -194,7 +205,6 @@ module.exports.runCommand = function(params, options) {
    });
 
    prog.on('exit', function (code) {
-      console.log('exiting samtools');
       if (options.end != undefined) options.end();
       if (code !== 0) {
          console.log('prog process exited with code ' + code);
@@ -225,58 +235,38 @@ module.exports.httpRequest = function(sources, prog) {
 //
 module.exports.websocketRequest = function(sources, prog) {
    var minionClient = require('./minion-client');
-   // var fs = require('fs');
-   // var rs = fs.createReadStream("/Users/chase/Desktop/tmp_workspace/iobio/bintest.bin");
-   // rs.on('data', function(chunk) {
-   //    prog.stdin.write(chunk);
-   // })
+   var BinaryClient = require('binaryjs').BinaryClient;
+
    console.log('WEBSOCKCKCKCKCKCKCKCK');
    // handle minion sources
    for ( var j=0; j < sources.length; j++ ) {
                   
-        var ioClient = require('socket.io-client');
+        // var ioClient = require('socket.io-client');
         var source = minionClient.url.parse( sources[j] );
         console.log('host = ' + source.host);
         if(source.isClient) {
            console.log('getting data from browser client');
-            var upstreamSocket = module.exports.socket;
+            var client = module.exports.client;
+            client.send("", {event:'run', params:source.query});
+            client.streams[0].pipe(prog.stdin)
          }
         else {
            console.log('normal client');
-            var upstreamSocket = ioClient.connect( source.host,  {'force new connection': true} );
+            var upstreamClient = new BinaryClient(source.host);
+            upstreamClient.on("open", function() {
+               var ustream = upstreamClient.createStream({event:'run', params: source.query });
+               ustream.pipe(prog.stdin);
+            });
          }
         
         // start
-        upstreamSocket.emit('run', source.query);
-        
-        // handle results
-        upstreamSocket.on('results', function(args) {
-           var data = args.data,
-               options = args.options || {};
+           //ustream.write(null, {event:'run', params:source.query});
 
-           if (options.binary) {
-              console.log('recieinv binary data');
-              // fs = require('fs');
-              // var hex = new Buffer(data, 'binary').toString('base64');
-              // fs.appendFile("bintest.hex.bin", new Buffer(hex, 'base64').toString('binary'));
-              // fs.appendFile("bintest.bin", new Buffer(data, 'base64'), {encoding : 'binary'});     
-              // rs.pipe(prog.stdin);  
-              // rs.pipe(ws);       
-              prog.stdin.write( new Buffer(data, 'base64'), 'binary' );
-           }
-           else {
-              console.log('recieing reg data');
-              fs = require('fs');
-              fs.appendFile("test.sam", data);
-              prog.stdin.write( data );
-           }
-        });
-        
-        // client finished
-        upstreamSocket.on('end', function() {
-           console.log('ending stream')
-           prog.stdin.end();
-        });
+           // upstreamSocket.on('end', function() {
+           //    console.log('ending stream')
+           //    prog.stdin.end();
+           // });
+        //});
    }  
 }
 

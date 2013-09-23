@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 // temporary until i understand why freebayes seg faults on the stream
-process.on('uncaughtException', function (exception) {
-   // handle or ignore error
-});
+// process.on('uncaughtException', function (exception) {
+//    // handle or ignore error
+// });
 
 var minion = require('../minion'),
     http = require('http'),
@@ -16,17 +16,12 @@ process.argv.forEach(function (val, index, array) {
   if(val == '--port' && array[index+1]) port = array[index+1];
 });
 
-// setup socket
-var io = require('socket.io').listen(server);
-
-// set production environment
-io.enable('browser client minification');  // send minified client
-io.enable('browser client etag');          // apply etag caching logic based on version number
-io.enable('browser client gzip');          // gzip the file
-io.set('log level', 1);                    // reduce logging
 
 // start server
 server.listen(port);
+
+// setup socket
+var bs = new BinaryServer({server: server, path: '/binary-endpoint'});
 
 // define tool
 var tool = {
@@ -43,4 +38,4 @@ var tool = {
 minion.addTool(tool);
 
 // start minion socket
-minion.listen(io);
+minion.listen(bs);
