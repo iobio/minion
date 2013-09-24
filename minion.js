@@ -73,7 +73,7 @@ module.exports.listen = function(bs) {
             params.returnEvent = params.returneEvent || 'results';
             if (params.binary) {params.encoding = 'binary';} // backwards compatibility fix
             params.encoding = params.encoding || 'utf8';
-            module.exports.runCommand(params,stream);
+            module.exports.runCommand(params,options,stream);
          }
       })
    });
