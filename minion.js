@@ -46,10 +46,10 @@ module.exports = function() {
         req.query.protocol = req.query.protocol || 'websocket';
         console.log('params = ' + JSON.stringify(req.query));
         module.exports.runCommand(
-             req.query,
-             {   data: function(data) {if(data!= undefined) res.write(data);},
-                 end:  function() { setTimeout(function() {res.end()}, 2000); }
-             }
+             req.query, {}, res
+             // {   data: function(data) {if(data!= undefined) res.write(data);},
+             //     end:  function() { setTimeout(function() {res.end()}, 2000); }
+             // }
           );
      }
    });
@@ -80,7 +80,7 @@ module.exports.listen = function(bs) {
 };
 
 // run command
-module.exports.runCommand = function(params, options,stream) {      
+module.exports.runCommand = function(params, options, stream) {      
    var spawn = require('child_process').spawn,
        minionClient = require('./minion-client');
    var minions = [];
@@ -108,7 +108,7 @@ module.exports.runCommand = function(params, options,stream) {
    // look for minion remote sources
    for( var i=0; i < rawArgs.length; i++) {
       var arg = rawArgs[i];
-      if ( arg.match(/^http%3A%2F%2F\S+/) ) {   
+      if ( arg.match(/^http%3A%2F%2F\S+/) || arg.match(/^ws%3A%2F%2F\S+/) ) {   
          console.log('mArg = ' + arg);
          minions.push( decodeURIComponent(arg) );         
          var inOpt = module.exports.tool.inputOption;
