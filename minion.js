@@ -38,19 +38,14 @@ module.exports = function() {
      } else {
         // execute command
         res.writeHead(200, {
-          // "Content-Type": 'application/octet-stream'
           "Content-Type": 'text/plain'
         });
         // console.log(req);
         console.log('req.query.cmd = ' + req.query.cmd );
+        if(req.query.binary) req.query.encoding = 'binary';
         req.query.protocol = req.query.protocol || 'websocket';
         console.log('params = ' + JSON.stringify(req.query));
-        module.exports.runCommand(
-             req.query, {}, res
-             // {   data: function(data) {if(data!= undefined) res.write(data);},
-             //     end:  function() { setTimeout(function() {res.end()}, 2000); }
-             // }
-          );
+        module.exports.runCommand(res, req.query);
      }
    });
        
@@ -73,14 +68,14 @@ module.exports.listen = function(bs) {
             params.returnEvent = params.returneEvent || 'results';
             if (params.binary) {params.encoding = 'binary';} // backwards compatibility fix
             params.encoding = params.encoding || 'utf8';
-            module.exports.runCommand(params,options,stream);
+            module.exports.runCommand(stream, params);
          }
       })
    });
 };
 
 // run command
-module.exports.runCommand = function(params, options, stream) {      
+module.exports.runCommand = function(stream, params) {      
    var spawn = require('child_process').spawn,
        minionClient = require('./minion-client');
    var minions = [];
@@ -136,14 +131,14 @@ module.exports.runCommand = function(params, options, stream) {
    if (module.exports.tool.args != undefined)
       args = args.concat( module.exports.tool.args );
    
-   // send start event
-   if (options.start != undefined) options.start();
+   // // send start event
+   // if (options.start != undefined) options.start();
       
    // check that executable path is in bin sandbox for security
    var resolvedPath = require("path").resolve(path);
    if ( binPath != resolvedPath.substr(0, binPath.length) ) {
-      options.data( "ERROR: command not found or program not in executable directory. Only programs iobio/bin/ directory are executable" );
-      options.end();
+      stream.write( "ERROR: command not found or program not in executable directory. Only programs iobio/bin/ directory are executable" );
+      stream.end();
       return; // return and do not execute command if outside bin sandbox
    }
   
@@ -167,7 +162,8 @@ module.exports.runCommand = function(params, options, stream) {
    //             options.data( data );
    //          }
    //    });
-
+   
+   
    if(params.encoding != 'binary') prog.stdout.setEncoding(params.encoding);
    prog.stdout.pipe(stream);
 
@@ -176,16 +172,14 @@ module.exports.runCommand = function(params, options, stream) {
    if (params.protocol == 'websocket')
       module.exports.websocketRequest(minions, prog)
    else if (params.protocol == 'http')
-      module.exports.httpRequest(minions, prog)
-   
-                       
+      module.exports.httpRequest(minions, prog)                
 
    prog.stderr.on('data', function (data) {
       console.log(module.exports.tool['name'] + ' ERROR: ' + data);
    });
 
    prog.on('exit', function (code) {
-      if (options.end != undefined) options.end();
+      stream.end();
       if (code !== 0) {
          console.log('prog process exited with code ' + code);
       }
