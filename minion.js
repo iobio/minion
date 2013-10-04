@@ -137,7 +137,7 @@ module.exports.runCommand = function(stream, params) {
    // check that executable path is in bin sandbox for security
    var resolvedPath = require("path").resolve(path);
    if ( binPath != resolvedPath.substr(0, binPath.length) ) {
-      stream.write( "ERROR: command not found or program not in executable directory. Only programs iobio/bin/ directory are executable" );
+      stream.write( "ERROR: command not found or program not in executable directory. Only programs in iobio/bin/ directory are executable" );
       stream.end();
       return; // return and do not execute command if outside bin sandbox
    }
@@ -147,25 +147,26 @@ module.exports.runCommand = function(stream, params) {
    // spawn tool as new process
    var prog = spawn(path, args);        
    
-   // handle prog output
-   // var reader = params.parseByLine ? module.exports.lineReader : module.exports.chunkReader
-   // reader(prog, function(data) {
-   //       var fs = require('fs');
-   //        if (params.format != undefined) {
-   //             if (module.exports.tool[params.format] == undefined) {
-   //                // ADD ERROR HANDLING - SEND ERROR HASH BACK TO CLIENT
-   //                // send raw data anyway
-   //                options.data( data );
-   //             } else
-   //                options.data( module.exports.tool[params.format](data) )
-   //          } else {
-   //             options.data( data );
-   //          }
-   //    });
-   
-   
-   if(params.encoding != 'binary') prog.stdout.setEncoding(params.encoding);
-   prog.stdout.pipe(stream);
+   if(params.parseByLine || params.format != undefined) {
+      // FIX this so it uses streams
+      var reader = params.parseByLine ? module.exports.lineReader : module.exports.chunkReader
+      reader(prog, function(data) {
+            var fs = require('fs');
+             if (params.format != undefined) {
+                  if (module.exports.tool[params.format] == undefined) {
+                     // ADD ERROR HANDLING - SEND ERROR HASH BACK TO CLIENT
+                     // send raw data anyway
+                     stream.write( data );
+                  } else
+                     stream.write( module.exports.tool[params.format](data) )
+               } else {
+                  stream.write( data );
+               }
+         });
+   } else {   
+      if(params.encoding != 'binary') prog.stdout.setEncoding(params.encoding);
+      prog.stdout.pipe(stream);
+   }
 
    
    // send requests to minion sources
