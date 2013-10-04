@@ -5,7 +5,7 @@ var minion = require('../minion'),
     http = require('http'),
     app = minion(),
     server = http.createServer(app),
-    BinaryServer = require('../../iobio-bam/binarytest/binaryjs/lib/server.js').BinaryServer,
+    BinaryServer = require('binaryjs').BinaryServer,
     port = 8020;
     
 // process command line options
@@ -14,7 +14,7 @@ process.argv.forEach(function (val, index, array) {
 });    
 
 // setup socket
-var io = require('socket.io').listen(server);
+var bs = BinaryServer({server: server});
 
 // start server
 server.listen(port);
