@@ -180,7 +180,6 @@ module.exports.runCommand = function(stream, params) {
    });
 
    prog.on('exit', function (code) {
-      stream.end();
       if (code !== 0) {
          console.log('prog process exited with code ' + code);
       }
@@ -237,7 +236,7 @@ module.exports.websocketRequest = function(sources, prog) {
             var upstreamClient = new BinaryClient(source.host);
             upstreamClient.on("open", function() {
                var ustream = upstreamClient.createStream({event:'run', params: source.query });
-               ustream.pipe(prog.stdin);
+               ustream.pipe(prog.stdin);              
             });
          }
    }  
