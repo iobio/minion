@@ -179,6 +179,10 @@ module.exports.runCommand = function(stream, params) {
       console.log(module.exports.tool['name'] + ' ERROR: ' + data);
    });
 
+   prog.on("close", function() {
+      stream.end();
+   })
+
    prog.on('exit', function (code) {
       if (code !== 0) {
          console.log('prog process exited with code ' + code);
@@ -236,7 +240,11 @@ module.exports.websocketRequest = function(sources, prog) {
             var upstreamClient = new BinaryClient(source.host);
             upstreamClient.on("open", function() {
                var ustream = upstreamClient.createStream({event:'run', params: source.query });
-               ustream.pipe(prog.stdin);              
+               ustream.pipe(prog.stdin);  
+               ustream.on("end", function() {
+                  // close stream
+                  prog.stdin.end();
+               })            
             });
          }
    }  
