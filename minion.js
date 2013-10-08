@@ -64,7 +64,7 @@ module.exports.listen = function(bs) {
          if(options.event == "setID") client.connectionID = options.connectionID;
          if(options.event == 'run') {
             var params = options.params;
-            params.protocol = params.protocol || 'websocket';
+            params.protocol = params.protocol || 'http';
             params.returnEvent = params.returneEvent || 'results';
             if (params.binary) {params.encoding = 'binary';} // backwards compatibility fix
             params.encoding = params.encoding || 'utf8';
