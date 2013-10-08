@@ -38,6 +38,7 @@ body {
 }
 
 a {text-decoration: none;color: black;}
-a:visited {color:black;}  /* visited link */
+a:visited {color:none;}  /* visited link */
 a:hover {border-bottom: 2px solid #2d8fc1;}  /* mouse over link */
-a:active {border-bottom: 2px solid #2d8fc1;}  /* selected link */
+#menu li.active a {border-bottom: 2px solid #2d8fc1;}  /* selected link */
+
