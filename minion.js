@@ -43,7 +43,7 @@ module.exports = function() {
         // console.log(req);
         console.log('req.query.cmd = ' + req.query.cmd );
         if(req.query.binary) req.query.encoding = 'binary';
-        req.query.protocol = req.query.protocol || 'websocket';
+        req.query.protocol = req.query.protocol || 'http';
         console.log('params = ' + JSON.stringify(req.query));
         module.exports.runCommand(res, req.query);
      }
