@@ -196,6 +196,7 @@ module.exports.httpRequest = function(sources, prog) {
    // handle minion sources
    for ( var j=0; j < sources.length; j++ ) {                
         var url = sources[j];
+        if (url.slice(0,2) == "ws") url = "http://" + url.split(/^ws:\/\//)[1];
         var req = http.request(url, function(res) {           
             res.on('data', function(chunk) {
                prog.stdin.write( chunk );
