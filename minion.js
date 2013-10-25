@@ -38,7 +38,9 @@ module.exports = function() {
      } else {
         // execute command
         res.writeHead(200, {
-          "Content-Type": 'text/plain'
+          "Content-Type": 'text/plain',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true
         });
         // console.log(req);
         console.log('req.query.cmd = ' + req.query.cmd );
