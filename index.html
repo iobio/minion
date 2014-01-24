@@ -8,6 +8,26 @@
 
     <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/site.css">
+    <style>
+        .number {
+            font-size: 40px;
+        }
+        
+        a {
+            color:rgb(120,120,120);
+        }
+        
+        .divider {
+            background: #ffffff; /* Old browsers */
+            background: -moz-linear-gradient(left,  #ffffff 0%, #2d8fc1 50%, #f9f9f9 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffffff), color-stop(50%,#2d8fc1), color-stop(100%,#f9f9f9)); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(left,  #ffffff 0%,#2d8fc1 50%,#f9f9f9 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(left,  #ffffff 0%,#2d8fc1 50%,#f9f9f9 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(left,  #ffffff 0%,#2d8fc1 50%,#f9f9f9 100%); /* IE10+ */
+            background: linear-gradient(to right,  #ffffff 0%,#2d8fc1 50%,#f9f9f9 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f9f9f9',GradientType=1 ); /* IE6-9 */            
+        }
+    </style>
 
     <title>iobio</title>
 </head>
@@ -16,22 +36,51 @@
     <div id="header">
         <div id="title">iobio</div>
         <div id="menu">
-            <ul>
+            <!-- <ul>
                 <li class="active"><a href='index.html'>What is iobio?</a></li>
                 <li><a href='how-it-works.html'>How it works</a></li>
                 <li><a href='how-to-use.html'>How to use it</a></li>
-            </ul>
+            </ul> -->
         </div>
         <div style="clear:both"/>
         <br/>
         <div style="font-size:35px; width:1000px; margin-left: auto; margin-right: auto; margin-top: 40px; color: rgb(120,120,120)">
-            iobio enables realtime analysis of genomic data. This is only a preview. More to come!
-            <div id="demos">
-                    <div class="demo"><a href="http://bam.iobio.io"><div>Bam.iobio.io</div><img src="images/bam.png"/></a></div>
+            IOBIO will enable real-time interactive, visually driven analysis of genomic data. The system and the apps are under construction, but the demo apps below will give you a taste of what's coming.
+            
+            <div class="divider" style="margin-top: 70px;height:1px"></div>
+            <div style="font-family:arial;font-size:25px;color:rgb(80,80,80);margin-top:60px">Demos to collect and display important global statistics of a large genomic dataset (e.g. sequence alignments, variant call sets) in a few seconds:</div>            
+            <div style="margin-left:50px;margin-top:20px">
+                <a href="http://bam.iobio.io">
+                    <div class="number">1) <img src="images/bam.png" style="height:38px;vertical-align:middle"/> Bam.iobio.io <span style="font-size:23px">- take a quick look at bam files. Think google docs!</span></div>
+                </a>
+            </div>
+            <div style="margin-left:50px;margin-top:30px">
+                <a href="http://vimeo.com/76499438">
+                    <div class="number">2) <img src="images/ipad.png" style="height:38px;vertical-align:middle"/> Variant Sampler <span style="font-size:25px">- ipad app to see variant data statisics in realtime</span></div>
+                </a>
+            </div>
+            
+            <div style="font-family:arial;font-size:25px;color:rgb(80,80,80);margin-top:40px">Demos to analyze a specific region within a large genomic dataset, in a visually driven manner, interactively:</div>            
+            <div style="margin-left:50px;margin-top:20px">
+                <a href="http://chmille4.github.io/pca-iobio/">
+                    <div class="number">1) <img src="images/pca.png" style="height:38px;vertical-align:middle"/> Population Clustering <span style="font-size:23px">- cluster 1000G populations based on variants</span></div>
+                </a>
+            </div>
+            <div style="margin-left:50px;margin-top:30px">
+                <a href="http://chmille4.github.io/variantComparer-iobio/">
+                    <div class="number">2) <img src="images/variant.png" style="height:38px;vertical-align:middle"/> Variant Analyzer <span style="font-size:25px">- call variants in realtime form two variant callers and compare results</span></div>
+                </a>
+            </div>
+            
+            
+            <!-- <div id="demos">
+                    <div class="demo"></div>
                     <div class="demo"><a href="http://chmille4.github.io/variantComparer-iobio/"><div>Variant Comparer</div><img src="images/variant.png"/></a></div>
                     <div class="demo"><a href="http://vimeo.com/76499438"><div>iPad Variant Sampler</div><img src="images/ipad.png"/></a></div>
                     <div class="demo"><a href="http://chmille4.github.io/pca-iobio/"><div>Population Clustering</div><img src="images/pca.png"/></a></div>                    
-            </div>            
+            </div>    -->
+            <!-- <div style="font-family:arial;font-size:25px;color:rgb(80,80,80);margin-top:40px">Regional analysis <img src="images/regional_analysis.png" style="height:25px;"/></div>
+            <div>A specific region can be analyzed in realtime to give small, but meaningful results</div>          -->
         </div>        
         
     </div>
