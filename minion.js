@@ -194,7 +194,7 @@ module.exports.runCommand = function(stream, params) {
 
 module.exports.httpRequest = function(sources, prog) {
    var http = require('http');
-
+console.log("http request");
    // handle minion sources
    for ( var j=0; j < sources.length; j++ ) {                
         var url = sources[j];
@@ -214,6 +214,7 @@ module.exports.httpRequest = function(sources, prog) {
 
 //
 module.exports.websocketRequest = function(sources, prog) {
+   console.log("websocket request");
    var minionClient = require('./minion-client');
    var BinaryClient = require('binaryjs').BinaryClient;
 
