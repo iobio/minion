@@ -6,10 +6,10 @@ body {
 
 #header {
    position: relative;
+   margin-top: -130px;
 }
 
 #header #title {
-   margin-top: -130px;
    font-size: 96px;
    color:#2d8fc1;
    float:left;
