@@ -43,6 +43,23 @@ a {text-decoration: none;color: black;}
 #menu a:hover {border-bottom: 2px solid #2d8fc1;}  /* mouse over link */
 #menu li.active a {border-bottom: 2px solid #2d8fc1;}  /* selected link */
 
+#range {
+    -webkit-appearance: slider-vertical;
+    width: 20px;
+    height: 85px;
+    z-index: 10;
+    position:relative;
+}
+
+#minQual {
+   transform: rotate(90deg); /* normal */
+   -webkit-transform: rotate(90deg); /* Safari */
+   -moz-transform: rotate(90deg); /* Firefox */
+   -ms-transform: rotate(90deg); /* IE */
+   -o-transform: rotate(90deg); /* Opera */
+   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1); /* Internet Explorer */
+}
+
 #demos { 
    width:500px;
    margin-top:10px;

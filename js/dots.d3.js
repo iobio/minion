@@ -11,6 +11,8 @@ function dotsD3(container, heightPct, color) {
    var x = d3.scale.linear()
        .range([0, width]);
    var svg = d3.select(container).append("svg")
+      .style("z-index", "1")
+      .style("position", "relative")
       .attr("width", '98%')
       .attr("height", parseInt(heightPct*100) + '%')
       // .attr("width", width + margin.left + margin.right)
@@ -22,7 +24,7 @@ function dotsD3(container, heightPct, color) {
          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
    
 
-   function my(values, options) {
+   function my(values, options, klass) {
       //var minMax = d3.extent(values, function(elem) {return parseInt(elem.pos)} );
       // var avgDepth = d3.mean(values, function(elem) { return elem.length } );
       var numBins = 30;
@@ -39,24 +41,11 @@ function dotsD3(container, heightPct, color) {
           .bins(x.ticks(numBins))
           .value(function(d){return parseInt(d.pos)})
           (values);
-      
-      // data.forEach(function(d) {
-      //    d.y = d3.mean(d, function(elem) {return parseInt(elem.length*100)/100});
-      // })
           
       var y = d3.scale.linear()
-          .domain([Math.max(0,d3.min(data, function(d) { return d.y -2; })), d3.max(data, function(d) { return d.y; })])          
-          .range([height, 0]);
-      //     
-      // var lineFunction = d3.svg.line()
-      //    .x(function(d) { return x(d.x) + x(x.domain()[0] + data[0].dx)/2; })
-      //    .y(function(d) { return y(d.y) })
-      //    // .y(function(d) { 
-      //    //    var length = d3.sum(d, function(elem){ return elem.length });
-      //    //    return y(d.y * length / d.x); 
-      //    // })
-      //    .interpolate("linear");
-                  
+          .domain([0,20])
+          //.domain([Math.max(0,d3.min(data, function(d) { return d.y -2; })), d3.max(data, function(d) { return d.y; })])          
+          .range([height, 0]);                  
                    
       var xAxis = d3.svg.axis()
          .scale(x)
@@ -79,11 +68,12 @@ function dotsD3(container, heightPct, color) {
          .orient("left");
       
       // handle new data
-      var dot = svg.selectAll(".dot")
+      svg.selectAll(".dot:not(." + klass + ") circle").style("stroke", "red");
+      var dot = svg.selectAll(".dot." + klass)
           .data(data);              
       
       var dotEnter = dot.enter().append("g")
-         .attr("class", "dot")
+         .attr("class", "dot " + klass)
          .attr("transform", function(d) { return "translate(" + x(d.x) + ",0)"; });
 
                 
@@ -113,13 +103,15 @@ function dotsD3(container, heightPct, color) {
          
       dot.select("circle").transition()
          .duration(duration)
-         .attr("cy", function(d) { return y(d.y); })
+         .attr("cy", function(d,i) { 
+            return y(d.y); 
+         })
          .attr("r", function(d) { if (d.y == 0) {return 0;} else { return 3; } })
          // .attr("fill", function(d) { if (d.y == 0) {return "white";} else { return color; } })
          .attr("stroke", color)
          .attr("stroke-width", "2px");
                
-      dot.exit().remove(); 
+     // dot.exit().remove(); 
       
       
       if (svg.select(".x.axis").empty()) {
