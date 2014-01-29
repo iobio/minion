@@ -44,8 +44,8 @@ a {text-decoration: none;color: black;}
 #menu li.active a {border-bottom: 2px solid #2d8fc1;}  /* selected link */
 
 #demos { 
-   width:100%;
-   margin-top: 70px;
+   width:500px;
+   margin-top:10px;
    margin-left:auto;
    margin-right:auto;
    font-size: 20px;
@@ -54,6 +54,7 @@ a {text-decoration: none;color: black;}
 #demos img { height: 200px; margin-top:10px}
 
 #demos .demo { border: 1px solid rgb(200,200,200); border-right:none; width: 248px; height:248px; display:inline-block; float:left}
-#demos .demo:nth-child(4n) { border-right: 1px solid rgb(200,200,200)}
+#demos .demo:nth-child(2n) { border-right: 1px solid rgb(200,200,200)}
 #demos .demo:nth-child(n+5) { border-top: none}
 #demo a { color: red}
+.footer {margin-bottom:200px}
