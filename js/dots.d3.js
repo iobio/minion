@@ -1,5 +1,5 @@
 function dotsD3(container, heightPct, color) {
-   var margin = {top: 5, right: 30, bottom: 20, left: 30},
+   var margin = {top: 5, right: 30, bottom: 20, left: 60},
           width = $(container).width()*0.98 - margin.left - margin.right,
           height = $(container).height()*heightPct - margin.top - margin.bottom;
    // var width = $(container).width() * 0.98;
@@ -72,116 +72,20 @@ function dotsD3(container, heightPct, color) {
          
       var yAxis = d3.svg.axis()
          .scale(y)
-         .tickFormat(function(d) { 
-            if (parseInt(d) == d)
-               return (d + "X");
+         .tickFormat(function(d) {
+            if ( d % 4 == 0)
+               return d;
          })
          .orient("left");
       
       // handle new data
       var dot = svg.selectAll(".dot")
-          .data(data);
-          
-       // if (svg.select("path").empty()) {
-       //        svg.append("path")
-       //           .attr("d", lineFunction(data))
-       //           .attr("stroke", color)
-       //           .attr("stroke-width", 2)
-       //           .attr("fill", "none");
-       //     } else {
-       //        svg.select("path").transition()
-       //           .duration(duration)
-       //           .attr("d", lineFunction(data))
-       //     }
-       
-      //  if (svg.select(".avgdepth").empty()) {
-      //     svg.append("line")
-      //        .attr('class', 'avgdepth')
-      //        .attr("stroke-dasharray", "5,5")
-      //        .attr('x1', 0)
-      //        .attr('y1', y(0))
-      //        .attr('x2', x(x.domain()[1]))
-      //        .attr('y2', y(0))
-      //        .attr("stroke", '#2687BE')
-      //        .attr("stroke-width", 2)
-      //        .attr("fill", "none");
-      //    
-      //    svg.append("text")
-      //       .attr("id", "refText")
-      //       .attr("dy", ".75em")
-      //       .attr("y", 4)
-      //       .attr("x", 4)
-      //       .style("fill", 'rgb(80,80,80)')
-      //       .style("font-size", "11px")
-      //       .attr("text-anchor", "left")
-      //       .text("Sampled Avg");
-      //       
-      //  } else {
-      //     svg.select(".avgdepth").transition()
-      //        .duration(duration)
-      //        .attr('x1', 0)
-      //        .attr('y1', y(avgDepth))
-      //        .attr('x2', x(x.domain()[1]) )
-      //        .attr('y2', y(avgDepth))
-      //    
-      //    svg.select("#refText").transition()
-      //       .duration(duration)
-      //       .attr("y", y(avgDepth) + 4)
-      // }
-       
-       
+          .data(data);              
       
       var dotEnter = dot.enter().append("g")
          .attr("class", "dot")
          .attr("transform", function(d) { return "translate(" + x(d.x) + ",0)"; });
-         
-         
-     // bar.append("text")
-     //   .attr("dy", ".75em")
-     //   .attr("y", 6)
-     //   .attr("x", x(data[0].dx) / 2)
-     //   .attr("text-anchor", "middle")
-     //   .text(function(d) { return formatCount(d.y); });
-      
 
-       // dotEnter.append("text")
-       //    .attr("dy", ".75em")
-       //    .attr("x", x(x.domain()[0] + data[0].dx)/2)
-       //    .attr("y", y(0))
-       //    .style("font-family", "arial")
-       //    .style("font-weight", "bold")
-       //    .style("font-size", "14px")
-       //    .attr("fill", 'white')
-       //    .text(function(d,i) { return phrase[i]; })
-       //    .on("mouseover", function(d) {      
-       //             div.transition()        
-       //                 .duration(200)      
-       //                 .style("opacity", .9);      
-       //             var str = "Variants: " + d.length;
-       //             for (var i=0; i < d.length; i++) {
-       //                str += "<br/>" + parseInt(i+1) + ") Pos:" + d[i].pos + " Ref:" + d[i].ref + " Alt:" + d[i].alt;
-       //             }
-       //             div .html(str)                                 
-       //                 .style("left", (d3.event.pageX) + "px") 
-       //                 .style("text-align", 'left')    
-       //                 .style("top", (d3.event.pageY - 24) + "px");    
-       //             })                  
-       //         .on("mouseout", function(d) {       
-       //             div.transition()        
-       //                 .duration(500)      
-       //                 .style("opacity", 0);   
-       //       });
-       // 
-       // dot.select("text").transition()
-       //    .duration(duration)
-       //    .attr("y", function(d) { return y(d.y); })
-       //    // .attr("r", function(d) { if (d.y == 0) {return 0;} else { return 3; } })
-       //    .attr("fill", "#2d8fc1")
-       //    // .attr("fill", function(d) { if (d.y == 0) {return "white";} else { return color; } })
-       //    // .attr("stroke", color)
-       //    // .attr("stroke-width", "2px");
-       // 
-       // dot.exit().remove(); 
                 
       dotEnter.append("circle")
          .attr("cx", x(x.domain()[0] + data[0].dx)/2)
@@ -231,16 +135,23 @@ function dotsD3(container, heightPct, color) {
             .call(xAxis);
       }
       
-      // if (svg.select(".y.axis").empty()) {
-      //    svg.append("g")
-      //       .attr("class", "y axis")
-      //       .style("font-size", "9px")
-      //       .call(yAxis);
-      // } else {
-      //    svg.select(".y.axis").transition()
-      //       .duration(duration)
-      //       .call(yAxis);
-      // }
+      if (svg.select(".y.axis").empty()) {
+         svg.append("g")
+            .attr("class", "y axis")
+            .style("font-size", "9px")
+            .style("font-weight", '400')
+            .call(yAxis);
+         svg.append("text")
+            .text("Density")
+            .style("font-size", "10px")
+            .style("font-weight", '400')
+            .attr('text-anchor', 'middle')
+            .attr("transform", 'translate(-' + 27 + ',' + parseInt(height / 2) + ') rotate(-90)');
+      } else {
+         svg.select(".y.axis").transition()
+            .duration(duration)
+            .call(yAxis);
+      }
       
       
    }
