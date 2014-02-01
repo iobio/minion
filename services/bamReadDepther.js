@@ -23,8 +23,8 @@ server.listen(port);
 // define tool
 tool = {
    apiVersion : "0.1",
-   name : 'bai read depth coverager',
-   path :  'baiReadDepthCoveragerHelper.sh',
+   name : 'bam read depther',
+   path :  'bamReadDeptherHelper.sh',
    // json: function(data) {
    //    data = String(data);
    //    var results = data.trim().split("\n")
