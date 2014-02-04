@@ -42,7 +42,7 @@
         }
         
         a {
-            color:rgb(120,120,120);
+            color:rgb(110,110,110);
         }
         
         .divider {
@@ -67,7 +67,7 @@
     
         function tryIt() {    
             document.getElementById("tryit").style.visibility = 'hidden';
-            document.getElementById("chart").style.visibility = "visible"
+            // document.getElementById("chart").style.visibility = "visible"
                                
             var qual = parseInt(document.getElementById("qualValue").innerHTML);
             var url = "ws://vcflib.iobio.io/?format=json&parseByLine=true&cmd=vcffilter%20-f%20%22QUAL%20%3E%20"+qual+"%22%20http%253A%252F%252Ffreebayes.iobio.io%253Fcmd%253D-f%252520.%252Fdata%252Freferences%252Fhs_ref_chr11.fa%252520http%2525253A%2525252F%2525252FbamMerger.iobio.io%2525253Fbinary%2525253Dtrue%25252526cmd%2525253D11%2525253A10108473-10288473%2525252520%27http%2525253A%2525252F%2525252Fs3.amazonaws.com%2525252F1000genomes%2525252Fdata%2525252FNA06984%2525252Falignment%2525252FNA06984.chrom11.ILLUMINA.bwa.CEU.low_coverage.20111114.bam%27%2525252520%27http%2525253A%2525252F%2525252Fs3.amazonaws.com%2525252F1000genomes%2525252Fdata%2525252FNA06985%2525252Falignment%2525252FNA06985.chrom11.ILLUMINA.bwa.CEU.low_coverage.20111114.bam'"
@@ -109,19 +109,23 @@
         </div>
         <div style="clear:both"/>
     </div>
-    <div style="font-size:30px; width:1000px; margin-left: auto; margin-right: auto; margin-top: 40px; color: rgb(120,120,120);text-align:justify">
-        IOBIO will enable real-time interactive, visually driven analysis of genomic data. The system and the apps are under construction, but the demo apps will give you a taste of what's coming.
+    <div style="font-size:30px; width:1000px; margin-left: auto; margin-right: auto; margin-top: 40px; color: rgb(110,110,110);text-align:justify">
+        <div style="font-size:35px">Real-Time Interactive Genomic Analysis</div>
+        <div style="font-size:17px;margin-top:5px;line-height:30px;font-weight:400">Full analysis of genome scale big data takes hours to weeks and is often overkill. 
+            IOBIO will enable you to analyze  specific genomic regions, for example a gene, in real time.  
+            Use different algorithms and play with parameters to explore your data!</div>
         
         
-
-        <div id="tryit" onclick="tryIt()" style="cursor:pointer; margin-top: 100px; margin-right:auto;margin-left:auto;width:180px;background:#2d8fc1;color:white;border-radius:4px;font-size:20px;padding:10px;text-align:center">Try it</div>
-        <div id="chart" style="margin-top:-34px;visibility:hidden">
+        <div id="chart" style="margin-top:60px; position:relative">
             <div id="calling" style="color:#2d8fc1;margin-left:auto;margin-right:auto;font-size:20px;text-align:center;font-weight:400;">Realtime variant calling on alignment data on the Amazon cloud ...</div>
-            <div id="variants" style="margin-left:auto;margin-right:auto;width:800px; height:100px"></div>
+            <div id="variants" style="margin-left:auto;margin-right:auto;width:830px; height:160px"></div>
+            <div style="position:absolute; left:50%;top:31%">
+                <div id="tryit" onclick="tryIt()" style="cursor:pointer; position:relative;z-index:500; left:-50%;background:#2d8fc1;color:white;border-radius:4px;font-size:20px;padding:8px 25px 8px 25px;text-align:center">Go!</div>
+            </div>
             <!-- <input onmouseup="tryit()" type="range" id="range" min="0" max="100" step="1" value="20" orient="vertical" style="float:right;margin-right: 125px;margin-top: -110px;" /> -->
-            <input onchange="updateQual(this.value);" onmouseup="tryIt()" type="range" id="range" min="0" max="100" step="1" value="20" orient="vertical" style="float:right;margin-right: 125px;margin-top: -95px;" />
-            <div id="minQual" style="float:right;margin-right:48px;margin-top:-72px;font-size:11px;font-weight:400;padding:2px;border-radius:4px">Variant Qual Threshold</div>
-            <div id="qualValue" style="text-align:center;color:#2d8fc1;float:right;margin-right:122px;margin-top:-118px;border:2px solid rgb(150,150,150);height:12px;width:17px;font-size:12px;padding:2px;border-radius:4px">20</div>
+            <input onchange="updateQual(this.value);" onmouseup="tryIt()" type="range" id="range" min="0" max="100" step="1" value="20" orient="vertical" style="float:right;margin-right: 115px;margin-top: -135px;" />
+            <div id="minQual" style="float:right;margin-right:38px;margin-top:-112px;font-size:11px;font-weight:400;padding:2px;border-radius:4px">Variant Qual Threshold</div>
+            <div id="qualValue" style="text-align:center;color:#2d8fc1;float:right;margin-right:112px;margin-top:-158px;border:2px solid rgb(150,150,150);height:12px;width:17px;font-size:12px;padding:2px;border-radius:4px">20</div>
             <div id="hover" style="color:#2d8fc1;margin-left:auto;margin-right:auto;font-size:20px;text-align:center;font-weight:400">(hover for details, slide to recall)</div>
         </div>
         <div class="divider" style="margin-top:40px; height:1px"></div>
@@ -154,6 +158,7 @@
     
     <script>
         window.chart = dotsD3("#variants", 1, '#2d8fc1');
+        window.chart([]);
         var div = d3.select("body").append("div")   
              .attr("class", "tooltip")               
              .style("opacity", 0);

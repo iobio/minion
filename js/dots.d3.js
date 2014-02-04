@@ -1,5 +1,5 @@
 function dotsD3(container, heightPct, color) {
-   var margin = {top: 5, right: 30, bottom: 20, left: 60},
+   var margin = {top: 5, right: 30, bottom: 40, left: 60},
           width = $(container).width()*0.98 - margin.left - margin.right,
           height = $(container).height()*heightPct - margin.top - margin.bottom;
    // var width = $(container).width() * 0.98;
@@ -121,6 +121,13 @@ function dotsD3(container, heightPct, color) {
             .style("font-size", "10px")
             .style('font-weight', '400')
             .call(xAxis);
+            svg.append("text")
+               .text("Genomic Location")
+               .style("font-size", "10px")
+               .style("font-weight", '400')
+               .attr('text-anchor', 'middle')
+               .attr("transform", 'translate(' + width/2 + ',' + parseInt(height +30) + ')');
+            
       } else {
          svg.select(".x.axis").transition()
             .duration(duration)
@@ -134,7 +141,7 @@ function dotsD3(container, heightPct, color) {
             .style("font-weight", '400')
             .call(yAxis);
          svg.append("text")
-            .text("Density")
+            .text("Variant Density")
             .style("font-size", "10px")
             .style("font-weight", '400')
             .attr('text-anchor', 'middle')

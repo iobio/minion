@@ -61,16 +61,17 @@ a {text-decoration: none;color: black;}
 }
 
 #demos { 
-   width:500px;
+   width:650px;
    margin-top:10px;
    margin-left:auto;
    margin-right:auto;
    font-size: 20px;
    text-align: center;
+   margin-top:30px;
 }
 #demos img { height: 200px; margin-top:10px}
 
-#demos .demo { border: 1px solid rgb(200,200,200); border-right:none; width: 248px; height:248px; display:inline-block; float:left}
+#demos .demo { border: 1px solid rgb(200,200,200); border-right:none; width: 290px; height:290px; display:inline-block; float:left}
 #demos .demo:nth-child(2n) { border-right: 1px solid rgb(200,200,200)}
 #demos .demo:nth-child(n+5) { border-top: none}
 #demo a { color: red}
