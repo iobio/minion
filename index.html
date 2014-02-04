@@ -9,6 +9,22 @@
     <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/site.css">
     <script>
+        var ie = (function(){
+
+            var undef,
+                v = 3,
+                div = document.createElement('div'),
+                all = div.getElementsByTagName('i');
+
+            while (
+                div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
+                all[0]
+            );
+
+            return v > 4 ? v : undef;
+
+        }());
+    
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -64,6 +80,25 @@
     <script src="js/binary.js"></script>
     
     <script>
+        $(function() {
+          $('a[href*=#]:not([href=#])').click(function() {
+            if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+              var target = $(this.hash);
+              target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+              if (target.length) {
+                $('html,body').animate({
+                  scrollTop: target.offset().top
+                }, 1000);
+                return false;
+              }
+            }
+          });
+        });
+        
+        $(document).ready(function() {
+            alert(ie);
+            if(ie) { alert('Iobio uses cutting edge internet features. Internet Explorer is NOT SUPPORTED. Please use chrome (recommended), firefox, or safari')}
+        })
     
         function tryIt() {    
             document.getElementById("tryit").style.visibility = 'hidden';
@@ -103,6 +138,7 @@
         <div id="menu">
             <ul>
                 <li class="active"><a href='index.html'>What is iobio?</a></li>
+                <li><a href='#details'>Details</a></li>
                 <li><a href='demos.html'>Demos</a></li>
                 <!-- <li><a href='how-to-use.html'>How to use it</a></li> -->
             </ul>
@@ -129,6 +165,7 @@
             <div id="hover" style="color:#2d8fc1;margin-left:auto;margin-right:auto;font-size:20px;text-align:center;font-weight:400">(hover for details, slide to recall)</div>
         </div>
         <div class="divider" style="margin-top:40px; height:1px"></div>
+        <a name="details"></a>
         <div style="margin-top:70px;margin-bottom:10px">Real-time analysis</div>
         <div style="font-size:16px;font-weight:400">Full analysis of large data-sets typically takes a long time, from minutes to even weeks. 
             However, full analysis is often overkill and dissuades researchers from exploring the data (e.g. with different software, parameters or visually).
