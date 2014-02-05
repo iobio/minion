@@ -36,12 +36,15 @@ body {
 
 #header #menu li a {
    padding-bottom:3px;
+   text-decoration: none;
+   border: none;
 }
 
-a {text-decoration: none;color: black;}
-#menu a:visited {color:none;}  /* visited link */
-#menu a:hover {border-bottom: 2px solid #2d8fc1;}  /* mouse over link */
-#menu li.active a {border-bottom: 2px solid #2d8fc1;}  /* selected link */
+/*a {text-decoration: none; border-bottom: 1px solid #2d8fc1}*/
+
+#header #menu a:visited {color:none;}  /* visited link */
+#header #menu a:hover {border-bottom: 2px solid #2d8fc1;}  /* mouse over link */
+#header #menu li.active a {border-bottom: 2px solid #2d8fc1;}  /* selected link */
 
 #range {
     -webkit-appearance: slider-vertical;

@@ -162,6 +162,7 @@
             <div id="minQual" style="float:right;margin-right:38px;margin-top:-112px;font-size:11px;font-weight:400;padding:2px;border-radius:4px">Variant Qual Threshold</div>
             <div id="qualValue" style="text-align:center;color:#2d8fc1;float:right;margin-right:112px;margin-top:-158px;border:2px solid rgb(150,150,150);height:12px;width:17px;font-size:12px;padding:2px;border-radius:4px">20</div>
             <div id="hover" style="color:#2d8fc1;margin-left:auto;margin-right:auto;font-size:20px;text-align:center;font-weight:400">(hover for details, slide to recall)</div>
+            <div style="text-align:center;font-size:16px;margin-top: 24px; "><a href="demos.html">See More Demos</a></div>
         </div>
         <div class="divider" style="margin-top:40px; height:1px"></div>
         <a name="details"></a>
@@ -172,14 +173,15 @@
         </div>
         <div style="margin-top:70px;margin-bottom:10px;text-align:right">Analysis Modalities</div>
         <div style="font-size:16px;font-weight:400">
-            <div style="margin-top:-18px;float:left;margin-right:3px">Focal Analysis<br/><img src="images/regional_analysis.png" style="height:50px"/><br/>Sampling Analysis<br/><img style="height:50px" src="images/sampling_analysis.png"/></div>
+            <div style="margin-top:5px;float:left;margin-right:3px">Regional Analysis<br/><img src="images/regional_analysis.png" style="height:50px"/><br/>Sampling Analysis<br/><img style="height:50px" src="images/sampling_analysis.png"/></div>
             <div>
-               (1) <b>Regional analyses</b> analyze a single “slice” or region (e.g 100kb) of a possibly very large dataset 
+               iobio utilizes two different strategies for extracting meaning out of data-sets in real time (1) <b>Regional analyses</b> analyze a single “slice” or region (e.g 100kb) of a possibly very large dataset. 
                This is useful for researchers, especially those without computational expertise, to analyze those portions of vast biomedical datasets that are
-                essential for their research (e.g. alignment data from the region of a single gene, rather than a whole chromosome). 
+               essential for their research (e.g. alignment data from the region of a single gene, rather than a whole chromosome). For a demo see the <a href="http://chmille4.github.io/variantComparer-iobio/">Variant Comparer Demo</a>, which compares two tools and a truth set. 
                (2) <b>Sampling analyses</b> request and analyze many small slices randomly selected from a large data file, and use these slices to estimate 
                relevant characteristics of the larger dataset (e.g. average sequence coverage, or the distribution of fragment sizes in a whole-genome sequencing dataset), in real-time. 
                Sampling works well for many statistical analyses of large datasets, and sampling-based approximation often approaches the precise result very quickly (within seconds). 
+               A good example can be seen in <a href="http://bam.iobio.io">http://bam.iobio.io</a>.
             </div>
         </div>
         <div style="margin-top:70px;margin-bottom:10px">Visually Driven Analysis</div>
