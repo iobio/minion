@@ -8,11 +8,7 @@
 
     <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/site.css">
-    <!--[IF IE]>
-        <script type="text/javascript">
-            alert('Iobio uses cutting edge internet features. Internet Explorer is NOT SUPPORTED. Please use chrome (recommended), firefox, or safari')
-        </script>
-    <![endif]-->
+
     <script>
         var ie = (function(){
 
@@ -80,11 +76,14 @@
 
     <title>iobio</title>
     <script src="js/jquery.min.js"></script>
+    <script src="js/modernizr.custom.15620.js"></script>
     <script src="js/d3.v3.min.js"></script>
     <script src="js/dots.d3.js"></script>
     <script src="js/binary.js"></script>
     
     <script>
+        if(!Modernizr.websockets) {Alert("iobio relies on cutting edge features that this browser doesn't support. We recommend the Chrome version 32 or higher")}
+        
         $(function() {
           $('a[href*=#]:not([href=#])').click(function() {
             if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
