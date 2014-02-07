@@ -103,7 +103,7 @@
         
         $(document).ready(function() {
             // check for range slider
-            if (!Modernizr.inputtypes.range) { $('input[type="range"]').css('visibility', 'none')}
+            if (!Modernizr.inputtypes.range) { $('#sliderDiv').css('visibility', 'hidden')}
             
             if(ie) { alert('Iobio uses cutting edge internet features. Internet Explorer is NOT SUPPORTED. Please use chrome (recommended), firefox, or safari')}
             (function () {
@@ -190,9 +190,11 @@
                 <div id="tryit" onclick="tryIt()" style="cursor:pointer; position:relative;z-index:500; left:-50%;background:#2d8fc1;color:white;border-radius:4px;font-size:20px;padding:8px 25px 8px 25px;text-align:center">Go!</div>
             </div>
             <!-- <input onmouseup="tryit()" type="range" id="range" min="0" max="100" step="1" value="20" orient="vertical" style="float:right;margin-right: 125px;margin-top: -110px;" /> -->
-            <input onchange="updateQual(this.value);" onmouseup="tryIt()" type="range" id="range" min="0" max="100" step="1" value="20" orient="vertical" style="float:right;margin-right: 115px;margin-top: -135px;" />
-            <div id="minQual" style="float:right;margin-right:38px;margin-top:-112px;font-size:11px;font-weight:400;padding:2px;border-radius:4px">Variant Qual Threshold</div>
-            <div id="qualValue" style="text-align:center;color:#2d8fc1;float:right;margin-right:112px;margin-top:-158px;border:2px solid rgb(150,150,150);height:12px;width:17px;font-size:12px;padding:2px;border-radius:4px">20</div>
+            <div id="sliderDiv">
+                <input onchange="updateQual(this.value);" onmouseup="tryIt()" type="range" id="range" min="0" max="100" step="1" value="20" orient="vertical" style="float:right;margin-right: 115px;margin-top: -135px;" />
+                <div id="minQual" style="float:right;margin-right:38px;margin-top:-112px;font-size:11px;font-weight:400;padding:2px;border-radius:4px">Variant Qual Threshold</div>
+                <div id="qualValue" style="text-align:center;color:#2d8fc1;float:right;margin-right:112px;margin-top:-158px;border:2px solid rgb(150,150,150);height:12px;width:17px;font-size:12px;padding:2px;border-radius:4px">20</div>
+            </div>
             <div id="hover" style="color:#2d8fc1;margin-left:auto;margin-right:auto;font-size:20px;text-align:center;font-weight:400">(hover for details, slide to recall)</div>
             <div style="text-align:center;font-size:16px;margin-top: 24px; "><a href="demos.html">See More Demos</a></div>
         </div>
