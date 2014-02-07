@@ -77,12 +77,14 @@
     <title>iobio</title>
     <script src="js/jquery.min.js"></script>
     <script src="js/modernizr.custom.15620.js"></script>
+    <script src="js/html5slider.js"></script>
     <script src="js/d3.v3.min.js"></script>
     <script src="js/dots.d3.js"></script>
     <script src="js/binary.js"></script>
     
     <script>
         if(!Modernizr.websockets) {Alert("iobio relies on cutting edge features that this browser doesn't support. We recommend the Chrome version 32 or higher")}
+        
         
         $(function() {
           $('a[href*=#]:not([href=#])').click(function() {
@@ -100,6 +102,9 @@
         });
         
         $(document).ready(function() {
+            // check for range slider
+            if (!Modernizr.inputtypes.range) { $('input[type="range"]').css('visibility', 'none')}
+            
             if(ie) { alert('Iobio uses cutting edge internet features. Internet Explorer is NOT SUPPORTED. Please use chrome (recommended), firefox, or safari')}
             (function () {
               var lastTime = 0;
