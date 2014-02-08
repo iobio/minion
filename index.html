@@ -81,10 +81,7 @@
     <script src="js/dots.d3.js"></script>
     <script src="js/binary.js"></script>
     
-    <script>
-        // test for websockets
-        if(!Modernizr.websockets) {Alert("iobio relies on cutting edge features that this browser doesn't support. We recommend the Chrome version 32 or higher")}
-                
+    <script>                
         $(function() {
           $('a[href*=#]:not([href=#])').click(function() {
             if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
@@ -110,6 +107,12 @@
             if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
             
             if (OSName != 'MacOS') { $('body').css('-webkit-text-stroke', '1px'); $('text').css('font-family', 'arial');}
+            
+            // test for bad browsers/features
+            if( !Modernizr.websockets ||
+                ($.browser.safari && OSName == "Windows") 
+                {Alert("iobio relies on cutting edge features that this browser doesn't support. We recommend Chrome version 32 or higher");}
+            
             
             // check for range slider
             if (!Modernizr.inputtypes.range) { $('#sliderDiv').css('visibility', 'hidden')}
