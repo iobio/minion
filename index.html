@@ -109,9 +109,9 @@
             if (OSName != 'MacOS') { $('body').css('-webkit-text-stroke', '1px'); $('text').css('font-family', 'arial');}
             
             // test for bad browsers/features
-            if( !Modernizr.websockets ||
-                ($.browser.safari && OSName == "Windows"))
-                {Alert("iobio relies on cutting edge features that this browser doesn't support. We recommend Chrome version 32 or higher");}
+            if(    !Modernizr.websockets 
+                || ($.browser.safari && OSName == "Windows" && parseInt($.browser.version.split(".")[0]) <= 534 ))
+                {alert("iobio relies on cutting edge features that this browser doesn't support. We recommend Chrome version 32 or higher");}
             
             
             // check for range slider
