@@ -109,7 +109,7 @@
             if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
             if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
             
-            if (OSName != MacOS) { $('body').css('-webkit-text-stroke', '1px');}
+            if (OSName != 'MacOS') { $('body').css('-webkit-text-stroke', '1px');}
             
             // check for range slider
             if (!Modernizr.inputtypes.range) { $('#sliderDiv').css('visibility', 'hidden')}
