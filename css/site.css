@@ -4,6 +4,8 @@ body {
    margin: 10px 20px 0px 20px;
 }
 
+a { color:rgb(110,110,110);}
+
 #header {
    position: relative;
    margin-top: -130px;
