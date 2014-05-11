@@ -8,7 +8,7 @@ a { color:rgb(110,110,110);}
 
 #header {
    position: relative;
-   margin-top: -130px;
+   /*margin-top: -130px;*/
 }
 
 #header #title {
