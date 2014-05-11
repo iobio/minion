@@ -7,6 +7,7 @@
     <meta name="description" content="Iobio : " />
 
     <link href='css/quicksand.css' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/site.css">
 
     <script>
@@ -79,7 +80,10 @@
     <script src="js/modernizr.custom.15620.js"></script>
     <script src="js/d3.v3.min.js"></script>
     <script src="js/dots.d3.js"></script>
-    <script src="js/binary.js"></script>
+    <script src="js/binary.js"></script>    
+    <script src="js/video-js/video.js"></script>
+    <link href="js/video-js/video-js.css" rel="stylesheet">
+
     
     <script>                
         $(function() {
@@ -190,15 +194,24 @@
         </div>
         <div style="clear:both"/>
     </div>
-    <div style="font-size:30px; width:1000px; margin-left: auto; margin-right: auto; margin-top: 40px; color: rgb(110,110,110);text-align:justify">
+    <div>
+      <img src=""></img>
+    </div>
+    <div style="font-size:30px; width:1000px; margin-left: auto; margin-right: auto; margin-top: 10px; color: rgb(110,110,110);text-align:justify">
         <div style="font-size:35px">Real-Time Interactive Genomic Analysis</div>
-        <div style="font-size:17px;margin-top:5px;line-height:30px;font-weight:400">Full analysis of genome scale big data takes hours to weeks and is often overkill. 
-            IOBIO will enable you to zero in on specific genomic regions, for example a gene, and analyze only the data in that region, in real time. Use different algorithms 
-            and play with parameters to explore your data!</div>
+        <div style="font-size:17px;margin-top:5px;line-height:30px;font-weight:400">
+          Iobio attempts to empower all biological researchers, but especially bench scientists without computational experience, to easily, interactively, and in a visually driven manner, analyze those portions of vast biomedical datasets that are essential for their research e.g. in the region of a gene. Iobio is a real-time analysis technology that powers numerous applications. Iobio is under development to allow 3rd party applications to incorporate real-time analysis.  
+        </div>
+        <div style="margin: 0 auto; width:800px">
+          <video id="MY_VIDEO_1" class="video-js vjs-default-skin " style="margin: 0 auto;width:800px" controls
+            preload="auto" width="800" height="676.8" poster="images/bam.iobio_white_background.png"
+            data-setup="{}">
+            <source src="images/bam.iobio_screen_recording.mp4" type='video/mp4'>
+            <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+          </video>
+        </div>
             
-        
-        
-        <div id="chart" style="margin-top:60px; position:relative">
+        <div id="chart" style="display:none;margin-top:60px; position:relative">
             <div id="calling" style="color:#2d8fc1;margin-left:auto;margin-right:auto;font-size:20px;text-align:center;font-weight:400;">Real-time variant calling on alignment data on the Amazon cloud ...</div>
             <div id="variants" style="margin-left:auto;margin-right:auto;width:830px; height:160px"></div>
             <div style="position:absolute; left:50%;top:31%">
