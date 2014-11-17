@@ -22,7 +22,7 @@ if [ $input == stdin ]
 then
   $DIR/../bin/vcfReadDepther $args
 else
-  cmd="curl -s \"$input\"  | $DIR/../bin/bgzip -d | $DIR/../bin/tbiReadDepther $args"
+  cmd="curl -s \"$input\"  | $DIR/../bin/bgzip -d | $DIR/../bin/vcfReadDepther $args"
   eval $cmd   
 fi
 
