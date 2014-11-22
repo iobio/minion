@@ -7,7 +7,10 @@
     <meta name="description" content="Iobio : " />
 
     <link href='css/quicksand.css' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <!-- <link href='http://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet' type='text/css'> -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/site.css">
 
     <script>
@@ -71,7 +74,12 @@
             background: -o-linear-gradient(left,  #ffffff 0%,#2d8fc1 50%,#f9f9f9 100%); /* Opera 11.10+ */
             background: -ms-linear-gradient(left,  #ffffff 0%,#2d8fc1 50%,#f9f9f9 100%); /* IE10+ */
             background: linear-gradient(to right,  #ffffff 0%,#2d8fc1 50%,#f9f9f9 100%); /* W3C */
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f9f9f9',GradientType=1 ); /* IE6-9 */            
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f9f9f9',GradientType=1 ); /* IE6-9 */
+            margin-top:40px;
+            height:1px;
+            width: 90%;            
+            margin-left: auto;
+            margin-right: auto;
         }
     </style>
 
@@ -102,6 +110,7 @@
         });
         
         $(document).ready(function() {
+
             //determine operating system
             // test for OS
             var OSName="Unknown OS";
@@ -183,27 +192,30 @@
     <!-- <a href="http://www.w3schools.com">Visit W3Schools.com!</a>
     <a href="http://bioinformatics.bc.edu/marthlab/wiki/index.php/Main_Page">test</a> -->
     <!-- <a href="http://bioinformatics.bc.edu/marthlab/wiki/index.php/Main_Page" style="float:right" ><img src="images/ribbon.png" style="position:relative;overflow:auto;height:130px;cursor:pointer" ></img></a><div style="clear:both"></div> -->
-    <a style="position:absolute;right:15px;z-index:2;" href="http://bioinformatics.bc.edu/marthlab/wiki/index.php/Main_Page" ><img style="height:130px" src="images/ribbon.png"></img></a>
+    <!-- <a style="position:absolute;right:15px;z-index:2;" href="http://bioinformatics.bc.edu/marthlab/wiki/index.php/Main_Page" ><img style="height:130px" src="images/ribbon.png"></img></a> -->
     <div id="header">
-        <div id="title">iobio</div>
+        <div id="title" class="logo">iobio</div>
         <div id="menu">
             <ul>
-                <li class="active"><a href='index.html'>What is iobio?</a></li>
-                <li><a href='#details'>Details</a></li>
-                <li><a href='demos.html'>Demos</a></li>
-                <li><a href='about.html'>About</a></li>
-                <!-- <li><a href='how-to-use.html'>How to use it</a></li> -->
+                <li class="active"><a href='index.html'>What is it?</a></li>                
+                <li><a href='applications.html'>Applications</a></li>                
+                <li><a href='developers.html'>Developers</a></li>
+                <li><a href='about.html'>About Us</a></li>                
             </ul>
         </div>
-        <div style="clear:both"/>
     </div>
     <div>
       <img src=""></img>
     </div>
-    <div style="font-size:30px; width:1000px; margin-left: auto; margin-right: auto; margin-top: 10px; color: rgb(110,110,110);text-align:justify">
+    <br/>
+    <div id="content">
         <!-- <div style="font-size:35px">Real-Time Interactive Genomic Analysis</div> -->
-        <div style="font-size:17px;margin-top:5px;line-height:30px;font-weight:400">
-          Iobio attempts to empower all biological researchers, but especially bench scientists without computational experience, to easily, interactively, and in a visually driven manner, analyze those portions of vast biomedical datasets that are essential for their research e.g. in the region of a gene. Iobio is a real-time analysis technology that powers numerous applications. Iobio is under development to allow 3rd party applications to incorporate real-time analysis.  <span style="color:rgb(20,20,20)">We are still under heavy development so please <a href="https://github.com/chmille4/bam.iobio.io/issues">report any bugs</a> you see.</span>
+        <div style="font-size:15px;text-align:center;margin: 0px 0px 30px 0px;">
+          <div class="logo">iobio</div>
+          <div >
+            <!-- Realtime genomic interactive analysis of genomic big data -->
+            REALTIME INTERACTIVE ANALYSIS OF GENOMIC BIG DATA
+          </div>
         </div>
         <div style="margin: 0 auto; width:800px; ">
           <video id="MY_VIDEO_1" class="video-js vjs-default-skin " style="margin: 0 auto;width:800px" controls
@@ -213,54 +225,63 @@
             <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
           </video>
           <div style="text-align:center">
-            <a href="http://bam.iobio.io" style="color:#2d8fc1;">Try bam.iobio.io</a>
+            <div style="margin-top:10px">
+              <input style="height:35px;width:405px;color:rgb(200,200,200);font-size:30px" value='enter email address'></input>
+              <span style="padding:4px 6px 4px 6px;display:inline;border-radius:4px;background:rgb(120,120,120);color:white">Sign Up</span>
+            </div>
           </div>
         </div>
-            
-        <div id="chart" style="display:none;margin-top:60px; position:relative">
-            <div id="calling" style="color:#2d8fc1;margin-left:auto;margin-right:auto;font-size:20px;text-align:center;font-weight:400;">Real-time variant calling on alignment data on the Amazon cloud ...</div>
-            <div id="variants" style="margin-left:auto;margin-right:auto;width:830px; height:160px"></div>
-            <div style="position:absolute; left:50%;top:31%">
-                <div id="tryit" onclick="tryIt()" style="cursor:pointer; position:relative;z-index:500; left:-50%;background:#2d8fc1;color:white;border-radius:4px;font-size:20px;padding:8px 25px 8px 25px;text-align:center">Go!</div>
-            </div>
-            <!-- <input onmouseup="tryit()" type="range" id="range" min="0" max="100" step="1" value="20" orient="vertical" style="float:right;margin-right: 125px;margin-top: -110px;" /> -->
-            <div id="sliderDiv">
-                <input onchange="updateQual(this.value);" onmouseup="tryIt()" type="range" id="range" min="0" max="100" step="1" value="20" orient="vertical" style="float:right;margin-right: 115px;margin-top: -135px;" />
-                <div id="minQual" style="float:right;margin-right:38px;margin-top:-112px;font-size:11px;font-weight:400;padding:2px;border-radius:4px">Variant Qual Threshold</div>
-                <div id="qualValue" style="text-align:center;color:#2d8fc1;float:right;margin-right:112px;margin-top:-158px;border:2px solid rgb(150,150,150);height:12px;width:17px;font-size:12px;padding:2px;border-radius:4px">20</div>
-            </div>
-            <div id="hover" style="color:#2d8fc1;margin-left:auto;margin-right:auto;font-size:20px;text-align:center;font-weight:400">(hover for details, slide to recall)</div>
-            <div style="text-align:center;font-size:16px;margin-top: 24px; "><a href="demos.html">See More Demos</a></div>
+                    
+        <div class="divider" ></div>
+        <div class='section'>
+          <div class='section-title'>Try It</div>
+          <ul id="apps">
+            <li>
+              <div class='app'>
+                <div class="app-title">bam.iobio.io</div>
+                <a href="http://bam.iobio.io"><img src="images/bam.iobio_wide.png"></img></a>
+                <div class="description">an alignment data inspector tool that quickly samples bam files and visualizes a series of metrics</div>
+              </div>
+            </li>
+            <li>
+              <div class='app'>
+                <div class="app-title">vcf.iobio.io</div>
+                <a href="http://vcf.iobio.io"><img src="images/vcf.iobio_wide.png" style="height:247px" ></img></a>
+                <div class="description">an variant data inspector tool that quickly samples vcf files and visualizes a series of metrics</div>
+              </div>
+            </li>            
+          </ul>
+          <div style="margin-top:30px;font-size:18px"><a href="applications.html"> See more</a></div>
         </div>
-        <div class="divider" style="margin-top:40px; height:1px"></div>
-        <a name="details"></a>
-        <div style="margin-top:70px;margin-bottom:10px">Real-time analysis</div>
-        <div style="font-size:16px;font-weight:400">Full analysis of large data-sets typically takes a long time, from minutes to even weeks. 
-            However, full analysis is often overkill and dissuades researchers from exploring the data (e.g. with different software, parameters or visually).
-            iobio achieves realtime analysis by focusing on small but meaningful amounts of data. 
+        <div style="margin: 0px auto 10px auto; width: 750px;text-align:center;position:relative; height: 60px">          
+            <img src="images/ustar-ucgd-logo.jpg" style="height:60px;position:absolute;left:110px;"/>            
+            <img src="images/genetics_mainlogo3_lrg.png" style="height:50px;position:absolute;right:0px;top:3px"/>          
         </div>
-        <div style="margin-top:70px;margin-bottom:10px;text-align:right">Analysis Modalities</div>
-        <div style="font-size:16px;font-weight:400">
-            <div style="margin-top:5px;float:left;margin-right:3px">Regional Analysis<br/><img src="images/regional_analysis.png" style="height:50px"/><br/>Sampling Analysis<br/><img style="height:50px" src="images/sampling_analysis.png"/></div>
+        <div id="contribute" class="section">
+          <div class='section-title'>What's Next</div>
+          <div class="section-content">
+            <div >
+              <div class="title">Users</div>
+              <div class="description">We are constantly trying to improve our apps. If are our apps missing something, let us know how we can improve (<a href="about.html">contact us</a>). Also we are actively building new applications in numerious biological research areas. If you feel iobio would be a good fit for your area of research and would like to collaborate <a href='about.html'>contact us!</a></div>
+            </div>
             <div>
-               iobio utilizes two different strategies for extracting meaning out of data-sets in real time (1) <b>Regional analyses</b> analyze a single “slice” or region (e.g 100kb) of a possibly very large dataset. 
-               This is useful for researchers, especially those without computational expertise, to analyze those portions of vast biomedical datasets that are
-               essential for their research (e.g. alignment data from the region of a single gene, rather than a whole chromosome). For a demo see the <a href="http://chmille4.github.io/variantComparer-iobio/">Variant Comparer Demo</a>, which compares two tools and a truth set. 
-               (2) <b>Sampling analyses</b> request and analyze many small slices randomly selected from a large data file, and use these slices to estimate 
-               relevant characteristics of the larger dataset (e.g. average sequence coverage, or the distribution of fragment sizes in a whole-genome sequencing dataset), in real-time. 
-               Sampling works well for many statistical analyses of large datasets, and sampling-based approximation often approaches the precise result very quickly (within seconds). 
-               A good example can be seen in <a href="http://bam.iobio.io">http://bam.iobio.io</a>.
+              <div class="title" style="margin-top:40px">Developers</div>
+              <div class="description">A developers release with be coming out in the next few months so that anyone can build an iobio app. If you want to be informed of the release sign up for updates. <a href='developers'>More information on developers release</a></div>
             </div>
+          </div>
+        </div>        
+        <div class="footer">                  
+          <div style="font-size:15px;font-family:quicksand; margin: 0px auto 0px auto; width:400px; color:#2d8fc1">Developed in the Marth Lab by</div>
+          
+          <div style="font-size:15px;font-family:quicksand; margin: 10px auto 0px auto; width:800px;text-align:center">
+            <span style="margin-right: 15px"><img src="images/github_2d8fc1.png"/>Chase Miller</span>
+            <span style="margin-right: 15px"><img src="images/github_2d8fc1.png"/>Yi Qiao</span>
+            <span style="margin-right: 15px"><img src="images/github_2d8fc1.png"/>Tony DiSera</span>
+            <span style="margin-right: 15px"><img src="images/github_2d8fc1.png"/>Jon Anthony</span>
+          </div>
+
         </div>
-        <div style="margin-top:70px;margin-bottom:10px">Visually Driven Analysis</div>
-        <div style="font-size:16px;font-weight:400">
-            Often the first pass of an analysis does not provide optimal results, and analysis needs to be repeated, sometimes multiple times. 
-            Real-time analysis enables users the ability to complete the analysis quickly, visually examine the results and the quality summaries, 
-            and if necessary, interactively reanalyze in real time. The immediate visualization of the results can provoke new questions and 
-            further analyses, creating an iterative and exploratory process.
-        </div>
-        <div class="footer"></div>
-    </div>   
+    </div>    
     
     <script>
         window.chart = dotsD3("#variants", 1, '#2d8fc1');

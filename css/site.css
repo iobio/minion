@@ -1,29 +1,44 @@
 body {
    font-family: Quicksand;   
    font-weight: 400;
-   margin: 10px 20px 0px 20px;
+   margin: 0px;   
+   /*margin: 10px 20px 0px 20px;*/
 }
 
 a { color:rgb(110,110,110);}
 
+.logo {color:#2d8fc1; font-weight: 300; font-family: quicksand}
+
 #header {
-   position: relative;
+   position: fixed;
+   background: #123d53;
+   top:0px;
+   left:0px;
+   right:0px;   
+   height: 60px;
+   z-index: 3;
+   /*border-bottom: 1px solid rgb(230,230,230);*/
+   border-bottom: #081d27;
+   box-shadow: 0px 10px 40px 4px white;
    /*margin-top: -130px;*/
 }
+#header .border { position:absolute; bottom:0px; left:0px; right:0px; border-bottom: 1px solid #030e13;}
 
 #header #title {
-   font-size: 96px;
+   font-size: 37px;
    color:#2d8fc1;
-   float:left;
+   position:absolute;
+   top: 10px;
+   left: 230px;
    font-weight: 300;
 }
 
 #header #menu {
-   font-size: 20px;
+   font-size: 14px;
    margin-left: 150px;
    position:absolute;
-   left: 250px;
-   top: 40px;
+   right: 170px;
+   top: 8px;
 }
 
 #header #menu ul {
@@ -34,10 +49,11 @@ a { color:rgb(110,110,110);}
 
 #header #menu li {
    display: inline;
-   margin-right: 30px;
+   margin-right: 50px;
 }
 
 #header #menu li a {
+  color:white;
    padding-bottom:3px;
    text-decoration: none;
    border: none;
@@ -49,36 +65,39 @@ a { color:rgb(110,110,110);}
 #header #menu a:hover {border-bottom: 2px solid #2d8fc1;}  /* mouse over link */
 #header #menu li.active a {border-bottom: 2px solid #2d8fc1;}  /* selected link */
 
-#range {
-    -webkit-appearance: slider-vertical;
-    width: 20px;
-    height: 85px;
-    z-index: 10;
-    position:relative;
+
+#content {
+  z-index: 1;
+  font-size:30px; 
+  width:100%;  
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  color: rgb(110,110,110);
+  text-align:justify;
+  font-family: Montserrat;
 }
 
-#minQual {
-   transform: rotate(90deg); /* normal */
-   -webkit-transform: rotate(90deg); /* Safari */
-   -moz-transform: rotate(90deg); /* Firefox */
-   -ms-transform: rotate(90deg); /* IE */
-   -o-transform: rotate(90deg); /* Opera */
-   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1); /* Internet Explorer */
-}
+#content .logo { font-size: 100px; }
 
-#demos { 
-   width:650px;
-   margin-top:10px;
-   margin-left:auto;
-   margin-right:auto;
-   font-size: 20px;
-   text-align: center;
-   margin-top:30px;
-}
-#demos img { height: 200px; margin-top:10px}
+.section { text-align: center; padding: 50px 0px 50px 0px;}
+.section-title { font-size: 45px;}
+.description { font-size: 14px; text-align:justify; margin-top:5px;}
 
-#demos .demo { border: 1px solid rgb(200,200,200); border-right:none; width: 290px; height:290px; display:inline-block; float:left}
-#demos .demo:nth-child(2n) { border-right: 1px solid rgb(200,200,200)}
-#demos .demo:nth-child(n+5) { border-top: none}
-#demo a { color: red}
-.footer {margin-bottom:200px}
+.section #apps {margin: 0; margin-top: 20px; padding: 0; list-style-type: none; text-align: center; margin-left:-40px;}
+.section #apps li {display: inline; padding-left: 80px;}
+.section #apps .app {display: inline-block; vertical-align: top;}
+.section #apps img { width: 400px; height: 249px;}
+.section #apps .description { width: 370px; margin-left:15px; font-size: 12px; margin-top: -10px;}
+.section .app-title { font-family: quicksand; font-size: 25px}
+
+.section#contribute {background:#EFA36E; }
+.section#contribute a { color:#123d53; }
+.section .section-title { color:#123d53; }
+.section .section-content { width:600px; margin: 60px auto 0px auto; }
+.section#contribute .title { font-size: 25px; text-align:left; color:white;}
+.section#contribute .description { font-size: 14px; text-align:justify; margin-top:5px; color:white;}
+
+
+.footer { background: #123d53; height:80px; padding-top: 21px; color:#2d8fc1; text-align:center;}
+.footer img { height: 35px; vertical-align: middle}
