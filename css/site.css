@@ -105,7 +105,7 @@ a { color:rgb(110,110,110);}
 .section#contribute a { color:#123d53; }
 .section .section-title { color:#123d53; }
 .section .section-content { width:600px; margin: 20px auto 0px auto; }
-.section#contribute .title { font-size: 25px; text-align:left; color:white;}
+.section#contribute .title { font-size: 25px; text-align:left; color:white; width: 100%;}
 .section#contribute .description { font-size: 14px; text-align:justify; margin-top:5px; color:white;}
 .section#news .date { font-size: 24px;  margin-bottom: 5px}
 .section#news ul { list-style-type: none; margin:0px;}
