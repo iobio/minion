@@ -107,10 +107,15 @@ a { color:rgb(110,110,110);}
 .section .section-content { width:600px; margin: 20px auto 0px auto; }
 .section#contribute .title { font-size: 25px; text-align:left; color:white;}
 .section#contribute .description { font-size: 14px; text-align:justify; margin-top:5px; color:white;}
+.section#news .date { font-size: 24px;  margin-bottom: 5px}
+.section#news ul { list-style-type: none; margin:0px;}
+.section#news li {margin-bottom: 3px;}
+.section#news a { color: #2d8fc1;}
 
 
 .footer { position: absolute; bottom: 0px; left:0px;right:0px;}
 .footer .logos {margin: 0px auto 10px auto; width:1000px;text-align:center;position:relative; height: 60px; color:rgb(80,80,80);}
-.footer .developers {background: #123d53; height:80px; padding-top: 21px; color:#2d8fc1; text-align:center;}
+.footer .developers {background: #123d53; height:60px; padding-top: 10px; color:#2d8fc1; text-align:center;}
+.footer .members {font-size:15px;font-family:quicksand; margin: 5px auto 0px auto; width:800px;text-align:center;}
 .footer img { height: 35px; vertical-align: middle}
 .footer .title {font-size:15px;font-family:quicksand; margin: 0px auto 0px auto; width:400px; color:#2d8fc1}
