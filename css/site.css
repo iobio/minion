@@ -124,3 +124,32 @@ a { color:rgb(110,110,110);}
 .footer .members {font-size:15px;font-family:quicksand; margin: 5px auto 0px auto; width:800px;text-align:center;}
 .footer img { height: 35px; vertical-align: middle}
 .footer .title {font-size:15px;font-family:quicksand; margin: 0px auto 0px auto; width:400px; color:#2d8fc1}
+
+
+
+/* For mobile phones in portrait view */
+@media screen and (max-device-width:1089px), screen and (max-width:1089px) {
+  html { height: 100%; margin: 10px; padding: 0px;}
+
+  #header #title {
+     font-size: 37px;
+     color:#2d8fc1;
+     position:absolute;
+     top: 10px;
+     left: 10px;
+     font-weight: 300;
+  }
+  #header #menu {
+     font-size: 14px;
+     margin-left: 150px;
+     position:absolute;
+     right: 10px;
+     top: 8px;
+  }
+  #header #menu li {
+     display: inline;
+     margin-right: 20px;
+  }
+
+
+}
