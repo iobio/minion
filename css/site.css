@@ -129,6 +129,10 @@ a { color:rgb(110,110,110);}
 
 /* For mobile phones in portrait view */
 @media screen and (max-device-width:1089px), screen and (max-width:1089px) {
+.logo {color:#2d8fc1; font-weight: 400; font-family: quicksand}
+.logo a {color:#2d8fc1; font-weight: 400; font-family: quicksand; text-decoration: none}
+
+
 #content {
   z-index: 1;
   font-size:30px; 
@@ -163,5 +167,6 @@ a { color:rgb(110,110,110);}
      margin-right: 20px;
   }
 
+.footer { width: 1100px; margin: auto; position: absolute; bottom: 0px; left:0px;right:0px;}
 
 }
