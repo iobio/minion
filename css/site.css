@@ -103,6 +103,8 @@ a { color:rgb(110,110,110);}
 .section #apps img { width: 400px; height: 249px;}
 .section #apps .description { width: 370px; margin-left:15px; font-size: 12px; margin-top: -10px;}
 .section .app-title { font-family: quicksand; font-size: 25px}
+.section .app-title a { text-decoration: none;}
+.section .app-title a:hover { text-decoration: underline;}
 
 .section#contribute {background:#2d8fc1;}
 .section#contribute a { color:#123d53; }
