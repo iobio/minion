@@ -2,6 +2,10 @@
 module.exports = function() {
    var express = require('express'),
        app = express();
+
+   // command line arguments
+   module.exports.cmdArgs = { debug : false}
+   if (process.argv.indexOf('--debug') != -1) module.exports.cmdArgs.debug = true;
             
    // add public folder
    app.use('/', express.static(__dirname + '/public'));
@@ -167,7 +171,12 @@ module.exports.runCommand = function(stream, params) {
          });
    } else {   
       if(params.encoding != 'binary') prog.stdout.setEncoding(params.encoding);
-      prog.stdout.pipe(stream);
+      prog.stdout.pipe(stream);      
+      if (module.exports.cmdArgs.debug) {
+        var fs = require('fs');
+        var ws = fs.createWriteStream('toMinionServer.txt')
+        prog.stdout.pipe(ws);
+      }
    }
 
    
@@ -194,22 +203,27 @@ module.exports.runCommand = function(stream, params) {
 
 module.exports.httpRequest = function(sources, prog) {
    var http = require('http');
-console.log("http request");
-   // handle minion sources
-   for ( var j=0; j < sources.length; j++ ) {                
-        var url = sources[j];
-        if (url.slice(0,2) == "ws") url = "http://" + url.split(/^ws:\/\//)[1];
-        var req = http.request(url, function(res) {           
-            res.on('data', function(chunk) {
-               prog.stdin.write( chunk );
-            })
-            res.on('end', function () {
-               // might need ?
-               prog.stdin.end();
-            });
-        });
-        req.end();
-   }
+console.log("http request");      
+     // handle minion sources
+     for ( var j=0; j < sources.length; j++ ) {                
+          var url = sources[j];
+          if (url.slice(0,2) == "ws") url = "http://" + url.split(/^ws:\/\//)[1];          
+          var req = http.request(url, function(res) {           
+              if (module.exports.cmdArgs.debug) {
+                var fs = require('fs');
+                var ws = fs.createWriteStream('fromMinionServer.txt');
+                res.pipe(ws);
+              }
+              res.on('data', function(chunk) {                
+                 prog.stdin.write( chunk );                 
+              })
+              res.on('end', function () {
+                 // might need ?
+                 prog.stdin.end();                 
+              });
+          });
+          req.end();
+     }   
 }
 
 //
