@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="js/d3.v3.min.js"></script>	
+	<style type="text/css">
+		body { width: 800px; margin-left: auto; margin-right: auto}
+		h1 { text-align: center;}
+		.section { margin-top: 50px}
+		.animation {width:704px; margin: 0px auto 0px auto; position:relative;}
+		.title { font-size: 40px; color: rgb(90,90,90);text-align: center; top: 120px; position: absolute; width: 100%}	
+		svg { margin-top:20px;}	
+		.reference { stroke-width: 2;}
+		.read {stroke-width: 2;}
+		.referenceWord { color: green;}
+		#rd-animation .reference { stroke: green;}
+		#rd-animation .read { stroke: #e74c3c;}
+		#metric-animation .reference { stroke: rgb(100,100,100);}
+		#metric-animation .read { stroke: rgb(180,180,180);}
+		#metric-animation .mate { stroke: #e74c3c;}
+		.mateWord { color: #e74c3c; }
+		.readWord { color: #e74c3c;}
+		.bin { stroke: rgb(90,90,90); stroke-width: 2; fill:white;}
+		.readCoverageFill { fill: #2d8fc1;}
+		.readCoverageWord { color: #2d8fc1;}
+		.fragLength { stroke: green; stroke-width: 2;}
+		.fragTitle { fill: rgb(120,120,120);}
+		.text { margin-top: 20px; text-align: justify; }		
+		.btn {
+			background:rgb(100,100,100); color:white; font-size:20px; width:25px; height:25px; border-radius: 20px;text-align:center;
+			display:inline-block; margin: 0px 5px 0px 5px;
+			cursor:pointer;
+		}
+		.number { font-size: 20px; color: rgb(100,100,100);}
+	</style>
+	<script type="text/javascript">
+		function rdNext() {					
+		 	var instructionElem = d3.select('#rd-animation .instruction');	
+			var stage = parseInt(instructionElem.attr('data-stage'));
+			var message = "";
+			d3.select('#rd-animation .title').style('display','none');
+			var g = d3.select('#rd-animation g');
+			switch(stage) {			
+				case 1:
+					drawReads(g);					
+					message = "BAM data consists of <span class='readWord'>reads</span> aligned to a <span class='referenceWord'>reference</span> genome";
+					break;
+				case 2:
+					drawBins(g);					
+					message = "The more <span class='readWord'>reads</span> <span class='cover'>covering</span> a <span>base</span> the more confidence there is that the base is correct";
+					break;
+				case 3:
+					message = "Therefore, <span class='readCoverageWord'>read coverage</span> is an important metric and can be used to identify data problems as well as characteristics of the sample";					
+					toHistogram(g);
+					break;
+				case 4:
+					message = "Such as low or no coverage, possibly indicating a bad sequencing run";					
+					toLowCoverage(g);
+					break;
+				// case 4:
+				// 	message = "Or high coverage next to low coverage, possibly indicating a mismapping";					
+				// 	toMismapping();
+				// 	break;
+				case 5:
+					message = "Or high coverage, possibly indicating a duplication";					
+					toDuplication(g);
+					break;				
+				default:
+					stage = 0;
+					d3.select('#rd-animation .title').style('display','block');
+					cleanUp(g);					
+					break;
+			}
+
+			instructionElem.attr('data-stage', stage+1);
+			d3.select('#rd-animation .number').html(parseInt(stage+1) + '/6');
+			d3.select('#rd-animation .message').html(message);			
+		}
+
+		function metricNext() {					
+		 	var instructionElem = d3.select('#metric-animation .instruction');	
+			var stage = parseInt(instructionElem.attr('data-stage'));
+			var message = "";
+			d3.select('#metric-animation .title').style('display','none');		
+			var g = d3.select('#metric-animation g');
+			switch(stage) {			
+				case 1:
+					highLightMatePair(g);					
+					message = "<span class='mateWord'>Read pairs</span> are two reads that have a known distance from each other";
+					break;
+				case 2:
+					message = "If only 1 read pair is mapped, then it is a <span class='mateWord'>singleton</span>";					
+					drawSingleton(g);
+					break;
+				case 3:
+					drawFragmentLength(g);					
+					message = "The <span class='referenceWord'>distance</span> between two read pairs is called the fragment length";
+					break;				
+				case 4:
+					message = "If <span class='mateWord'>both pairs</span> are mapped so that their <span class='referenceWord'>fragment length</span> is close to the <span style='color:#a613b7'>expected length</span>, then they are a proper pair";					
+					drawProperPair(g);
+					break;				
+				case 5:
+					message = "If <span class='referenceWord'>fragment length</span> is very big it could indicate a <span style='color:#ff50a1'>deletion</span>";					
+					drawBigFragmentLength(g);
+					break;
+				// case 4:
+				// 	message = "Or high coverage next to low coverage, possibly indicating a mismapping";					
+				// 	toMismapping();
+				// 	break;
+				// case 5:
+				// 	message = "Or high coverage, possibly indicating a duplication";					
+				// 	toDuplication(g);
+				// 	break;				
+				default:
+					stage = 0;
+					d3.select('#metric-animation .title').style('display','block');
+					cleanUp(g);					
+					break;
+			}
+
+			instructionElem.attr('data-stage', stage+1);
+			d3.select('#metric-animation .number').html(parseInt(stage+1) + '/6');
+			d3.select('#metric-animation .message').html(message);				
+		}
+	</script>
+</head>
+<body>
+
+<h1>UM Sequence Analysis Workshop BAM Tutorial</h1>
+<div class="section">
+		BAM alignment data is a fundamental data type and format for genomic analysis. However its a difficult data-type to work with as it is often very large 10s-100s of gb's and is a compressed binary format, which means you can never just open it up in notepad and take a look at the data. This tutorial will try to explain BAM's, the metrics that can be derived from the data, and finally allow interaction with real, large BAMS with different characteristics.
+</div>
+<div id='rd-animation' class="animation" style="height:350px">
+	<div class="title">What is read depth coverage?</div>
+	<svg style="width:100%; height:220px; "></svg>
+	<div style="width:100%;text-align:center" class="instruction" data-stage='1'>	
+		<div id='nextBtn'>
+			<span class='number'>1/6</span><div class="btn" onclick='rdNext()'>></div>
+		</div>
+		<div class='message'></div>		
+	</div>	
+</div>
+<div class="section">
+	Read coverage is normally not enough by itself to figure out what is really happening but can be a powerful hint for what to investigate next. Many other metrics can also give you an idea what is going on. 
+</div>
+<div id='metric-animation' class="animation" style="height: 400px">
+	<div class="title">All about read pairs</div>
+	<svg style="width:100%; height:220px; "></svg>
+	<div style="width:100%;text-align:center" class="instruction" data-stage='1'>	
+		<div id='nextBtn'>
+			<span class='number'>1/5</span><div class="btn" onclick='metricNext()'>></div>
+		</div>
+		<div class='message'></div>		
+	</div>	
+</div>
+
+<h1 style="color: rgb(90,90,90)">
+	Match characteristics with the datasets
+</h1>
+<div style="width:400px; margin: 20px auto 50px auto">
+	<div style="float:left">
+		<div>Duplication</div>
+		<div>Deletion</div>
+		<div>Inversion</div>
+		<div>Tumor Sample</div>
+	</div>
+	<div style="float:right">
+		<div><a href="http://bam.iobio.io/?bam=http://s3.amazonaws.com/umcourse/1.bam&region=gi|568815578|ref|NC_000020.11|">Chr 20</a></div>
+		<div><a href="http://bam.iobio.io/?bam=http://s3.amazonaws.com/umcourse/in.bam&region=gi|568815578|ref|NC_000020.11|">Sample 1</a></div>
+		<div><a href="http://bam.iobio.io/?bam=http://s3.amazonaws.com/umcourse/del.bam&region=gi|568815578|ref|NC_000020.11|">Sample 2</a></div>
+		<div><a href="http://bam.iobio.io/?bam=http://s3.amazonaws.com/bam.test.files.private/TCGA-Benchmark-v4/G15511.HCC1143.1.bam">Sample 3</a></div>
+		<div><a href="http://bam.iobio.io/?bam=http://s3.amazonaws.com/umcourse/dup.bam&region=gi|568815578|ref|NC_000020.11|">Sample 4</a></div>	
+		<!-- <div><a href="http://bam.iobio.io/?bam=http://s3.amazonaws.com/umcourse/dup.bam">Normal Sample</a></div> -->	
+
+	</div>
+	<div style="clear:both"></div>
+</div>
+
+<script type="text/javascript">	
+	// defaults
+	var w = 700;
+	var reads = [
+		[1,1],[15,2],[30,3],[35,4],
+		[90,1],[115,2],[130,3],[135,4],[140,5],
+		[200,1],[215,2],[230,3],[235,4],[240,5],[250,6],[255,7],[263,8],[270,9],[280,10],
+		[300,1],[315,2],[330,3],[335,4],[340,5],[350,6],[355,7],[360,8],[365,9],[370,10],[375,11],[380,12],
+		[400,1],[415,2],[430,3],[435,4],[440,5],[450,6],[455,7],[460,8],[465,9],[470,10],[475,11],
+		[490,1],[515,2],[530,3],[535,4],[540,5],[550,6],[555,7],[563,8],
+		[600,1],[608,2],[615,3],[624,4],[632,5]
+
+	];
+	var rl = 80; // readlength
+	var reference = [w+4];
+	var binW = 38;
+	var binN = w / binW;
+	var bins = [];
+	var buffer = 5;
+	var rdSvg = d3.select('#rd-animation svg').append('g');
+	var metricSvg = d3.select('#metric-animation svg').append('g');
+	var y = d3.scale.linear()
+    	.domain([0, 15])
+    	.range([5, 130]);
+
+    function cleanUp(g) {
+    	// cleanup from coming around from the end again
+    	bins = [];    	
+		if(rdSvg != undefined) rdSvg.selectAll('.bin').data(bins).exit().remove(); // remove bins
+		// setup new g to use
+		d3.select('g').remove();
+		rdSvg = d3.select('#rd-animation svg').append('g');
+    }
+
+	function drawReads(g) {				
+		// animation 1			
+		g.selectAll('.reference')
+			.data(reference).enter().append('line')
+				.attr('class', 'reference')
+				.attr('x1', 1)
+				.attr('x2', function(d) { return d;})
+				.attr('y1', 5)
+				.attr('y2', 5);
+
+		g.selectAll(".read")
+			.data(reads).enter().append('line')
+				.attr('class', 'read')
+				.attr('x1', function(d) { return d[0]; })
+				.attr('x2', function(d) { return d[0]+rl; })
+				.attr('y1', function(d) { return y(d[1])})
+				.attr('y2', function(d) { return y(d[1])})
+				.style("stroke-opacity", 0);
+
+		g.selectAll('.read').transition()
+			.delay(function(d,i) { return i * 30})
+			.style('stroke-opacity', 1)
+			.attr('transform', function(d) { return 'translate(0,0)'});
+	}
+			
+
+	// animation 2
+	function drawBins(g) {		
+		for ( var i=0; i < binN; ++i) {
+			var start = i*binW +1;
+			var end = start + binW;
+			var readsInBin = reads.filter( function(read) { 
+				return ((read[0] >= start && read[0] <= end) || (read[0]+rl >= start && read[0]+rl <= end) ||
+						(start >= read[0] &&  start <= read[0]+rl) || (end >= read[0] && end <= read[0]+rl))
+			})
+			var height = d3.max(readsInBin, function(r) { return r[1] }) 
+			bins.push([start,end,height]);
+		}
+
+		g.selectAll('.bin')
+			.data(bins).enter().append('rect')
+				.attr('class', 'bin')
+				.attr('x', function(d) {return d[0] + binW/2;})
+				.attr('y', y(0) )
+				.attr('width', 1)
+				.attr('height', y(0))				
+				.style('fill-opacity', '0');
+
+		g.selectAll('.bin').transition()
+			.duration(100)
+			.delay(function(d,i) { return i * 30})
+			.attr('height', function(d) { return y(d[2]) - y(0); })
+		
+	}
+
+	// animation 3
+	function toHistogram(g) {
+		g.selectAll('.read').transition()
+			.duration(100)
+			.style('stroke-opacity', '0')
+
+		g.transition()
+			.delay(100)
+			.duration(1000)
+			.attr('transform', 'translate(0,200)');		
+
+		g.selectAll('.bin').transition()
+			.duration(700)
+			.delay(300)
+			.attr('x', function(d) {return d[0] + buffer/2;})
+			.attr('width', function(d) {return d[1] - d[0] - buffer/2})
+			.attr('class', 'bin readCoverageFill')
+			.style('fill-opacity', '1')
+			.style('stroke-opacity', '0')
+			.attr('transform', function(d) { return 'translate(0,-' + parseFloat(y(d[2]) - y(0)) + ')'})
+	}
+
+
+	function toLowCoverage(g) {
+		var lowBins = [ [343, 381, 0], [381, 419, 0]];
+		// change height to 0
+		g.selectAll('.bin').data(lowBins, function(d) { return d[0]; });
+
+		g.selectAll('.bin').transition()
+			.duration(700)			
+			.attr('height', function(d) {return y(d[2]) - y(0)})
+			.attr('transform', function(d) { return 'translate(0,-' + parseFloat(y(d[2]) - y(0)) + ')'});
+			
+	}
+
+	function toDuplication(g) {
+		var dupBin = [ [343, 381, 24]];
+		// change height to 0
+		g.selectAll('.bin').data(bins, function(d) { return d[0]; });
+		g.selectAll('.bin').data(dupBin, function(d) { return d[0]; });
+
+		g.selectAll('.bin').transition()
+			.duration(700)			
+			.attr('height', function(d) {return y(d[2]) - y(0)})
+			.attr('transform', function(d) { return 'translate(0,-' + parseFloat(y(d[2]) - y(0)) + ')'});
+			
+	}
+
+	function highLightMatePair(g) {
+		g.attr('transform', function(d) { return 'translate(0,25)'});
+		drawReads(g);		
+		var d3Reads = d3.selectAll('.read');
+		d3Reads[0][4].classList.add('mate', 'mate1');		
+		d3Reads[0][31].classList.add('mate', 'mate2');			
+	}
+
+	function drawFragmentLength(g) {
+		d3.select('.mate2').transition()
+			.duration(200)
+			.style('stroke-opacity', 1);
+		var mate1 = d3.select('.mate1').datum();
+		var mate2 = d3.select('.mate2').datum();
+		g.selectAll('.fragLength')
+			.data([[mate1,mate2]]).enter().append('line')
+				.attr('class', 'fragLength')
+				.attr('x1', function(d) { return d[0][0]; })
+				.attr('y1', function(d) {return y(d[0][1]); })
+				.attr('x2', function(d) { return d[0][0]; })
+				.attr('y2', function(d) { return y(d[0][1]); })
+
+		g.selectAll('.fragLength').transition()
+			.duration(100)
+			.attr('x2', function(d) { return d[1][0]+rl; });
+
+	    g.selectAll('.fragLength').transition()
+	    	.duration(800)
+	    	.delay(100)
+	    	.attr('y1',  y(0) - 10)
+	    	.attr('y2',  y(0) - 10);
+
+	    g.selectAll('.fragTitle').data([0]).enter().append('text')
+	    	.attr('class', 'fragTitle')
+	    	.attr('x', (mate2[0] - mate1[0] +rl)/2)
+	    	.attr('y', y(0) - 15)
+	    	.text('Fragment Length')	    	
+	    	.style('fill-opacity', '0');	    	
+	    
+	    g.selectAll('.fragTitle').transition()	    	
+	    	.delay(600)
+	    	.duration(400)
+	    	.style('fill-opacity', '1');	    	
+	}
+
+	function drawSingleton(g) {
+		d3.select('.mate2').transition()
+			.duration(400)
+			.style('stroke-opacity', 0);
+	}
+
+	function drawProperPair(g) {		
+		var mate1 = d3.select('.mate1').datum();
+		var mate2 = d3.select('.mate2').datum();
+		g.selectAll('.properPairRect')
+				.data([mate1,mate2]).enter().append('rect')
+					.attr('class', 'properPairRect')
+					.attr('x', function(d,i) { 
+						if(i%2==0) 
+							return d[0]-10; 
+						else 
+							return d[0]+rl-10;})
+					.attr('width', 20)		
+					.attr('y', -10)
+					.attr('height', 30)
+					.style('fill', '#a613b7')
+					.style('fill-opacity', '0.2');
+		window.repeat = true;
+		repeat(7);
+
+		function repeat(j) {		
+			g.selectAll('.read').data([mate1,mate2], function(d) { return d[0]}).transition()
+				.delay(200)
+				.duration(400)
+				.attr('x1', function(d,i) { 
+					if (i%2==0) 
+						return d[0]+j;
+					else 
+						return d[0] -j;
+				})
+				.attr('x2', function(d,i) { if (i%2==0) return d[0]+rl+j; else return d[0]+rl-j})
+
+			g.selectAll('.fragLength').data([[mate1,mate2]]).transition()
+				.delay(200)
+				.duration(400)
+				.attr('x1', function(d) { return d[0][0] + j; })
+				.attr('x2', function(d) { return d[1][0]+rl - j; })
+				.each("end", function() { if (window.repeat) repeat(-j);})
+		}
+	}
+
+	function drawBigFragmentLength(g) {
+		window.repeat = false;
+		var ins = [250,440];
+		var mate1 = d3.select('.mate1').datum();
+		var mate2 = d3.select('.mate2').datum();
+		g.selectAll('.read').data([mate1,mate2], function(d) { return d[0]; })
+			.attr('x1', function(d) { return d[0]; })
+			.attr('x2', function(d) { return d[0]+rl; })
+		// g.selectAll('.properPairRect').remove();
+
+		g.selectAll('.insertion').data([0]).enter().append('line').transition()
+			.duration(400)
+			.attr('class', 'insertion')
+			.attr('y1', y(0))
+			.attr('y2', y(0))
+			.attr('x1', ins[0])
+			.attr('x2', ins[1])
+			.style('stroke', '#ff50a1');
+
+		g.selectAll('.read').transition()
+			.duration(400)
+			.attr('x1', function(d) { if (d[0] > ins[0]) return d[0] + (ins[1]-ins[0]); else return d[0] })
+			.attr('x2', function(d) { if (d[0] > ins[0]) return d[0] + rl + (ins[1]-ins[0]); else return d[0]+rl });
+
+		g.selectAll('.fragLength').data([[mate1,mate2]]).transition()
+			.duration(400)
+			.attr('x2', function(d) { return d[1][0]+rl + (ins[1]-ins[0]); })	
+	}
+</script>
+
+</body>
+</html>
