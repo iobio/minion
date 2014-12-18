@@ -28,7 +28,7 @@ server.on('connection', function(client){
             var transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                    user: 'someaccount@gmail.com',
+                    user: 'your_support_email@gmail.com',
                     pass: 'enter_password_here'
                 }
             });
@@ -40,7 +40,7 @@ server.on('connection', function(client){
                     from:    meta.from,
                     to:      meta.to,
                     subject: meta.subject,
-                    html:    meta.note,
+                    html:    meta.body,
                     attachments: [
                         {   
                             filename: meta.filename,
