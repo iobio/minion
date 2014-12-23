@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  {% include head.html %}
+
+  <body>
+    <div class="masthead">        
+      <h3 class="masthead-title">
+        <a href="/" title="Home">{{ site.title }}</a>            
+      </h3>
+      <div id="menu">
+        <ul>
+            {% assign pages_list = (site.pages | sort: 'order' %}
+            {% assign group = 'navigation' %}
+            {% include pages_list %}
+        </ul>
+      </div>        
+    </div>
+
+    <div class="container">
+      {{ content }}
+    </div>
+
+    <div class="footer">   
+      {% if page.title != "What is it?" %}          
+        <div class="logos">     
+          <div style="position:absolute; left: 100px; top:0px; font-size:50px;font-family:'Overlock SC', cursive;">Marthlab</div>     
+          <img src="public/images/ustar-ucgd-logo.jpg" style="height:60px;"/>            
+          <a href="http://www.genetics.utah.edu/"><img src="public/images/genetics_mainlogo3_lrg.png" style="height:50px;position:absolute;right:0px;top:7px"/></a>
+        </div>  
+      {% endif %}     
+      <div class="developers">
+            <div class='title'>Developed in the Marth Lab by</div>
+            
+            <div class="members">
+              <span style="margin-right:15px">
+                <a href="https://github.com/chmille4"><img src="public/images/github_2d8fc1.png"/></a>
+                Chase Miller
+              </span>
+              <span style="margin-right: 15px">
+                <a href="https://github.com/yiq"><img src="public/images/github_2d8fc1.png"/></a>
+                Yi Qiao
+              </span>
+              <span style="margin-right: 15px">
+                <a href="https://github.com/tonydisera"><img src="public/images/github_2d8fc1.png"/></a>
+                Tony DiSera
+              </span>                
+              <span style="margin-right: 15px">
+                <a href="https://github.com/jsa-aerial"><img src="public/images/github_2d8fc1.png"/></a>
+                Jon Anthony
+              </span>
+            </div>
+        </div>
+    </div>  
+  </body>
+</html>

@@ -1,0 +1,216 @@
+
+
+
+/*
+ * Contents
+ *
+ * Global Resets
+ * Masthead
+ * Container
+ * Sectoin
+ * Footer
+ */
+
+
+/*
+ * Global resets
+ *
+ * Update the foundational and global aspects of the page.
+ */
+
+html { height: 100%; margin: 0px; padding: 0px;}
+header { margin: 0px;padding: 0px;}
+body {
+  font-family: Montserrat;
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  min-height: 100%;  
+}
+a { color:rgb(110,110,110); text-decoration: underline;}
+
+
+/*
+ * Masthead
+ *
+ * Super small header above the content for site name and short description.
+ */
+
+.masthead {  
+  position: fixed;
+  background: #123d53;
+  top:0px;
+  left:0px;
+  right:0px;   
+  height: 20px;
+  z-index: 3;
+  border-bottom: #081d27;
+  box-shadow: 0px 10px 40px 4px white;
+  font-family: quicksand;
+/*  box-sizing: border-box;*/
+}
+.masthead-title {
+  font-family: quicksand;
+   font-size: 37px;
+   color:#2d8fc1;
+   position:absolute;
+   top: 8px;
+   left: 182px;
+   font-weight: 300;
+}
+.masthead-title a {
+  color: #2d8fc1;
+  text-decoration: none;
+}
+.masthead #menu {
+   font-size: 14px;
+   margin-left: 150px;
+   position:absolute;
+   right: 170px;
+   top: 20px;
+}
+
+.masthead #menu ul {
+   list-style-type: none;
+   padding: 0;
+   margin-left: 0;
+}
+
+.masthead #menu li {
+   display: inline;
+   margin-right: 50px;
+}
+
+.masthead #menu li a {
+  color:white;
+   padding-bottom:3px;
+   text-decoration: none;
+   border: none;
+}
+
+/*a {text-decoration: none; border-bottom: 1px solid #2d8fc1}*/
+
+.masthead #menu a:visited {color:none;}  /* visited link */
+.masthead #menu a:hover {border-bottom: 2px solid #2d8fc1;}  /* mouse over link */
+.masthead #menu li.active a {border-bottom: 2px solid #2d8fc1;}  /* selected link */
+
+
+/*
+ * Container
+ *
+ * Center the page content.
+ */
+
+@media (min-width: 38em) {
+  .container {
+    max-width: 32rem;
+  }
+}
+@media (min-width: 56em) {
+  .container {
+    max-width: 38rem;
+  }
+}
+
+.container {
+  max-width: 52rem;
+  width: 52rem;
+  z-index: 1;
+  font-size:30px; 
+  width:100%;  
+  margin-top: 60px;
+  padding-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  color: rgb(110,110,110);
+  text-align:justify;
+  font-family: Montserrat;
+  padding-bottom: 173px
+}
+
+
+/*
+ * Section
+ *
+ */
+.section { text-align: center; padding: 30px 0px 50px 0px;}
+.section-title { font-size: 45px;}
+.description { font-size: 14px; text-align:justify; margin-top:5px;}
+
+.section #apps {margin: 0; margin-top: 20px; padding: 0; list-style-type: none; text-align: center; margin-left:-40px;}
+.section #apps li {display: inline; padding-left: 80px;}
+.section #apps .app {display: inline-block; vertical-align: top;}
+.section #apps img { width: 400px; height: 249px;}
+.section #apps .description { width: 370px; margin-left:15px; font-size: 12px; margin-top: -10px;}
+.section .app-title { font-family: quicksand; font-size: 25px}
+.section .app-title a { text-decoration: none;}
+.section .app-title a:hover { text-decoration: underline;}
+
+.section#contribute {background:#2d8fc1; height: 420px;}
+.section#contribute a { color:#123d53; }
+.section .section-title { color:#123d53; font-family: Montserrat}
+.section .section-content { width:600px; margin: 20px auto 0px auto; }
+.section#contribute .title { font-size: 25px; text-align:left; color:white; width: 100%;}
+.section#contribute .description { font-size: 14px; text-align:justify; margin-top:5px; color:white;}
+.section#news .date { font-size: 24px;  margin-bottom: 5px}
+.section#news ul { list-style-type: none; margin:0px;}
+.section#news li {margin-bottom: 3px;}
+.section#news a { color: #2d8fc1;}
+
+
+/*
+ * Footer
+ *
+ */
+.footer { position: absolute; bottom: 0px; left:0px;right:0px;}
+.footer .logos {margin: 0px auto 10px auto; width:1000px;text-align:center;position:relative; height: 60px; color:rgb(80,80,80);}
+.footer .developers {background: #123d53; height:60px; padding-top: 10px; color:#2d8fc1; text-align:center;}
+.footer .members {font-size:15px;font-family:quicksand; margin: 5px auto 0px auto; width:800px;text-align:center;}
+.footer img { height: 35px; vertical-align: middle}
+.footer .title {font-size:15px;font-family:quicksand; margin: 0px auto 0px auto; width:400px; color:#2d8fc1}
+
+
+
+/* For mobile phones in portrait view */
+/*@media screen and (max-device-width:1089px), screen and (max-width:1089px) {
+.logo {color:#2d8fc1; font-weight: 400; font-family: quicksand}
+.logo a {color:#2d8fc1; font-weight: 400; font-family: quicksand; text-decoration: none}
+
+
+#content {
+  z-index: 1;
+  font-size:30px; 
+  width:100%;  
+  padding-top: 60px;
+  
+  color: rgb(110,110,110);
+  text-align:justify;
+  font-family: Montserrat;
+  padding-bottom: 173px;
+  margin-left: 10px;
+  margin-right: 10px;
+ }
+
+  #header #title {
+     font-size: 37px;
+     color:#2d8fc1;
+     position:absolute;
+     top: 10px;
+     left: 10px;
+     font-weight: 300;
+  }
+  #header #menu {
+     font-size: 14px;
+     margin-left: 150px;
+     position:absolute;
+     right: 10px;
+     top: 8px;
+  }
+  #header #menu li {
+     display: inline;
+     margin-right: 20px;
+  }
+
+.footer { width: 1100px; margin: auto; position: absolute; bottom: 0px; left:0px;right:0px;}
+
+}*/
