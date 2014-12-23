@@ -101,7 +101,13 @@ a { color:rgb(110,110,110); text-decoration: underline;}
  * Center the page content.
  */
 
-@media (min-width: 38em) {
+ @media (min-width: 38em) {
+  html {
+    font-size: 20px;
+  }
+}
+
+/*@media (min-width: 38em) {
   .container {
     max-width: 32rem;
   }
@@ -110,7 +116,7 @@ a { color:rgb(110,110,110); text-decoration: underline;}
   .container {
     max-width: 38rem;
   }
-}
+}*/
 
 .container {
   max-width: 52rem;

@@ -1,4 +1,4 @@
-/*
+
  *  ___
  * /\_ \
  * \//\ \      __      ___   __  __    ___     ___
@@ -75,7 +75,7 @@ h1, h2, h3, h4, h5, h6 {
 .container {
   max-width: 28rem;
 }
-@media (min-width: 38em) {
+/*@media (min-width: 38em) {
   .container {
     max-width: 32rem;
   }
@@ -84,7 +84,7 @@ h1, h2, h3, h4, h5, h6 {
   .container {
     max-width: 38rem;
   }
-}
+}*/
 
 
 /*
@@ -114,7 +114,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0;
 }
 
-@media (max-width: 48em) {
+/*@media (max-width: 48em) {
   .masthead-title {
     text-align: center;
   }
