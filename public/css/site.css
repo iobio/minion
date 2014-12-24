@@ -41,22 +41,28 @@ a { color:rgb(110,110,110); text-decoration: underline;}
   background: #123d53;
   top:0px;
   left:0px;
-  right:0px;   
-  height: 20px;
+  right:0px;     
   z-index: 3;
   border-bottom: #081d27;
   box-shadow: 0px 10px 40px 4px white;
   font-family: quicksand;
+  padding: 0px;
+  height: 52px;
 /*  box-sizing: border-box;*/
 }
+
+.masthead-container { 
+  width: 1060px;  
+  margin: 0px auto 0px auto;
+}
+
 .masthead-title {
   font-family: quicksand;
    font-size: 37px;
    color:#2d8fc1;
-   position:absolute;
-   top: 8px;
-   left: 182px;
+   float:left;
    font-weight: 300;
+   margin-top: 5px;
 }
 .masthead-title a {
   color: #2d8fc1;
@@ -64,10 +70,8 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 }
 .masthead #menu {
    font-size: 14px;
-   margin-left: 150px;
-   position:absolute;
-   right: 170px;
-   top: 20px;
+   float:right;
+   margin-top: 18px;
 }
 
 .masthead #menu ul {
@@ -78,7 +82,7 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 
 .masthead #menu li {
    display: inline;
-   margin-right: 50px;
+   margin-left: 50px;
 }
 
 .masthead #menu li a {
