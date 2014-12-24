@@ -101,11 +101,11 @@ a { color:rgb(110,110,110); text-decoration: underline;}
  * Center the page content.
  */
 
- @media (min-width: 38em) {
+ /*@media (min-width: 38em) {
   html {
     font-size: 20px;
   }
-}
+}*/
 
 /*@media (min-width: 38em) {
   .container {
@@ -119,8 +119,8 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 }*/
 
 .container {
-  max-width: 52rem;
-  width: 52rem;
+  max-width: 1021px;
+  width: 1021px;
   z-index: 1;
   font-size:30px; 
   width:100%;  
@@ -131,7 +131,7 @@ a { color:rgb(110,110,110); text-decoration: underline;}
   color: rgb(110,110,110);
   text-align:justify;
   font-family: Montserrat;
-  padding-bottom: 173px
+  padding-bottom: 173px;  
 }
 
 
@@ -143,8 +143,8 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 .section-title { font-size: 45px;}
 .description { font-size: 14px; text-align:justify; margin-top:5px;}
 
-.section #apps {margin: 0; margin-top: 20px; padding: 0; list-style-type: none; text-align: center; margin-left:-40px;}
-.section #apps li {display: inline; padding-left: 80px;}
+.section #apps {margin: 0; margin-top: 20px; padding: 0; list-style-type: none; text-align: center;}
+.section #apps li {display: inline; margin: 0px 40px 0px 40px}
 .section #apps .app {display: inline-block; vertical-align: top;}
 .section #apps img { width: 400px; height: 249px;}
 .section #apps .description { width: 370px; margin-left:15px; font-size: 12px; margin-top: -10px;}
