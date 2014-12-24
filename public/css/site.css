@@ -125,6 +125,7 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 .container {
   max-width: 1021px;
   width: 1021px;
+  min-width: 1021px;
   z-index: 1;
   font-size:30px; 
   width:100%;  
@@ -172,7 +173,7 @@ a { color:rgb(110,110,110); text-decoration: underline;}
  * Footer
  *
  */
-.footer { position: absolute; bottom: 0px; width:100%;}
+.footer { position: absolute; bottom: 0px; width:100%; min-width: 100%;}
 .footer .logos {margin: 0px auto 10px auto; width:1000px;text-align:center;position:relative; height: 60px; color:rgb(80,80,80);}
 .footer .developers {background: #123d53; height:60px; padding-top: 10px; color:#2d8fc1; text-align:center;}
 .footer .members {font-size:15px;font-family:quicksand; margin: 5px auto 0px auto; width:800px;text-align:center;}
