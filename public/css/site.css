@@ -52,7 +52,8 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 }
 
 .masthead-container { 
-  width: 1060px;  
+  width: 1060px; 
+  min-width: 1060px;  
   margin: 0px auto 0px auto;
 }
 
