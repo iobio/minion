@@ -27,7 +27,8 @@ minionClient.url.parse = function(url) {
 
    if (!urlParams || urlParams.length == 0) {return parsed}
    console.log('urlParams = ' + urlParams);
-   var parameterPairs = urlParams.split('&');
+   // split on & while ignoring everything inside double quotes
+   var parameterPairs = decodeURI(urlParams).match(/(?:[^&"]+|"[^"]*")+/g).map(function(d) { return encodeURI(d); })
    var x;
    for (x in parameterPairs) {
       var parameterPair = parameterPairs[x];

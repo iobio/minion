@@ -3,6 +3,9 @@ module.exports = function() {
    var express = require('express'),
        app = express();
 
+   // keep track of connected clients
+   module.exports.clients = {};
+
    // command line arguments
    module.exports.cmdArgs = { debug : false}
    if (process.argv.indexOf('--debug') != -1) module.exports.cmdArgs.debug = true;
@@ -67,8 +70,11 @@ module.exports.listen = function(bs) {
    bs.on('connection', function(client) {
       module.exports.client = client;        
       client.on('stream', function(stream,options) { 
-         if(options.event == "setID") client.connectionID = options.connectionID;
-         if(options.event == 'run') {
+         if(options.event == "setID") {
+          client.connectionID = options.connectionID;    
+          module.exports.clients[options.connectionID] = client.id;   
+        }
+         if(options.event == 'run') {            
             var params = options.params;
             params.protocol = params.protocol || 'http';
             params.returnEvent = params.returneEvent || 'results';
@@ -76,6 +82,12 @@ module.exports.listen = function(bs) {
             params.encoding = params.encoding || 'utf8';
             module.exports.runCommand(stream, params);
          }
+      })
+      client.on('close', function() {
+        var connectionID;
+        var clients = module.exports.clients;
+        for (var c in clients) { if (clients[c] = client.id) connectionID = c; }
+        delete module.exports.clients[connectionID];
       })
    });
 };
@@ -96,10 +108,10 @@ module.exports.runCommand = function(stream, params) {
       var isDirectory = true;   
 
    if (params['cmd'] == undefined && params['url'] != undefined) {
-      var q = minionClient.url.parse(params['url']).query;
+      var q = minionClient.url.parse(params['url']).query;      
       for (var attr in q) { params[attr] = q[attr]; } // merge params in query into params object
    }
-   var cmd = params['cmd'];
+   var cmd = params['cmd'];   
    // split commands by space into array, while escaping spaces inside double quotes
    console.log('cmad = ' + params['url']);
    if (cmd != undefined) rawArgs = cmd.match(/(?:[^\s"]+|"[^"]*")+/g)
@@ -109,9 +121,10 @@ module.exports.runCommand = function(stream, params) {
    // look for minion remote sources
    for( var i=0; i < rawArgs.length; i++) {
       var arg = rawArgs[i];
-      if ( arg.match(/^http%3A%2F%2F\S+/) || arg.match(/^ws%3A%2F%2F\S+/) ) {   
+      if ( arg.match(/^http%3A%2F%2F\S+/) || arg.match(/^ws%3A%2F%2F\S+/) || arg.match(/^https%3A%2F%2F\S+/) || arg.match(/^wss%3A%2F%2F\S+/) ) {   
          console.log('mArg = ' + arg);
-         minions.push( decodeURIComponent(arg) );         
+         minions.push( decodeURIComponent(arg) );   
+         if (module.exports.cmdArgs.debug) { console.log('remote source url = ' + decodeURIComponent(arg))}      
          var inOpt = module.exports.tool.inputOption;
          if( inOpt != undefined && inOpt == args[args.length-1]) {
             args.splice(-1);
@@ -121,8 +134,7 @@ module.exports.runCommand = function(stream, params) {
          args.push( arg.slice(1,arg.length-1) ); // remove quotes
       else
          args.push( arg );
-   }
-   
+   }   
    // check if path is to a directory and if so remove
    // the first argument and append to path as program name
    if (isDirectory) {
@@ -203,7 +215,7 @@ module.exports.runCommand = function(stream, params) {
 
 module.exports.httpRequest = function(sources, prog) {
    var http = require('http');
-console.log("http request");      
+console.log("http request");     
      // handle minion sources
      for ( var j=0; j < sources.length; j++ ) {                
           var url = sources[j];
@@ -221,6 +233,10 @@ console.log("http request");
                  // might need ?
                  prog.stdin.end();                 
               });
+
+              prog.stdin.on('end', function() {
+                res.destroy();
+              })
           });
           req.end();
      }   
@@ -239,12 +255,9 @@ module.exports.websocketRequest = function(sources, prog) {
         var source = minionClient.url.parse( sources[j] );
         if(source.isClient) {
            if (source.query.id != undefined) {
-              var bs = module.exports.bs;
-              var client;
-              for ( var c in bs.clients) {
-                 if(bs.clients[c].connectionID == source.query.id)
-                    client = bs.clients[c];
-              }              
+              var bs = module.exports.bs;              
+              var clientId = module.exports.clients[source.query.id];
+              var client = bs.clients[clientId];            
             } else {
                var client = module.exports.client;
             }
