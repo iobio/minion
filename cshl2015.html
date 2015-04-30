@@ -1,0 +1,62 @@
+---
+layout: default
+title: "CSHL 2015"
+permalink: cshl2015.html
+---
+
+<style>
+
+	.description li { color: rgb(60,60,60);}
+	.description li .inline { color: rgb(160,160,160); margin-left: 10px; font-family: helvetica;}
+</style>
+
+<div class='section'>
+	<div class='section-title'>bam.iobio</div>        
+	<div class="description" style="width:810px; margin: 0px auto 35px auto;font-size:16px; text-align:justify">
+	  <ul>
+	  	<li><a href='http://bam.iobio.io'>Default BAM</a><span class='inline'>bam.iobio's default dataset is Platinum 12878 on the homepage</span></li>
+	  	<li><a href="http://bam.iobio.io/?bam=http://labshare.cshl.edu/shares/schatzlab/www-data/skbr3/SKBR3_Feb17_GRCh38.sorted.bam">PacBio BAM</a><span class='inline'>New PacBio dataset. Look at the read distrubtion</span></li>
+	  </ul>
+	</div>
+</div>
+
+<div class='section'>
+	<div class='section-title'>vcf.iobio</div>        
+	<div class="description" style="width:810px; margin: 0px auto 35px auto;font-size:16px; text-align:justify">
+	  <ul>
+	  	<li><a href="http://vcf.iobio.io">Default VCFs</a><span class='inline'>vcf.iobio has several example datasets on the homepage</span></li>
+	  	<li>Bad VCF <span class='inline'>Take a look at a bad vcf for comparison (AL TO PROVIDE)</span></li>
+	  </ul>
+	</div>
+</div>
+
+<div class='section'>
+	<div class='section-title'>gene.iobio</div>        
+	<div class="description" style="width:810px; margin: 0px auto 35px auto;font-size:16px; text-align:justify">
+	  <ul>
+	  	<li><a href="http://gene.iobio.io/?rel0=proband&rel1=mother&rel2=father&gene=RAI1&name0=&vcf0=http://s3.amazonaws.com/iobio/variants/NA12878.autosome.PASS.vcf.gz&bam0=http://s3.amazonaws.com/iobio/NA12878/NA12878.autsome.bam&name1=&vcf1=http://s3.amazonaws.com/iobio/variants/NA12891.autosome.PASS.vcf.gz&bam1=http://s3.amazonaws.com/iobio/NA12891/NA12891.autsome.bam&name2=&vcf2=http://s3.amazonaws.com/iobio/variants/NA12892.autosome.PASS.vcf.gz&bam2=http://s3.amazonaws.com/iobio/NA12892/NA12892.autsome.bam">Platinum Trio</a><span class='inline'>After loading the genes, check out the genes below to see specific scenarios can elucidate</span></li>
+	  		<ul>
+	  			<li>RAI1<span class='inline'>Simple view of a recessive variant, pathogenic in clinvar
+</span></li>
+				<li>MYLK2<span class='inline'>Here a variant is given a low quality and filtered out due to being called with background samples. Click 'call missing variants' and this variant is discovered. Note that the quality of the call is ~100 in this view since the variant was called in isolation and doesn't suffer from a background of all reference alleles. An argument for a comparison of background/individual calling and getting a good balance for rare/private variants.
+
+</span></li>
+				<li>AIRE<span class='inline'>You can see a het variant present in both parents, but there is a dip in the coverage at this location in the proband. Zoom in on the exon to see the low coverage. The variant is a pathogenic variant and is a het in both parents. This could be a hom alt variant in the proband leading to a recessive disorder, but due to the lack of coverage, we cannot make the call.
+
+</span></li>
+				<li>PDGFB<span class='inline'>This is a deletion that is intronic in the canonical transcript. From the transcript drop-down menu, select the third transcript (ENST00000381551.4). This transcript has an additional exon in which the deletion now falls and is upgraded from a modifier intron variant to a high impact frameshift variant.
+
+</span></li>	
+	  		</ul>
+	  </ul>
+	</div>
+</div>
+
+<div class='section'>
+	<div class='section-title'>taxonomer.iobio</div>        
+	<div class="description" style="width:810px; margin: 0px auto 35px auto;font-size:16px; text-align:justify">
+	  <ul>
+	  	<li><a href="http://taxonomer.iobio.io">Default Datasets</a><span class='inline'>taxonomer.iobio has several example datasets on the homepage</span></li>	  	
+	  </ul>
+	</div>
+</div>
