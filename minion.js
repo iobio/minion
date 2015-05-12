@@ -253,16 +253,20 @@ module.exports.httpRequest = function(sources, prog) {
 				}
 				res.on('data', function(chunk) {
 						prog.stdin.write( chunk );
-						})
+				})
 				res.on('end', function () {
 						// might need ?
 						prog.stdin.end();                 
-						});
+				});
+
+        prog.stdin.on('error', function() {
+            console.log('error writing to program. possibly unconsumed data in pipe ');
+        })
 
 				prog.stdin.on('end', function() {
 						res.destroy();
-						})
-				});
+				})
+		});
 		req.end();
 	}   
 }
