@@ -214,12 +214,31 @@ module.exports.runCommand = function(stream, params) {
 }
 
 module.exports.httpRequest = function(sources, prog) {
-   var http = require('http');
-console.log("http request");     
+   var http;
+   console.log("http request");     
      // handle minion sources
      for ( var j=0; j < sources.length; j++ ) {                
           var url = sources[j];
-          if (url.slice(0,2) == "ws") url = "http://" + url.split(/^ws:\/\//)[1];          
+		  var url_split = url.split(/:\/\//);
+
+		  if (url_split[0] == "ws" || url_split[0] == "http") {
+			  http = require('follow-redirects').http;
+			  if (url_split[0] == "ws") {
+				  url="http://" + url_split[1];
+			  }
+		  }
+		  else if (url_split[0] == "wss" || url_split[0] == "https") {
+			  http = require('follow-redirects').https;
+			  if (url_split[0] == "wss") {
+				  url="https://" + url_split[1];
+			  }
+		  }
+		  else {
+			  console.log('unrecognized protocol ' + url_split[0]);
+			  return;
+		  }
+		  
+          //if (url.slice(0,2) == "ws") url = "http://" + url.split(/^ws:\/\//)[1];          
           var req = http.request(url, function(res) {           
               if (module.exports.cmdArgs.debug) {
                 var fs = require('fs');
