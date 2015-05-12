@@ -120,7 +120,7 @@ module.exports.runCommand = function(stream, params) {
 
    // look for minion remote sources
    for( var i=0; i < rawArgs.length; i++) {
-      var arg = rawArgs[i];
+      var arg = rawArgs[i];                       
       if ( arg.match(/^http%3A%2F%2F\S+/) || arg.match(/^ws%3A%2F%2F\S+/) || arg.match(/^https%3A%2F%2F\S+/) || arg.match(/^wss%3A%2F%2F\S+/) ) {   
          console.log('mArg = ' + arg);
          minions.push( decodeURIComponent(arg) );   
@@ -210,6 +210,7 @@ module.exports.runCommand = function(stream, params) {
       if (code !== 0) {
          console.log('prog process exited with code ' + code);
       }
+      stream.end();
    }); 
 }
 
