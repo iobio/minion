@@ -1,0 +1,10 @@
+{
+  "name": "minion",
+  "version": "0.1.0",
+  "dependencies": {
+    "binaryjs": "^0.2.1",
+    "ejs": "^2.3.1",
+    "express": "^4.12.3",
+    "follow-redirects": "0.0.3"
+  }
+}
