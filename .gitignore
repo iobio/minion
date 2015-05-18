@@ -1,0 +1,4 @@
+node_modules
+services
+bin
+.DS_Store
