@@ -199,7 +199,9 @@ module.exports.runCommand = function(stream, params) {
       module.exports.httpRequest(minions, prog)                
 
    prog.stderr.on('data', function (data) {
-      console.log(module.exports.tool['name'] + ' ERROR: ' + data);
+      var error = module.exports.tool['name'] + ' ERROR: ' + data
+      console.log(error); // print error on server
+      if(stream.error) stream.error(error); // send error to client
    });
 
    prog.on("close", function() {
@@ -208,7 +210,9 @@ module.exports.runCommand = function(stream, params) {
 
    prog.on('exit', function (code) {
       if (code !== 0) {
-         console.log('prog process exited with code ' + code);
+        var error = 'prog process exited with code ' + code
+         console.log(error); // print error on server
+         if(stream.error) stream.error('prog process exited with code ' + code); // send error to client
       }
       stream.end();
    }); 
