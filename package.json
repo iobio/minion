@@ -1,10 +1,34 @@
 {
   "name": "minion",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "dependencies": {
-    "binaryjs": "^0.2.1",
+    "binaryjs": "git://github.com/chmille4/binaryjs.git",
     "ejs": "^2.3.1",
     "express": "^4.12.3",
     "follow-redirects": "0.0.3"
-  }
+  },
+  "description": "iobio server",
+  "main": "minion.js",
+  "bin": {
+    "minion": "partialStream.js"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chmille4/iobio.git"
+  },
+  "keywords": [
+    "iobio",
+    "websocket",
+    "server"
+  ],
+  "author": "Chase Miller",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chmille4/iobio/issues"
+  },
+  "homepage": "https://github.com/chmille4/iobio"
 }
