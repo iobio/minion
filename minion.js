@@ -131,7 +131,7 @@ module.exports.runCommand = function(stream, params) {
          }
       }
       else if ( arg.match(/^[\'\"].*[\'\"]$/) )
-         args.push( arg.slice(1,arg.length-1) ); // remove quotes
+         args.push( encodeURI(arg.slice(1,arg.length-1)) ); // remove quotes and reEncode in case it's a url
       else
          args.push( arg );
    }   
