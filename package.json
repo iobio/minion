@@ -5,16 +5,17 @@
     "binaryjs": "git://github.com/chmille4/binaryjs.git",
     "ejs": "^2.3.1",
     "express": "^4.12.3",
-    "follow-redirects": "0.0.3"
+    "follow-redirects": "0.0.3",
+    "jasmine-node": "^1.14.5"
   },
   "description": "iobio server",
-  "main": "minion.js",
-  "bin": {
-    "minion": "partialStream.js"
+  "devDependencies": {
+    "coveralls": "^2.11.2",
+    "jasmine": "^2.3.1",
+    "request": "^2.55.0"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/jasmine"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,12 @@
     "iobio",
     "websocket",
     "server"
+  ],
+  "files": [
+    "LICENSE",
+    "Readme.md",
+    "index.js",
+    "lib/"
   ],
   "author": "Chase Miller",
   "license": "MIT",

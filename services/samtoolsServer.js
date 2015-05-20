@@ -5,23 +5,8 @@
 //    // handle or ignore error
 // });
 
-var minion = require('../minion'),
-    http = require('http'),
-    app = minion(),
-    server = http.createServer(app),
-    BinaryServer = require('binaryjs').BinaryServer,
-    port = 8060;
-    
-// process command line options
-process.argv.forEach(function (val, index, array) {
-  if(val == '--port' && array[index+1]) port = array[index+1];
-});
-
-// setup socket
-var bs = BinaryServer({server: server});
-
-// start server
-server.listen(port);
+var port = 8060,
+    minion = require('../index.js')(port);    
 
 // define tool
 var tool = {
@@ -34,9 +19,6 @@ var tool = {
    exampleUrl : ""
 };
 
-// add tool to minion server
-minion.addTool(tool);
-
 // start minion socket
-minion.listen(bs);
+minion.listen(tool);
 console.log('iobio server started on port ' + port);
