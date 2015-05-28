@@ -1,0 +1,402 @@
+---
+layout: fullWidth
+title: "10000gSV"
+permalink: 1000gsv.html
+---
+
+<!-- <!DOCTYPE html>
+<html>
+<head> -->	
+	<!-- js libs -->
+	<script type="text/javascript" src='{{ site.baseurl }}public/js/jquery.min.js'></script>
+	<script type="text/javascript" src='{{ site.baseurl }}public/js/bootstrap.min.js'></script>	
+
+	<!-- css libs -->	
+	<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}public/css/bootstrap.min.css">	
+	<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}public/css/bootstrap.dropdown.css">
+	<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}public/css/1000gsv.css">
+
+	<!-- fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Overlock+SC' rel='stylesheet' type='text/css'>
+<!-- </head>
+<body> -->
+	<h1>1000 Genomes SV</h1>
+	<div class='1000g-content' id='content'>
+		<!-- trios -->
+		<div id='trios' class="row">
+
+			<!-- trio 1 -->
+        	<div class="col-xs-12 col-sm-4 trio">
+        		<div class='row'>
+        			<div class='trio-padder'>
+	        			<div class="col col-xs-4">
+	        				<div class='elem square'>
+	        					<div class="dropdown">
+								    <a id="dLabel"  data-toggle="dropdown" data-target="#" href="">
+								        Father <span class="caret"></span>
+								    </a>
+									<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+								      <li class="dropdown-submenu disabled">
+								        <a tabindex="-1" href="#">PacBio</a>
+								        <ul class="dropdown-menu">
+								          <li class='disabled'><a tabindex="-1" target="_blank" href="#">bam.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>                  
+								          <li class='disabled'><a href="#">vcf.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>
+								          <!-- <li><a href="#">gene.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li> -->
+								        </ul>
+								      </li>
+								      <li class="dropdown-submenu">
+								        <a tabindex="-1" href="#">Illumina</a>
+								        <ul class="dropdown-menu">
+								          <li><a tabindex="-1" target="_blank" href="http://bam.iobio.io/?bam=http://s3.amazonaws.com/iobio/NA12891/NA12891.autsome.bam&region=1">bam.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>                  
+								          <li><a target="_blank" href="http://vcf.iobio.io/?vcf=http://s3.amazonaws.com/iobio/variants/NA12891.autosome.PASS.vcf.gz">vcf.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>
+								          <!-- <li><a href="#">gene.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li> -->
+								        </ul>
+								      </li>              
+								      <li class="dropdown-submenu disabled">
+								        <a tabindex="-1" href="#">TrueSeq</a>
+								        <ul class="dropdown-menu">
+								          <li class='disabled'><a tabindex="-1" href="#">bam.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>                  
+								          <li class='disabled'><a href="#">vcf.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>
+								          <!-- <li><a href="#">gene.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li> -->
+								        </ul>
+								      </li>
+								    </ul>
+								</div>
+	        				</div>
+	        			</div>
+	        			<div class="col col-xs-4">
+	        				<div class="elem line-horizontal"></div>
+	        				<div class="elem line-vertical"></div>
+	        				<div class="elem square">
+	        					<div class="dropdown">
+								    <a id="dLabel"  data-toggle="dropdown" data-target="#" href="">
+								        Child <span class="caret"></span>
+								    </a>
+									<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+								      <li class="dropdown-submenu disabled">
+								        <a tabindex="-1" href="#">PacBio</a>
+								        <ul class="dropdown-menu">
+								          <li class='disabled'><a tabindex="-1" href="#">bam.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>                  
+								          <li class='disabled'><a href="#">vcf.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>
+								          <!-- <li><a href="#">gene.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li> -->
+								        </ul>
+								      </li>
+								      <li class="dropdown-submenu">
+								        <a tabindex="-1" href="#">Illumina</a>
+								        <ul class="dropdown-menu">
+								          <li><a tabindex="-1" target="_blank" href="http://bam.iobio.io/?bam=http://s3.amazonaws.com/iobio/NA12878/NA12878.autsome.bam&region=1">bam.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>                  
+								          <li><a target="_blank" href="http://vcf.iobio.io/?vcf=http://s3.amazonaws.com/iobio/variants/NA12878.autosome.PASS.vcf.gz">vcf.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>
+								          <!-- <li><a href="#">gene.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li> -->
+								        </ul>
+								      </li>              
+								      <li class="dropdown-submenu disabled">
+								        <a tabindex="-1" href="#">TrueSeq</a>
+								        <ul class="dropdown-menu">
+								          <li class='disabled'><a tabindex="-1" href="#">bam.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>                  
+								          <li class='disabled'><a href="#">vcf.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>
+								          <!-- <li><a href="#">gene.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li> -->
+								        </ul>
+								      </li>
+								    </ul>
+								</div>	        					
+	        				</div>
+	        			</div>
+	        			<div class="col col-xs-4">
+	        				<div class='elem circle'>
+	        					<div class="dropdown">
+								    <a id="dLabel"  data-toggle="dropdown" data-target="#" href="">
+								        Mother <span class="caret"></span>
+								    </a>
+									<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+								      <li class="dropdown-submenu disabled">
+								        <a tabindex="-1" href="#">PacBio</a>
+								        <ul class="dropdown-menu">
+								          <li class='disabled'><a tabindex="-1" href="#">bam.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>                  
+								          <li class='disabled'><a href="#">vcf.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>
+								          <!-- <li><a href="#">gene.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li> -->
+								        </ul>
+								      </li>
+								      <li class="dropdown-submenu">
+								        <a tabindex="-1" href="#">Illumina</a>
+								        <ul class="dropdown-menu">
+								          <li><a tabindex="-1" target="_blank" href="http://bam.iobio.io/?bam=http://s3.amazonaws.com/iobio/NA12892/NA12892.autsome.bam&region=1">bam.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>                  
+								          <li><a target="_blank" href="http://vcf.iobio.io/?vcf=http://s3.amazonaws.com/iobio/variants/NA12892.autosome.PASS.vcf.gz">vcf.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>
+								          <!-- <li><a href="#">gene.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li> -->
+								        </ul>
+								      </li>              
+								      <li class="dropdown-submenu disabled">
+								        <a tabindex="-1" href="#">TrueSeq</a>
+								        <ul class="dropdown-menu">
+								          <li class='disabled'><a tabindex="-1" href="#">bam.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>                  
+								          <li class='disabled'><a href="#">vcf.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>
+								          <!-- <li><a href="#">gene.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li> -->
+								        </ul>
+								      </li>
+								    </ul>
+								</div>	        					
+	        				</div>
+	        			</div>
+	        		</div>
+        		</div>
+        		<div class='description'>
+        			<div>Trio 1 (example)</div>
+        			<a target="_blank" href='http://gene.iobio.io/?rel0=proband&rel1=mother&rel2=father&gene=BRCA2&name0=&vcf0=http://s3.amazonaws.com/iobio/variants/NA12878.autosome.PASS.vcf.gz&bam0=http://s3.amazonaws.com/iobio/NA12878/NA12878.autsome.bam&name1=&vcf1=http://s3.amazonaws.com/iobio/variants/NA12891.autosome.PASS.vcf.gz&bam1=http://s3.amazonaws.com/iobio/NA12891/NA12891.autsome.bam&name2=&vcf2=http://s3.amazonaws.com/iobio/variants/NA12892.autosome.PASS.vcf.gz&bam2=http://s3.amazonaws.com/iobio/NA12892/NA12892.autsome.bam'>
+        				gene.iobio.io 
+        				<span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+        			</a>
+        		</div>
+        	</div>
+
+        	<!-- trio 2 -->
+        	<div class="col-xs-12 col-sm-4 trio">
+        		<div class='row'>
+        			<div class='trio-padder'>
+	        			<div class="col col-xs-4">
+	        				<div class='elem square'>
+	        					<div class="dropdown">
+								    <a id="dLabel" class='disabled'   data-toggle="dropdown" data-target="#" href="">
+								        Father <span class="caret"></span>
+								    </a>
+									<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+								      <li class="dropdown-submenu">
+								        <a tabindex="-1" href="#">PacBio</a>
+								        <ul class="dropdown-menu">
+								          <li><a tabindex="-1" href="#">bam.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>                  
+								          <li><a class='disabled' href="#">vcf.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>
+								          <!-- <li><a href="#">gene.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li> -->
+								        </ul>
+								      </li>
+								      <li class="dropdown-submenu disabled">
+								        <a tabindex="-1" href="#">Illumina</a>
+								        <ul class="dropdown-menu">
+								          <li><a class='disabled' tabindex="-1" href="#">bam.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>                  
+								          <li><a class='disabled' href="#">vcf.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>
+								          <!-- <li><a href="#">gene.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li> -->
+								        </ul>
+								      </li>              
+								      <li class="dropdown-submenu disabled">
+								        <a tabindex="-1" href="#">TrueSeq</a>
+								        <ul class="dropdown-menu">
+								          <li><a tabindex="-1" class='disabled' href="#">bam.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>                  
+								          <li><a class='disabled' href="#">vcf.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>
+								          <!-- <li><a href="#">gene.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li> -->
+								        </ul>
+								      </li>
+								    </ul>
+								</div>	        					
+	        				</div>
+	        			</div>
+	        			<div class="col col-xs-4">
+	        				<div class="elem line-horizontal"></div>
+	        				<div class="elem line-vertical"></div>
+	        				<div class="elem circle">
+	        					<div class="dropdown">
+								    <a id="dLabel"  data-toggle="dropdown" data-target="#" href="">
+								        Child <span class="caret"></span>
+								    </a>
+									<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+								      <li class="dropdown-submenu">
+								        <a tabindex="-1" href="#">PacBio</a>
+								        <ul class="dropdown-menu">
+								          <li><a tabindex="-1" href="http://bam.iobio.io/?bam=http://labshare.cshl.edu/shares/schatzlab/www-data/skbr3/SKBR3_Feb17_GRCh38.sorted.bam">bam.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>                  
+								          <li class='disabled'><a href="#">vcf.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>
+								          <!-- <li ><a href="#">gene.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li> -->
+								        </ul>
+								      </li>
+								      <li class="dropdown-submenu disabled">
+								        <a tabindex="-1" href="#">Illumina</a>
+								        <ul class="dropdown-menu">
+								          <li class='disabled'><a tabindex="-1" href="#">bam.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>                  
+								          <li class='disabled'><a href="#">vcf.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>
+								          <!-- <li><a href="#">gene.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li> -->
+								        </ul>
+								      </li>              
+								      <li class="dropdown-submenu disabled">
+								        <a tabindex="-1" href="#">TrueSeq</a>
+								        <ul class="dropdown-menu">
+								          <li class='disabled'><a tabindex="-1" href="#">bam.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>                  
+								          <li class='disabled'><a href="#">vcf.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>
+								          <!-- <li><a href="#">gene.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li> -->
+								        </ul>
+								      </li>
+								    </ul>
+								</div>	        					
+	        				</div>
+	        			</div>
+	        			<div class="col col-xs-4">
+	        				<div class='elem circle'>
+	        					<div class="dropdown">
+								    <a id="dLabel" class='disabled'  data-toggle="dropdown" data-target="#" href="">
+								        Mother <span class="caret"></span>
+								    </a>
+									<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+								      <li class="dropdown-submenu">
+								        <a tabindex="-1" href="#">PacBio</a>
+								        <ul class="dropdown-menu">
+								          <li><a tabindex="-1" href="#">bam.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>                  
+								          <li><a href="#">vcf.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>
+								          <li><a href="#">gene.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>
+								        </ul>
+								      </li>
+								      <li class="dropdown-submenu">
+								        <a tabindex="-1" href="#">Illumina</a>
+								        <ul class="dropdown-menu">
+								          <li><a tabindex="-1" href="#">bam.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>                  
+								          <li><a href="#">vcf.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>
+								          <li><a href="#">gene.iobio <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></li>
+								        </ul>
+								      </li>              
+								      <li class="dropdown-submenu">
+								        <a tabindex="-1" href="#">TrueSeq</a>
+								        <ul class="dropdown-menu">
+								          <li><a tabindex="-1" href="#">~ bam.iobio</a></li>                  
+								          <li><a href="#">~ vcf.iobio</a></li>
+								          <li><a href="#">~ gene.iobio</a></li>
+								        </ul>
+								      </li>
+								    </ul>
+								</div>	        					
+	        				</div>
+	        			</div>
+	        		</div>
+        		</div>
+        		<div class='description'>
+        			<div>Trio 2</div>
+        			<a class='disabled' href='#'>gene.iobio.io
+        				<span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+        			</a>
+        		</div>
+        	</div>
+
+        	<!-- trio 3 -->
+        	<div class="col-xs-12 col-sm-4 trio disabled">
+        		<div class='row'>
+        			<div class='trio-padder'>
+	        			<div class="col col-xs-4">
+	        				<div class='elem square'>
+	        					<div class="dropdown">
+								    <a id="dLabel" class='disabled'  data-toggle="dropdown" data-target="#" href="">
+								        Father <span class="caret"></span>
+								    </a>
+									<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+								      <li class="dropdown-submenu">
+								        <a tabindex="-1" href="#">PacBio</a>
+								        <ul class="dropdown-menu">
+								          <li><a tabindex="-1" href="#">~ bam.iobio</a></li>                  
+								          <li><a href="#">~ vcf.iobio</a></li>
+								          <li><a href="#">~ gene.iobio</a></li>
+								        </ul>
+								      </li>
+								      <li class="dropdown-submenu">
+								        <a tabindex="-1" href="#">Illumina</a>
+								        <ul class="dropdown-menu">
+								          <li><a tabindex="-1" href="#">~ bam.iobio</a></li>                  
+								          <li><a href="#">~ vcf.iobio</a></li>
+								          <li><a href="#">~ gene.iobio</a></li>
+								        </ul>
+								      </li>              
+								      <li class="dropdown-submenu">
+								        <a tabindex="-1" href="#">TrueSeq</a>
+								        <ul class="dropdown-menu">
+								          <li><a tabindex="-1" href="#">~ bam.iobio</a></li>                  
+								          <li><a href="#">~ vcf.iobio</a></li>
+								          <li><a href="#">~ gene.iobio</a></li>
+								        </ul>
+								      </li>
+								    </ul>
+								</div>	        					
+	        				</div>
+	        			</div>
+	        			<div class="col col-xs-4">
+	        				<div class="elem line-horizontal"></div>
+	        				<div class="elem line-vertical"></div>
+	        				<div class="elem square">
+	        					<div class="dropdown">
+								    <a id="dLabel" class='disabled'  data-toggle="dropdown" data-target="#" href="">
+								        Child <span class="caret"></span>
+								    </a>
+									<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+								      <li class="dropdown-submenu">
+								        <a tabindex="-1" href="#">PacBio</a>
+								        <ul class="dropdown-menu">
+								          <li><a tabindex="-1" href="#">~ bam.iobio</a></li>                  
+								          <li><a href="#">~ vcf.iobio</a></li>
+								          <li><a href="#">~ gene.iobio</a></li>
+								        </ul>
+								      </li>
+								      <li class="dropdown-submenu">
+								        <a tabindex="-1" href="#">Illumina</a>
+								        <ul class="dropdown-menu">
+								          <li><a tabindex="-1" href="#">~ bam.iobio</a></li>                  
+								          <li><a href="#">~ vcf.iobio</a></li>
+								          <li><a href="#">~ gene.iobio</a></li>
+								        </ul>
+								      </li>              
+								      <li class="dropdown-submenu">
+								        <a tabindex="-1" href="#">TrueSeq</a>
+								        <ul class="dropdown-menu">
+								          <li><a tabindex="-1" href="#">~ bam.iobio</a></li>                  
+								          <li><a href="#">~ vcf.iobio</a></li>
+								          <li><a href="#">~ gene.iobio</a></li>
+								        </ul>
+								      </li>
+								    </ul>
+								</div>	        					
+	        				</div>
+	        			</div>
+	        			<div class="col col-xs-4">
+	        				<div class='elem circle'>
+	        					<div class="dropdown">
+								    <a id="dLabel" class='disabled'  data-toggle="dropdown" data-target="#" href="">
+								        Mother <span class="caret"></span>
+								    </a>
+									<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+								      <li class="dropdown-submenu">
+								        <a tabindex="-1" href="#">PacBio</a>
+								        <ul class="dropdown-menu">
+								          <li><a tabindex="-1" href="#">~ bam.iobio</a></li>                  
+								          <li><a href="#">~ vcf.iobio</a></li>
+								          <li><a href="#">~ gene.iobio</a></li>
+								        </ul>
+								      </li>
+								      <li class="dropdown-submenu">
+								        <a tabindex="-1" href="#">Illumina</a>
+								        <ul class="dropdown-menu">
+								          <li><a tabindex="-1" href="#">~ bam.iobio</a></li>                  
+								          <li><a href="#">~ vcf.iobio</a></li>
+								          <li><a href="#">~ gene.iobio</a></li>
+								        </ul>
+								      </li>              
+								      <li class="dropdown-submenu">
+								        <a tabindex="-1" href="#">TrueSeq</a>
+								        <ul class="dropdown-menu">
+								          <li><a tabindex="-1" href="#">~ bam.iobio</a></li>                  
+								          <li><a href="#">~ vcf.iobio</a></li>
+								          <li><a href="#">~ gene.iobio</a></li>
+								        </ul>
+								      </li>
+								    </ul>
+								</div>	        					
+	        				</div>
+	        			</div>
+	        		</div>
+        		</div>
+        		<div class='description'>
+        			<div>Trio 3</div>
+        			<a href='#'>
+        				gene.iobio.io 
+        				<span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+        			</a>
+        		</div>
+        	</div>
+
+        </div> <!-- /trios --> 
+	</div>  <!-- /content -->	
+	<script>
+		$('document').ready(function() {
+			$('.footer .developers').css('height', '70px');
+		});
+	</script>
+<!-- </body>
+</html> -->
