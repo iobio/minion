@@ -1,3 +1,6 @@
 [submodule "demo/variantcomparer"]
 	path = demo/variantcomparer
 	url = https://github.com/chmille4/variantComparer-iobio.git
+[submodule "demo/pca"]
+	path = demo/pca
+	url = https://github.com/chmille4/pca-iobio.git
