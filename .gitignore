@@ -1,4 +1,10 @@
+// ignore node modules
 node_modules
+
+// ignore iobio services directory
 services
+
+// ignore iobio executable directory
 bin
+
 .DS_Store
