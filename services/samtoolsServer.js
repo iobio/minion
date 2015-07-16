@@ -1,10 +1,5 @@
 #!/usr/bin/env node
 
-// temporary until i understand why freebayes seg faults on the stream
-// process.on('uncaughtException', function (exception) {
-//    // handle or ignore error
-// });
-
 var port = 8060,
     minion = require('../index.js')(port);    
 
