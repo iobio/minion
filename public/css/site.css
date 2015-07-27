@@ -170,14 +170,15 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 .section#news a { color: #2d8fc1;}
 
 
-/*.posts ul { 
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-.posts li { display: inline-block; }*/
-.posts { border: 1px solid red;}
 
+/*
+ * Blog Posts
+ *
+ */
+.blog-masthead { background: white;}
+.blog-masthead #menu li a { color: #2d8fc1;}
+.blog-container { width: 1200px; max-width: 1200px; min-width: 1200px;}
+.posts { margin-top: 70px;}
 .posts ul {
   list-style-type: none;
   overflow:hidden;
@@ -185,34 +186,44 @@ a { color:rgb(110,110,110); text-decoration: underline;}
   padding:0;
 }
 .posts li {
-  float:left;
-  width:40%;
+  width:31%;
   margin: 5px 1%;
   padding:0;
   vertical-align: top;
+  display: inline-block;
+  margin-bottom: 50px;
+  box-sizing: border-box;
+  position: relative;  
 }
-.posts li:nth-child(even) { float:right;}
-.post { 
+
+.posts li:nth-child(3n+1) { float:left; clear:both; margin-right: 2%;}
+.posts li:nth-child(3n+3) { float:right; margin-right: 0px}
+.posts .post { 
   border: 1px solid rgb(200,200,200);
-  font-family: "Open Sans", "Helvetica Neue";
-  width: 400px;  
+  font-family: 'Open Sans', sans-serif;    
   border-radius: 3px;
 }
 
-.post .post-image { 
+.posts .snippet-thumbnail { 
   width: auto;   
   margin: 10px; 
   border-radius: 3px;   
   box-sizing: border-box;
 }
-.post .post-image img { width: 100%; height: 165px; border: 1px solid rgb(200,200,200); border-radius: 3px; margin: 0px;}
-.post .post-text { margin: -10px 15px 2px 15px }
-.post .post-byline { font-size: 15px; color: rgb(120,120,120); }
-.post .post-title { font-size: 30px; color: rgb(20,20,20); }
-.post .post-title a { text-decoration: none; }
-.post .post-subtitle { font-size: 20px; color: rgb(120,120,120); }
-/*.post:nth-child(odd) { float:left;}
-.post:nth-child(even) { float:right;}*/
+.posts .snippet-thumbnail img { width: 100%; height: 145px; border: 1px solid rgb(230,230,230); border-radius: 3px; margin: 0px;}
+.posts .snippet-text { margin: -10px 15px 2px 15px }
+.posts .snippet-byline { font-size: 15px; color: rgb(120,120,120); font-weight: 300; font-size: 0.875rem; text-transform: uppercase; }
+.posts .snippet-headshot { height: 50px; position: absolute; right: 15px; top: 126px; border: 3px solid white; border-radius: 50px;}
+.posts .snippet-title { font-size: 1.5rem;  }
+.posts .snippet-title a { text-decoration: none; font-weight: 600; color: rgb(70,70,70);}
+.posts .snippet-subtitle { font-size: 0.875rem; color: rgb(120,120,120); margin-top: 7px; margin-bottom: 16px; }
+
+
+.post .post-title { font-size: 60px;}
+.post .post-image img { width: 800px;}
+.post .post-date { font: 300 17px "Open Sans"; color: rgb(160,160,160); display: inline-block; }
+.post .post-author { font: 400 17px "Open Sans"; color: rgb(120,120,120); display: inline-block;}
+.post .post-content { font: 400 20px "Open Sans"; color: rgb(100,100,100);}
 
 
 /*
