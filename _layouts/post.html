@@ -2,11 +2,12 @@
 layout: blog
 ---
 
-<div class="post" style="margin-top: 100px;">
+<div class="post post-main" style="margin-top: 100px;">
   <div class="post-title">{{ page.title }}</div> 
-  <div style="line-height: 17px; margin-top: -5px">
+  <div style="line-height: 17px; margin-top: -9px">
     <div class="post-date">{{ page.date | date_to_string }}</div>
     <div class="post-author">{{ page.tags }}</div>
+    <img class='post-headshot' src="/public/images/team/{{ page.tags | first | replace:' ','_'  }}.png"/>
   </div>
   <div class='post-image'> <img src={{ page.image }}/></div>
   <div class='post-content'>

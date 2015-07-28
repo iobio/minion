@@ -2,7 +2,8 @@
 layout: blog
 title: "Blog"
 permalink: blog.html
-order: 5
+group: "navigation"
+order: 4
 ---
 
 <div style="width:100%; text-align:center; font-size: 40px; font-family: 'Open Sans'; color: rgb(70,70,70); margin-top:20px" >Blog</div>
@@ -10,7 +11,7 @@ order: 5
 <div class="posts">
   <ul>
   {% for post in site.posts %}
-    <li class="post">
+    <li class="snippet">
 
       <div class='snippet-thumbnail'> <img src={{ post.image }}/></div>
       <div class='snippet-text'>
