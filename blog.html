@@ -13,7 +13,7 @@ order: 4
   {% for post in site.posts %}
     <li class="snippet">
 
-      <div class='snippet-thumbnail'><a href="{{ post.url }}"><img src={{ post.image }}/></a></div>
+      <div class='snippet-thumbnail'><a href="{{ post.url }}"><img src={{ post.image }}></img></a></div>
       <div class='snippet-text'>
         <div class='snippet-byline'>BY {{ post.tags }} ON {{ post.date | date: "%b %-d, %Y" }}</div>
         <div></div>        
