@@ -197,11 +197,13 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 }
 
 .posts li:nth-child(3n+1) { float:left; clear:both; margin-right: 2%;}
-.posts li:nth-child(3n+3) { float:right; margin-right: 0px}
-.posts .post { 
-  border: 1px solid rgb(200,200,200);
-  font-family: 'Open Sans', sans-serif;    
-  border-radius: 3px;
+.posts li:nth-child(3n+3) { float:right; margin-right: 4px}
+.posts .snippet { 
+  /*border: 1px solid rgb(200,200,200);*/
+  /*font-family: 'Open Sans', sans-serif;*/   
+  height: 300px; 
+  box-shadow: 2px 2px 6px 2px rgb(200,200,200);
+  /*border-radius: 3px;*/
 }
 
 .posts .snippet-thumbnail { 
@@ -225,6 +227,10 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 .post .post-author { font: 400 17px "Open Sans"; color: rgb(120,120,120); display: inline-block;}
 .post .post-content { font: 400 20px "Open Sans"; color: rgb(100,100,100);}
 .post .post-headshot { height: 30px; vertical-align: middle}
+.post h1 { font-size: 48px; font-weight: bold;}
+.post h2 { font-size: 44px; font-weight: bold;}
+.post h3 { font-size: 40px; font-weight: bold;}
+.post h4 { font-size: 30px; font-weight: bold;}
 
 
 /*

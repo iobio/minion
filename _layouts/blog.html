@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  {% include head.html %}
+
+  <body>
+    <div class="masthead blog-masthead">   
+      <div class='masthead-container'>     
+        <h3 class="masthead-title">
+          <a href="/" title="Home">{{ site.title }}</a>            
+        </h3>
+        <div id="menu">
+          <ul>
+              {% assign pages_list = (site.pages | sort: 'order' %}
+              {% assign group = 'navigation' %}
+              {% include pages_list %}
+          </ul>
+        </div>
+        <div style="clear:both"></div>
+      </div>        
+    </div>
+
+    <div class="container blog-container">
+      {{ content }}
+    </div>
+
+    {% include footer.html %}
+  </body>
+</html>
