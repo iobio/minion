@@ -11,4 +11,4 @@ The Schatz lab just posted some [pacbio bam files](http://schatzlab.cshl.edu/dat
 
 <img src="/public/images/blog/pacbio_readlength.png" style="width:100%"/>
 
-[Check out the rest in bam.iobio here](http://bam.iobio.io/?bam=http://labshare.cshl.edu/shares/schatzlab/www-data/skbr3/SKBR3_Feb17_GRCh38.sorted.bam&region=chr1)
+[Check out the rest in bam.iobio](http://bam.iobio.io/?bam=http://labshare.cshl.edu/shares/schatzlab/www-data/skbr3/SKBR3_Feb17_GRCh38.sorted.bam&region=chr1)
