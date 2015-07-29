@@ -9,7 +9,7 @@ layout: blog
     <div class="post-author">{{ page.tags }}</div>
     <img class='post-headshot' src="/public/images/team/{{ page.tags | first | replace:' ','_'  }}.png"/>
   </div>
-  <div class='post-image'> <img src={{ page.image }}/></div>
+  <div class='post-image'> <img src={{ page.image }}></img></div>
   <div class='post-content'>
     {{ content }}
   </div>
