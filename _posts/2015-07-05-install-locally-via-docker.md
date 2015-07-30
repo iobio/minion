@@ -86,7 +86,7 @@ With the file in place, you can spin up the stack with
 $ docker-compose up
 ```
 
-and navigate to http://${PUB_HOSTNAME}:${PUB_HTTP_PORT}/
+and navigate to `http://${PUB_HOSTNAME}:${PUB_HTTP_PORT}/`
 
 To visualize files in `/mnt/storage`, e.g. `/mnt/storage/project1/patient1/diagnosis_tumor.bam`, click on "choose bam url" from the main page, and give it `http://data/project1/patient1/diagnosis_tumor.bam` (note that the file needs to be indexed first, i.e. the file `/mnt/storage/project1/patient1/diagnosis_tumor.bam.bai` needs to exist).
 
