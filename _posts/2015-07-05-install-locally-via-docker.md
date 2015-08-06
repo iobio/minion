@@ -7,7 +7,7 @@ tags:
   - Yi Qiao
 ---
 
-Often people need to run iobio apps locally. Two common reaons are to work with sensitive data that can not leave your organizations network or to have more control of deployment and access. This can be a complicated process since it requires the installation of the multiple web services that support an iobio web app. To make this easier, We have created several docker images so that the process is greatly simplified and can now be completed with just a few commands. Depending on your particular needs and infrastructure design, docker based installation can be done in several modes. In the following sessions, each of these modes are discussed in respect to particular apps.
+Often people need to run iobio apps locally. Two common reasons are to work with sensitive data that can not leave your organizations network or to have more control of deployment and access. This can be a complicated process since it requires the installation of the multiple web services that support an iobio web app. To make this easier, We have created several docker images so that the process is greatly simplified and can now be completed with just a few commands. Depending on your particular needs and infrastructure design, docker based installation can be done in several modes. In the following sessions, each of these modes are discussed in respect to particular apps.
 
 ## bam.iobio
 
