@@ -6,6 +6,7 @@
     "ejs": "^2.3.1",
     "express": "^4.12.3",
     "follow-redirects": "0.0.3",
+    "is-there": "^4.0.0",
     "jasmine-node": "^1.14.5",
     "shortid": "^2.2.2"
   },
