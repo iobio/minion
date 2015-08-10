@@ -12,13 +12,14 @@
   },
   "description": "iobio server",
   "devDependencies": {
+    "bionode-sam": "git://github.com/chmille4/bionode-sam.git",
     "coveralls": "^2.11.2",
+    "istanbul": "^0.3.17",
     "jasmine": "^2.3.1",
-    "request": "^2.55.0",
-    "bionode-sam": "git://github.com/chmille4/bionode-sam.git"
+    "request": "^2.55.0"
   },
   "scripts": {
-    "test": "./node_modules/.bin/jasmine"
+    "test": "istanbul cover --root ./lib --dir ./spec/coverage jasmine"
   },
   "repository": {
     "type": "git",

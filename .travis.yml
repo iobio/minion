@@ -5,4 +5,4 @@ before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
 after_script:
-  - cat ./test/coverage/**/*.info | node ./node_modules/coveralls/bin/coveralls.js
+  - cat ./spec/coverage/**/*.info | node ./node_modules/coveralls/bin/coveralls.js
