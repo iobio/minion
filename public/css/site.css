@@ -194,10 +194,11 @@ a { color:rgb(110,110,110); text-decoration: underline;}
   margin-bottom: 50px;
   box-sizing: border-box;
   position: relative;  
+  float: left;
 }
 
 .posts li:nth-child(3n+1) { float:left; clear:both; margin-right: 2%;}
-.posts li:nth-child(3n+3) { float:right; margin-right: 4px}
+.posts li:nth-child(3n+3) { float:right !important; margin-right: 4px}
 .posts .snippet { 
   /*border: 1px solid rgb(200,200,200);*/
   /*font-family: 'Open Sans', sans-serif;*/   
@@ -222,10 +223,11 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 
 .post { width: 900px; margin-left: auto; margin-right: auto;}
 .post .post-title { font-size: 60px;}
-.post .post-image img { width: 900px;}
+.post .post-image { text-align: center;}
+.post .post-image img { width: 900px; }
 .post .post-date { font: 300 17px "Open Sans"; color: rgb(160,160,160); display: inline-block; }
 .post .post-author { font: 400 17px "Open Sans"; color: rgb(120,120,120); display: inline-block;}
-.post .post-content { font: 400 20px "Open Sans"; color: rgb(100,100,100);}
+.post .post-content { font: 400 20px "Open Sans"; color: rgb(100,100,100); margin-top: 30px; margin-bottom: 50px;}
 .post .post-headshot { height: 30px; vertical-align: middle}
 .post h1 { font-size: 48px; font-weight: bold;}
 .post h2 { font-size: 44px; font-weight: bold;}
@@ -244,6 +246,11 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 .footer img { height: 35px; vertical-align: middle}
 .footer .title {font-size:15px;font-family:quicksand; margin: 0px auto 0px auto; width:400px; color:#2d8fc1}
 
+
+.tweet-feed iframe{
+    margin:0 auto !important;
+    display:block;
+}
 
 
 /* For mobile phones in portrait view */
