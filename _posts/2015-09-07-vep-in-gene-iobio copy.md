@@ -9,7 +9,7 @@ tags:
 ---
 
 
-When we released gene.iobio a couple weeks ago, we had a few requests to add Ensembl's Variant Effect Predictor (VEP) tool. 
+When we released <a href="http://gene.iobio.io" target="_new">gene.iobio</a> a couple weeks ago, we had a few requests to add Ensembl's Variant Effect Predictor (VEP) tool. 
 
 <div class="tweet-feed" style="padding-bottom:10px;">
 	<blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">It will in a new release soon! <a href="https://twitter.com/jxchong">@jxchong</a> <a href="https://twitter.com/brent_p">@brent_p</a></p>&mdash; Gabor Marth (@MarthGabor) <a href="https://twitter.com/MarthGabor/status/629013788931584000">August 5, 2015</a></blockquote>

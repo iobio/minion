@@ -8,7 +8,7 @@ tags:
 
 ---
 
-The week, we have pushed out some new features in gene.iobio.  
+The week, we have pushed out some new features in <a href="http://gene.iobio.io" target="_new">gene.iobio</a>.
 
 ### Multi-sample VCF files
 
