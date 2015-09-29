@@ -5,7 +5,7 @@ group: "navigation"
 order: 1
 ---
 <!-- special padding for what's next block -->
-<style> body{padding-bottom: 450px;}</style>
+<style> body{padding-bottom: 875px;}</style>
 
 <div style="margin: 0px auto; margin-top: 40px; width:1050px; ">
         <div style="font-size:32px;text-align:left;margin: 10px 0px 30px 0px; float:left; width:455px">          
@@ -95,7 +95,7 @@ order: 1
       <div class='section'>
         <div class='section-title'>Recent Blog Posts</div>
           <div class="posts blog-container" style="margin-left:-89.5px;height:300px;">
-            {% for post in site.posts limit:3 %}
+            {% for post in site.posts limit:6 %}
               <li class="snippet">
 
                  <div class='snippet-thumbnail'> <a href="{{ post.url }}"><img src={{ post.image }}></img></a></div>
