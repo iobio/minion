@@ -73,13 +73,101 @@ npm test
 
 #### Create Your Own Web Service
 Minion wraps command line tools and converts them into iobio web services that are instantly pluggable into the 
-iobio ecosystem. Minion works best on programs that take data on stdin and prints the results on stdout.
+iobio ecosystem. Minion works best on programs that take data on stdin and prints the results on stdout. 
 
 ##### Simple example
-```javascript
+For this example we will create a service from the linux utility wc to count lines, words, and characters.
 
+###### Create the iobio service wrapper file
+Create a new file called ```wc-iobio.js``` in ```minion/services/``` and paste the following js into it.
+
+```javascript
+var port = 7100;
+    minion = require('../index.js')(port);    
+
+
+// define tool
+var tool = {
+   apiVersion : "0.1",
+   name : 'wc',
+   path :  'wc',
+   description : 'count lines, words, characters',
+   exampleUrl : "http://0.0.0.0:4003/?cmd=http%253A%252F%252Fs3.amazonaws.com%252Fiobio%252Fjasmine_files%252Ftest.minion.txt"
+};
+
+// start minion socket
+minion.listen(tool);
+console.log('iobio server started on port ' + port);
 
 ```
+
+###### Add tool into whitelisted directory
+For security iobio only allows the execution of programs in the minion/bin directory so to enable execution of the wc utility a sym link needs to be created there. To create the symlink run the following command line. If wc is not at ```/usr/bin/``` then you can find it's location with ```which wc```.
+
+```
+$ cd minion/bin; ln -s /usr/bin/wc wc
+```
+
+###### Test new service
+
+Start up server
+```
+node services/wc-iobio.js
+```
+
+To quickly test the new service, you can paste this url in the browser
+```
+http://0.0.0.0:4003/?cmd=http%253A%252F%252Fs3.amazonaws.com%252Fiobio%252Fjasmine_files%252Ftest.minion.txt
+```
+
+This will run the file at ```https://s3.amazonaws.com/iobio/jasmine_files/test.minion.txt``` through the wc web service. You should get back ```1 6 28```
+
+###### Use new service
+To seriously use this service, you'll want to use the ```iobio.js``` library which will create iobio urls and manage websocket connections. Here's an example
+
+```html
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<script src='iobio.js'></script>
+		<script>
+
+			// encode URL to tell the wc web service this is a input source and not a command line parameter
+			// This is temporary and will be incoporated into the library
+			var url = encodeURIComponent('http://s3.amazonaws.com/iobio/jasmine_files/test.minion.txt');
+
+			// Create command
+			var cmd = new iobio.cmd(
+		        '0.0.0.0:4003',
+		        [url], // parameters
+		        { 'urlparams': {'protocol':'http'} } // use http option since input origin is a http server and not a iobio web service
+		    );
+
+		    cmd.on('data', function(results) {	    	
+				console.log(results);		  
+				alert(results); 
+			})
+
+			cmd.on('error', function(error) { console.log(error); })
+
+			cmd.run();
+		</script>
+	</head>
+	<body>
+	</body>
+	</html>
+```
+
+To add parameters add them as you would any iobio command. Here we add the ```-c``` option to only get back characters
+```javascript
+  // Create command
+  var cmd = new iobio.cmd(
+  	'0.0.0.0:4003',
+    ['-c', url],
+    { 'urlparams': {'protocol':'http'} } // use http sense input origin is a http server and not a iobio web service
+  );
+```
+
 
 ##### Tool with sub-programs
 ```javascript
