@@ -4,7 +4,7 @@ title: Gene.iobio integrates VEP
 image: /public/images/blog/veplogo.png
 subtitle: Polyphen & SIFT classifications, Regulatory annotations, and HGVS & dbSNP ids.
 tags:
-  - Tony DiSera
+  - Tony DiSera 
 
 ---
 
