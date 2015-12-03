@@ -1,0 +1,3 @@
+.iobio-axis line,.iobio-axis path{fill:none;stroke:#000;shape-rendering:crispEdges}.iobio-tooltip{position:absolute;top:0;text-align:center;z-index:20;color:#fff;padding:4px 6px;font:11px arial;background:#505050;border:0;border-radius:4px;pointer-events:none}.iobio-brush .extent{stroke:#000;fill-opacity:.125;shape-rendering:crispEdges}
+.iobio-center-text{text-align:center}.iobio-center-text .iobio-percent{fill:#646464;color:#646464;font-size:23px}.iobio-center-text .iobio-count{font-size:14px;letter-spacing:3px;font-weight:400;color:#969696}
+path.link{fill:none;stroke:#ccc;stroke-width:1.5px}.above-variant{stroke:red;fill:none}.below-variant{stroke:#00f;fill:none}.reference{fill:gray}
