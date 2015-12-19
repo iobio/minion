@@ -184,9 +184,9 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 #developer ul#visualizations { font-size:8px; padding: 0; list-style-type: none; }
 #developer ul#visualizations li { display:inline-block; margin-left: 60px; margin-top: 20px;}
 #developer ul#visualizations .viz-title { text-align: center; font-size: 20px; font-family: 'Open Sans';}
-#developer ul#visualizations .rect { fill: rgba(120,176,194,0.5) }
-#developer ul#visualizations .iobio-gene .cds { fill: rgba(120,176,194,0.5); stroke: rgb(120,176,194);}
-#developer ul#visualizations .iobio-gene .utr { fill: rgba(120,176,194,0.5); stroke: rgb(120,176,194);}
+#developer ul#visualizations rect { fill: rgba(120,176,194,0.5) }
+#developer ul#visualizations .cds rect { fill: rgba(120,176,194,0.5); stroke: rgb(120,176,194);}
+#developer ul#visualizations .utr rect { fill: rgba(120,176,194,0.5); stroke: rgb(120,176,194);}
 #developer ul#visualizations .glyphicon { font-size: 15px;}
 #developer ul#visualizations a { text-decoration: none; color: rgb(110,110,110);}
 #developer ul#visualizations a:hover { text-decoration: none; color: rgb(70,70,70);}
