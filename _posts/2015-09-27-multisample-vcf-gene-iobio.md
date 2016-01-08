@@ -5,6 +5,7 @@ image: /public/images/blog/feature_image_allele_counts.png
 subtitle: Multi-sample vcf, https support, and allele counts
 tags:
   - Tony DiSera
+  - gene.iobio
 
 ---
 

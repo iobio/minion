@@ -5,6 +5,7 @@ image: /public/images/blog/gene_iobio_exome_featured_image.png
 subtitle: Analyzing a trio with iobio
 tags:
   - Alistair Ward
+  - gene.iobio
 ---
 
 Exome data has unique characteristics, which affects the way the data is checked and analyzed. In this post, we will use exome data from a 1000 Genomes project trio to highlight some iobio features that are particularly useful when analyzing exome data.
