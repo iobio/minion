@@ -1,0 +1,237 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+   <link href='http://fonts.googleapis.com/css?family=Quicksand:400|Lato:300,400|Quattrocento+Sans:400,700|Raleway:400,300' rel='stylesheet' type='text/css'>
+
+
+  <!-- Material Design fonts -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <link href="public/css/bootstrap-material-design.css" rel="stylesheet">
+  <link href="public/css/ripples.min.css" rel="stylesheet">
+  
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+      body {
+          font-family: "Quattrocento Sans", sans-serif, sans-serif !important;
+      }
+
+      .form-group label.control-label {
+          font-size: 16px !important;
+          color: #5d809d !important;
+          font-weight: normal !important;
+      }
+
+      .shadow-z-1 {
+          box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.12), 0px 1px 6px rgba(0, 0, 0, 0.12);
+      }
+      .iobioapp {
+          font-size: 24px;
+          color: #5d809d;
+          font-family: "Quicksand";
+          float: left;
+          margin-top: 0px;
+      }
+      .btn.btn-raised {
+          background-color: #fff !important;
+          text-transform: none;
+      }
+      a {
+          color: #2E73AB !important;
+      }
+      
+      section {
+          text-align: left;
+          padding-left: 10px;
+          padding-right: 10px;
+          clear: both;
+      }
+
+      h1 {
+          text-align:center;
+          color: #5d809d;;
+          font-family:Raleway;
+          font-size:24px;
+          margin-top:0px;
+          padding-bottom:10px;
+          font-weight:normal;        
+      }
+
+      .form-group {
+          padding-bottom: 0px;
+          margin: 22px 0px 0px;
+      }
+
+      .form-group.is-focused .form-control {
+          background-image: linear-gradient(#80A769, #6BB340), linear-gradient(#D2D2D2, #D2D2D2);
+      }
+
+      .alert.alert-success {
+          background-color: #6BB340;         
+      }
+      form a#template-link {
+        color: #48951B  !important;
+        font-size: 16px !important;
+        font-weight: bold;
+      }
+      a#template-link:hover {
+        color: #48951B  !important;
+        font-size: 16px !important;
+        font-weight: bold;
+      }
+      span.hint {
+        color: rgb(132,132,132);
+        font-size: 16px !important;
+      }
+
+
+   </style>
+</head>
+</head>
+
+
+
+<body style="background:white">
+
+
+ 
+ <section id="app-title-section" style="height:40px;padding-top:0px !important;" class="shadow-z-1">
+    <a id="home" href="http://iobio.io" style="float: left;">
+          <span class="iobioapp">iobio</span>
+    </a>
+   
+
+  </section>
+
+  <div class="container" class="" style="">
+    <h1 style="margin-top:10px;">IOBIO needs your help</h1>
+    <div>
+      <p>
+      To continue the IOBIO project, we are submitting grant proposals requesting additional funding to continue development of the IOBIO platform, improve and add features to existing apps (with input from you, the community) and build new apps.
+      <p>
+      If you use IOBIO apps and would like to see it maintained and improved, you can help us build a convincing case for continued funding by <span style="font-weight:bold">writing a letter of support</span> for the project. Securing funds for developments such as IOBIO is by no means guaranteed, and demonstrating to funding agents that the project is integral to projects to a broad range of users is essential. For this reason <span style="font-weight:bold">your letter is essential</span>.
+      <p>
+      Please address your letter to the IOBIO project Principal Investigator Gabor Marth. Use the button below to upload your letter as a PDF, Word, or plain text file, preferrably using the letterhead of your institution. Or, if you like, you can email it directly to the <a href="mailto:iobioproject@gmail.com" subject="IOBIO Support Letter">IOBIO team</a>. 
+    </div>
+
+    <!-- Hidden thank you message -->
+    <div id="thank-you-message" class="hidden">
+      <div 
+        style="font-size: 18px; width: 400px; margin: 20px auto 0px;" 
+        class="alert alert-dismissible alert-success">
+
+        <button type="button" class="close" data-dismiss="alert">×</button>
+       
+        Your letter of support for IOBIO has been uploaded.      
+        <strong>Thank you for your support!</strong> 
+      </div>
+    </div>
+
+
+    <form id="demo-form" role="form"  class="form-horizontal"
+        action="https://getsimpleform.com/messages?form_api_token=c917210a80e5f10f490e6796642848cb" 
+        method="post" enctype="multipart/form-data" >
+
+        <fieldset>
+            <input type="hidden" id="redirect" name="redirect_to" value="">
+            <input type="hidden" name="_folder" value="quotes">
+            <input type="hidden" name="_spam" value="message">
+
+
+            <div class="form-group is-empty">
+                <label for="inputEmail" class="col-md-3 control-label">Your name</label>
+
+                <div class="col-md-9">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="First and last name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail" class="col-md-3 control-label">Your email</label>
+
+                <div class="col-md-9">
+                  <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Email">
+                </div>
+            </div>
+
+            <div class="form-group">
+               <span class="col-md-3 "></span>
+               <span class="col-md-9"><span class="hint">Here is a</span> <a id="template-link" href="assets/doc/support_iobio.doc">simple template</a><span class="hint"> to help you get started.</span></span>
+            </div>
+
+
+            <div class="form-group">
+              <label for="inputFile" class="col-md-3 control-label">Upload your letter of support here</label>
+
+              <div class="col-md-9">
+                <input type="text" readonly="" class="form-control" placeholder="Browse...">
+                <input type="file" name="letter_of_support" id="inputFile" multiple="">
+              </div>
+            </div>
+
+            <!--
+            <div class="form-group">
+                <label for="textArea" class="col-md-3 control-label">A message</label>
+
+                <div class="col-md-9">
+                  <textarea class="form-control" name="message" rows="3" id="textArea"></textarea>
+                </div>
+            </div>
+            -->
+
+            <div class="form-group">
+              <span class="col-md-3 "></span>
+
+              <div class="col-md-9">
+                <button type="submit" style="font-size:18px;" class="btn btn-default btn-raised">Submit</button>
+              </div>
+            </div>
+         </fieldset>
+    </form>
+  </div>
+
+  <!-- Request for information on research -->
+  <div class="container" class="" style="">
+    <h1 style="margin-top:10px;">How do you use IOBIO?</h1>
+    <div>
+      <p>
+      In addition to a <span style="font-weight:bold">letter of support</span>, we would love to hear how you use IOBIO in your research. The more information we have, the more we can refine the apps to your needs. If you have any research, blog posts etc. featuring IOBIO that we could use for promotional material for IOBIO, we would really appreciate it! You can <a href="mailto:iobioproject@gmail.com" subject="IOBIO user material">email the IOBIO team</a> (or fill in the form above) with papers, links, or any comments/suggestions that you have to improve IOBIO. We will use this information in IOBIO blog posts, presentations etc. benefitting both the IOBIO project and also your own work.
+    </div>
+  </div>
+
+  <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <!--
+  <script src="assets/js/material/material.js"></script>
+  <script src="assets/js/material/ripples.js"></script>  
+  -->
+
+  <script src="public/js/material.js"></script>
+  <script src="public/js/ripples.js"></script>  
+
+
+  <script type="text/javascript">
+    window.onload = (function(){
+       $.material.init();
+        if(window.location.hash == '#thank-you'){
+          document.getElementById('thank-you-message').className = 'none';
+          document.getElementById('redirect').value = window.location.href;
+      } else {
+          document.getElementById('redirect').value = window.location.href + '#thank-you';
+
+        }
+
+    });
+  </script>
+</body>
+</html>
