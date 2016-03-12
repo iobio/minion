@@ -21,7 +21,7 @@ This post is the first in a series describing the new interface and features and
   <li>Generating gene lists from phenotype terms using the <a href='http://phenolyzer.usc.edu'>Phenolyzer</a> tool from <a href='http://genomics.usc.edu'>USC</a>,</li>
   <li>Calling variants interactively with <a href='https://github.com/ekg/freebayes'>Freebayes</a>,</li>
   <li>Performing analysis with affected/unaffected siblings,</li>
-  <li>Importing candidate variants from external tools and interrogating with <a href='http://gene.iobio.io'>gene.iobio</a>.</li>
+  <li>Importing candidate variants from e.g. GEMINI and interrogating with <a href='http://gene.iobio.io'>gene.iobio</a>.</li>
 </ol>
 
 We have included a series of menu buttons down the left hand side of the screen where all the analysis functionality is now accessible. When a button is selected, a panel is opened containing all the actions or information associated with the selected function. We will not discuss all of the buttons in this post (they will all be covered in the remainder of this series), but will demonstrate one of the panels. The image below shows the tutorial <a href='http://gene.iobio.io/?rel0=proband&rel1=mother&rel2=father&name0=&vcf0=https://s3.amazonaws.com/iobio/gene/wgs_platinum/platinum-trio.vcf.gz&bam0=https://s3.amazonaws.com/iobio/gene/wgs_platinum/NA12878.bam&name1=&vcf1=https://s3.amazonaws.com/iobio/gene/wgs_platinum/platinum-trio.vcf.gz&bam1=https://s3.amazonaws.com/iobio/gene/wgs_platinum/NA12892.bam&name2=&vcf2=https://s3.amazonaws.com/iobio/gene/wgs_platinum/platinum-trio.vcf.gz&bam2=https://s3.amazonaws.com/iobio/gene/wgs_platinum/NA12891.bam&sample0=NA12878&sample1=NA12891&sample2=NA12892&genes=&gene=RAI1' target='_app'>usecase</a> for the RAI1 gene.
