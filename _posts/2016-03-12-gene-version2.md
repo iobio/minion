@@ -1,17 +1,17 @@
 ---
 layout: post
 title: Gene.iobio version 2.0
-image: /public/images/blog/gene_version2/inspect.png
+image: /public/images/blog/gene_version2/main.png
 subtitle: Release of version 2.0 of gene.iobio with major new functionality
 tags:
   - Alistair Ward
   - gene.iobio
 ---
-We are thrilled to announce the release of <a href='http://gene.iobio.io'>gene.iobio</a> version 2.0! This new release features a major facelift as well as a host of new functionality that significantly enhances the power and usability of <a href='http://gene.iobio.io'>gene.iobio</a>. In addition to the new look, <a href='http://gene.iobio.io'>gene.iobio</a> has moved from being a single gene to a multi-gene assessment tool, with integrated methods of generating and importing gene lists. Below, we can see where genes being investigated can be selected and the transcript set can be switched between Gencode and RefSeq.
+We are thrilled to announce the release of <a href='http://gene.iobio.io'>gene.iobio</a> version 2.0! This new release features a major facelift and lots of new functionality that significantly enhances the power and usability of <a href='http://gene.iobio.io'>gene.iobio</a>. The single most important enhancement is that we have now moved from being a single gene to a multi-gene assessment tool, with integrated methods of generating and importing gene lists, including manual import and phenotype driven list generation with <a href='http://phenolyzer.usc.edu'>Phenolyzer</a>. Below, we can see where genes being investigated can be selected and the transcript set can be switched between Gencode and RefSeq.
 
 <div><img src="/public/images/blog/gene_version2/badges.png" style="width:100%; margin: 20px 0"></img></div>
 
-This post is the first in a series and introduces the new interface. The series will then continue describing the new features, with examples, in more detail. The topics we will address include:
+This post is the first in a series describing the new interface and features and will focus on changes to the interface. The series will then continue to address in more detail, the following topics:
 
 <ol type="1">
   <li>Displaying variants based on the VCF filter status,</li>
