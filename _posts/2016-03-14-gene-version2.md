@@ -11,9 +11,9 @@ We are thrilled to announce the release of <a href='http://gene.iobio.io'>gene.i
 
 <div><img src="/public/images/blog/gene_version2/badges.png" style="width:100%; margin: 20px 0"></img></div>
 
+<a name="v2posts"></a>
 This post is the first in a series describing the new interface and features and will focus on changes to the interface. The series will then continue to address in more detail, the following topics:
 
-<a name="v2posts"></a>
 <ol type="1">
   <li><a href="http://iobio.io/2016/03/16/filter-status/">Displaying variants based on the VCF filter status</a>,</li>
   <li>Using RefSeq and GenCode gene transcripts,</li>
