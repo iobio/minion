@@ -14,7 +14,7 @@ We are thrilled to announce the release of <a href='http://gene.iobio.io'>gene.i
 This post is the first in a series describing the new interface and features and will focus on changes to the interface. The series will then continue to address in more detail, the following topics:
 
 <ol type="1">
-  <li>Displaying variants based on the VCF filter status,</li>
+  <li><a href="http://iobio.io/2016/03/16/filter-status/">Displaying variants based on the VCF filter status</a>,</li>
   <li>Using RefSeq and GenCode gene transcripts,</li>
   <li>Bookmarking and exporting candidate variants,</li>
   <li>Analyzing multiple genes with <a href='http://gene.iobio.io'>gene.iobio</a>,</li>
