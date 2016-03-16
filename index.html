@@ -106,7 +106,7 @@ order: 1
 
                  <div class='snippet-thumbnail'> <a href="{{ post.url }}"><img src={{ post.image }}></img></a></div>
                 <div class='snippet-text'>
-                  <div class='snippet-byline'>BY {{ post.tags }} ON {{ post.date | date: "%b %-d, %Y" }}</div>
+                  <div class='snippet-byline'>BY {{ post.tags | first }} ON {{ post.date | date: "%b %-d, %Y" }}</div>
                   <div></div>        
                   <img class='snippet-headshot' src="/public/images/team/{{ post.tags | first | replace:' ','_'  }}.png"/> 
                   <div class='snippet-title'><a href="{{ post.url }}">{{ post.title }}</a></div>
