@@ -7,7 +7,7 @@ tags:
   - Alistair Ward
   - gene.iobio
 ---
-This is the second in a series of blog posts describing updates in the version 2.0 release of <a href='http://gene.iobio.io'>gene.iobio</a>. In this post, we discuss the concept of <strong><i>filter status</strong></i> and how to display the variants you want to see. If we open the example <a href='http://gene.iobio.io/?rel0=proband&rel1=mother&rel2=father&name0=&vcf0=https://s3.amazonaws.com/iobio/gene/wgs_platinum/NA12878.platinum.vcf.gz&affectedSibs=&unaffectedSibs=&genes=&gene=BRCA1' target='_blank'>data set</a>, click on the 'Filter' button to the left, you will see the 'Filter status' at the top of the left panel.
+This is the second in a [series of blog posts](http://iobio.io/2016/03/14/gene-version2/index.html#v2posts) describing updates in the version 2.0 release of <a href='http://gene.iobio.io'>gene.iobio</a>. In this post, we discuss the concept of <strong><i>filter status</strong></i> and how to display the variants you want to see. If we open the example <a href='http://gene.iobio.io/?rel0=proband&rel1=mother&rel2=father&name0=&vcf0=https://s3.amazonaws.com/iobio/gene/wgs_platinum/NA12878.platinum.vcf.gz&affectedSibs=&unaffectedSibs=&genes=&gene=BRCA1' target='_blank'>data set</a>, click on the 'Filter' button to the left, you will see the 'Filter status' at the top of the left panel.
 
 <div><img src="/public/images/blog/filter_status/filter_status.png" style="width:25%; margin:20px 300px;"></img></div>
 
