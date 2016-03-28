@@ -5,6 +5,7 @@ image: /public/images/blog/tabix.png
 subtitle: The .vcf.gz and .vcf.gz.tbi file pair
 tags:
   - Yi Qiao
+  - gene.iobio
 ---
 
 Compressing VCF files with BGZip and indexing it with Tabix is the standard way VCF files are stored, and is the format that iobio apps support. The software to compress and index VCF files is called Tabix, developed by Heng Li at the Broad Institute. 

@@ -1,16 +1,12 @@
 ---
 layout: blog
-title: "Blog"
-permalink: blog.html
-group: "navigation"
-order: 4
 ---
 
-<div style="width:100%; text-align:center; font-size: 60px; font-family: 'Open Sans'; color: rgb(70,70,70); margin-top:20px" >Blog</div>
+<div style="width:100%; text-align:center; font-size: 60px; font-family: 'Open Sans'; color: rgb(70,70,70); margin-top:20px" >gene.iobio Blog</div>
 <div style="width:40px; border-bottom: 1px solid rgb(70,70,70); margin-left:auto;margin-right:auto"></div>
 <div class="posts">
   <ul>
-  {% for post in site.posts %}
+  {% for post in site.tags['gene.iobio'] %}
     <li class="snippet">
 
       <div class='snippet-thumbnail'><a href="{{ post.url }}"><img src={{ post.image }}></img></a></div>

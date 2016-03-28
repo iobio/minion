@@ -58,8 +58,11 @@ order: 1
           </div>
         </div>
         <div style="clear:both"></div>
+        <div class="" style="font-size: 28px;text-align: center;">
+          <a href="/support.html">Support the iobio project</a></div>
       </div>
-         
+     
+    
       <!-- try it apps -->         
       <div class="divider" ></div>
       <div class='section'>
@@ -83,8 +86,11 @@ order: 1
             <div class='app'>
               <div class="app-title"><a href="http://gene.iobio.io/">gene.iobio.io</div>
               <a href="http://gene.iobio.io"><img src="public/images/gene.iobio_wide.png" style="height:247px" ></img></a>
-              <div class="description">a web application for investigating potential disease-causing variants </div>
+              <div class="description">a web application for investigating potential disease-causing variants                   
+              </div>
+
             </div>
+
           </li>            
         </ul>
         <div style="margin-top:30px;font-size:18px"><a href="applications.html"> See more</a></div>
@@ -100,7 +106,7 @@ order: 1
 
                  <div class='snippet-thumbnail'> <a href="{{ post.url }}"><img src={{ post.image }}></img></a></div>
                 <div class='snippet-text'>
-                  <div class='snippet-byline'>BY {{ post.tags }} ON {{ post.date | date: "%b %-d, %Y" }}</div>
+                  <div class='snippet-byline'>BY {{ post.tags | first }} ON {{ post.date | date: "%b %-d, %Y" }}</div>
                   <div></div>        
                   <img class='snippet-headshot' src="/public/images/team/{{ post.tags | first | replace:' ','_'  }}.png"/> 
                   <div class='snippet-title'><a href="{{ post.url }}">{{ post.title }}</a></div>
