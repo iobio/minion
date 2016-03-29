@@ -18,6 +18,7 @@ This post is the first in a series describing the new interface and features and
   <li><a href="http://iobio.io/2016/03/16/filter-status/">Displaying variants based on the VCF filter status</a>,</li>
   <li>Using RefSeq and GenCode gene transcripts,</li>
   <li>Analyzing multiple genes with <a href='http://gene.iobio.io'>gene.iobio</a>,</li>
+  <li>Analyzing the ACMG56 genes,</li>
   <li>Generating gene lists from phenotype terms using the <a href='http://phenolyzer.usc.edu'>Phenolyzer</a> tool from <a href='http://genomics.usc.edu'>USC</a>,</li>
   <li>Bookmarking and exporting candidate variants,</li>
   <li>Importing candidate variants from e.g. GEMINI and interrogating with <a href='http://gene.iobio.io'>gene.iobio</a>,</li>
