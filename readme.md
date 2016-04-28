@@ -13,6 +13,8 @@ iobio is made up of numerous micro web services that are each capable of support
 You can develop apps against our public web services but due to resource constraints we can only run a set number of concurrent requests. Requests that can not be proccessed immediately are placed in a queue and processed in turn. If you need more power, you can install the web services yourself or contact us. All public services are located at http://services.iobio.io/
 
 #### Local Install
+If you need to install webservices locally there are two ways to do it
+###### Directly
 For testing it's often easier to install minion directly and place your required services in the service directory. First [install minion](#download) then place your web service definition file in the ```minion/services/``` directory. A list of web service definition files can be found in the [minion-services](https://github.com/iobio/minion-services) repo. Lastly you'll need copy the tool you are turning into a web service into the ```minion/bin/``` directory or it won't run ([see create your own web service for more details](#create-your-own-web-service)).
 ```
 // where someService is the service definition file for a tool (e.g. samtools) you want to turn into a webservice
@@ -21,6 +23,7 @@ mv someService.js minion/services/
 // start service
 node services/someService.js
 ```
+###### Docker
 For production you may want to use [dockerized containers](http://iobio.io/2015/07/05/install-locally-via-docker/)
 
 ## Developers
