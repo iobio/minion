@@ -80,7 +80,7 @@ For this example we will create a service from the linux utility wc to count lin
 Create a new file called ```wc-iobio.js``` in ```minion/services/``` and paste the following js into it.
 
 ```javascript
-var port = 7100;
+var port = 4003;
     minion = require('../index.js')(port);
 
 
