@@ -3,17 +3,17 @@ iobio server that easily turns a command line program into an iobio web service.
 
 ## Description (NOT RELEASED YET, WORK IN PROGRESS)
 
-Minion is the server side code that powers all iobio web services. It wraps a command line program and hooks the 
-stdin and stdout streams to websocket streams, enabling multiple web services to be piped together. It also handles 
-the URL to command conversation and error handling. If you are wanting run a particular iobio webservice see the 
+Minion is the server side code that powers all iobio web services. It wraps a command line program and hooks the
+stdin and stdout streams to websocket streams, enabling multiple web services to be piped together. It also handles
+the URL to command conversation and error handling. If you are wanting run a particular iobio webservice see the
 list for available web services and instructions on download and setup. Each web service has it's own copy of Minion.
 
 ## Web Services (NOT RELEASED YET, WORK IN PROGRESS)
-iobio is made up of numerous micro web services that are each capable of supporting multiple apps. In the future, we'll 
-allow users to develop an iobio app against our web services, but at the moment you'll need to run the web services 
-that your app relies on yourself. The fastest way to start developing an iobio app is to install the web services you 
-need using the install instructions below. However for production, you may want to use the dockerized web services as 
-described [here](link to howto). 
+iobio is made up of numerous micro web services that are each capable of supporting multiple apps. In the future, we'll
+allow users to develop an iobio app against our web services, but at the moment you'll need to run the web services
+that your app relies on yourself. The fastest way to start developing an iobio app is to install the web services you
+need using the install instructions below. However for production, you may want to use the dockerized web services as
+described [here](link to howto).
 
 #### Install (NOT RELEASED YET, WORK IN PROGRESS)
 ```
@@ -71,9 +71,31 @@ cd minion; npm install
 npm test
 ```
 
+#### Config File
+Minion services can take a config file on startup. Otherwise the default config file ```lib/config.js``` will be used
+
+###### To use config file
+```
+node someService.js --config file.config
+```
+###### Example config file
+```JavaScript
+// Minion Config file
+
+
+var config = {
+        platform : 'default',                   // 'default' returns nothing. 'amazon' will use amazon dns lookup to get hostname so you can use ssl
+        maxConcurrentCommands: null,    // accepts a number or null. null allows unlimimited commands
+        noQueueDomains: ['localhost', 'iobio.io', null], // lists domains that will never be queued
+        cacheDir: 'cache'
+}
+
+module.exports = config;
+```
+
 #### Create Your Own Web Service
-Minion wraps command line tools and converts them into iobio web services that are instantly pluggable into the 
-iobio ecosystem. Minion works best on programs that take data on stdin and prints the results on stdout. 
+Minion wraps command line tools and converts them into iobio web services that are instantly pluggable into the
+iobio ecosystem. Minion works best on programs that take data on stdin and prints the results on stdout.
 
 ##### Simple example
 For this example we will create a service from the linux utility wc to count lines, words, and characters.
@@ -83,7 +105,7 @@ Create a new file called ```wc-iobio.js``` in ```minion/services/``` and paste t
 
 ```javascript
 var port = 7100;
-    minion = require('../index.js')(port);    
+    minion = require('../index.js')(port);
 
 
 // define tool
@@ -143,9 +165,9 @@ To seriously use this service, you'll want to use the ```iobio.js``` library whi
 		        { 'urlparams': {'protocol':'http'} } // use http option since input origin is a http server and not a iobio web service
 		    );
 
-		    cmd.on('data', function(results) {	    	
-				console.log(results);		  
-				alert(results); 
+		    cmd.on('data', function(results) {
+				console.log(results);
+				alert(results);
 			})
 
 			cmd.on('error', function(error) { console.log(error); })
@@ -158,7 +180,7 @@ To seriously use this service, you'll want to use the ```iobio.js``` library whi
 	</html>
 ```
 
-To add parameters add them as you would any iobio command. Here we add the ```-c``` option to only get back characters
+To add parameters, add them as you would any iobio command. Here we add the ```-c``` option to only get back characters
 ```javascript
   // Create command
   var cmd = new iobio.cmd(
@@ -177,4 +199,16 @@ To add parameters add them as you would any iobio command. Here we add the ```-c
 ##### Tool that needs flag for stdin
 ```javascript
 
+```
+
+##### CacheTransform
+cacheTransform allows a stream to be piped through a transform pipe before being cached. Here's an example of using the [last-record-stream utility](https://www.npmjs.com/package/last-record-stream) to cache only the last record coming back from bamstatsalive
+
+```JavaScript
+var tool = {
+   apiVersion : "0.1",
+   name : 'bamstatsalive',
+   path :  'bamstatsalive',
+   cacheTransform: lastRecord
+};
 ```
