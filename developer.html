@@ -12,7 +12,10 @@ permalink: developer.html
 <div id='developer'>
 
   <div class='section'>
-    <div class='section-title'>Introduction</div>
+    <div style="font-style: italic; font-size: 11px; margin-bottom: 20px">Disclaimer
+      This is an Alpha release. There may be bugs and the api may change moving forward. Thats the downside, the upside is that its a great time to improve the library with community help and feedback . If you'd like to contribute please feel free to jump in and/or post <a href='http://github.com/iobio/'>issues/features</a> on github.
+    </div>
+    <div class='section-title'>About IOBIO</div>
       It's useful to get an overview of the development philosphy and how iobio is organized before building an app, so that all the pieces you'll need to interact with make sense.
     <div class='sub-section'>
       <div class='section-title'>How it works</div>
@@ -27,7 +30,8 @@ permalink: developer.html
 
   <div class='section'>
     <div class='section-title'>Getting Started</div>
-    The easiest way to get started quickly is build an example app. <a href='https://github.com/iobio/example-bamViewer'>In this tutorial</a> you can learn how to build a simple bam viewer that can grab regions of alignments from both URLs and Files and visualize the data.
+    The easiest way to get started quickly is build an example app. <a href='https://github.com/iobio/example-bamViewer'>In this tutorial</a> you can learn how to build a simple bam viewer (image below) that can grab regions of alignments from both URLs and Files and visualize the data. <a href="http://iobio.github.io/example-bamViewer/step5/app.step5.html">See example app in action</a>
+    <div style="width:500px; margin:0px auto"><a href="http://iobio.github.io/example-bamViewer/step5/app.step5.html"><img style="width:100%" src='public/images/bamViewer.png'/></img></a></div>
   </div>
 
   <div class='section'>
@@ -93,9 +97,9 @@ permalink: developer.html
       barViewerChart( selection );
 
       // pie viz
-    var color = ['rgba(120,176,194,0.5)', 'rgb(120,176,194)'];
+    var color = ['rgb(120,176,194)', 'rgba(120,176,194,0.5)'];
     var pie = d3.layout.pie().sort(null);
-    var data = [5,10];
+    var data = [10,5];
     var selection = d3.select("#pie-viz").datum( pie(data) );
     var chart = iobio.viz.pie()
         .radius(w/2)
