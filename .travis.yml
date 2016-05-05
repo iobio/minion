@@ -1,8 +1,13 @@
 language: node_js
 node_js:
+  - "6"
+  - "5"
+  - "4"
   - "0.12"
 before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
 after_script:
   - cat ./spec/coverage/*.info | node ./node_modules/coveralls/bin/coveralls.js
+notifications:
+  slack: iobio:jq9clSWfQBS5yN0Ywv2odKZp
