@@ -14,7 +14,7 @@
   },
   "description": "iobio server",
   "devDependencies": {
-    "bionode-sam": "git://github.com/chmille4/bionode-sam.git",
+    "node-samtools": "git://github.com/chmille4/node-samtools.git",
     "coveralls": "^2.11.2",
     "istanbul": "^0.3.17",
     "jasmine": "^2.3.1",
