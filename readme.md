@@ -168,13 +168,35 @@ To add parameters, add them as you would any iobio command. Here we add the ```-
 
 
 ##### Tool with sub-programs
+./sometool subprogram --flag1 arg1
 ```javascript
-
+var tool = {
+   apiVersion : "0.1",
+   name : 'sometool',   
+   path: 'sometool/' // path to directory where subprograms live
+}
 ```
 
-##### Tool that needs flag for stdin
+##### Tool that need flag for stdin
+./sometool --stdin --flag1 arg1 arg2
 ```javascript
+var tool = {
+   apiVersion : "0.1",
+   name : 'sometool',
+   path :  'sometool',
+   inputOption: '--stdin' // input Options are placed before the arguments
+}
+```
 
+##### Tool that need argument for stdin
+./sometool --flag1 arg1 -
+```javascript
+var tool = {
+   apiVersion : "0.1",
+   name : 'sometool',   
+   path: 'sometool',
+   args: ['-'] // args are placed at the end of the argument list
+}
 ```
 
 ##### CacheTransform
