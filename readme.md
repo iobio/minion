@@ -10,7 +10,7 @@ converting the URL into a command and error handling. If you are wanting run a p
 iobio is made up of numerous micro web services that are each capable of supporting multiple apps. These web services can be mixed and matched to create a wide range of functionality. In this way a new web app can grab a set of relevant web services and then build a UI and visualization around them.
 
 #### Public Web Services
-You can develop apps against our public web services but due to resource constraints we can only run a set number of concurrent requests. Requests that can not be proccessed immediately are placed in a queue and processed in turn. If you need more power, you can install the web services yourself or contact us. All public services are located at http://services.iobio.io/
+You can develop apps against our public web services but due to resource constraints we can only run a set number of concurrent requests. Requests that can not be proccessed immediately are placed in a queue and processed in turn. If you need more power, you can install the web services yourself or contact us. All public services are located at https://github.com/iobio/minion-services
 
 #### Local Install
 If you need to install webservices locally there are two ways to do it
