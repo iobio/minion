@@ -149,8 +149,8 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 .section-title { font-size: 45px;}
 .description { font-size: 14px; text-align:justify; margin-top:5px;}
 
-.section #apps {margin: 0; margin-top: 20px; padding: 0; list-style-type: none; text-align: center;}
-.section #apps li {display: inline; margin: 0px 40px 0px 40px}
+.section #apps {margin: 20px 0px 0px -20px; padding: 0px; list-style-type: none; text-align: center;}
+.section #apps li {display: inline; margin: 0px 0px 0px 40px}
 .section #apps .app {display: inline-block; vertical-align: top;}
 .section #apps img { width: 400px; height: 249px;}
 .section #apps .description { width: 370px; margin-left:15px; font-size: 12px; margin-top: -10px;}
@@ -158,7 +158,7 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 .section .app-title a { text-decoration: none;}
 .section .app-title a:hover { text-decoration: underline;}
 
-.section#contribute {background:#2d8fc1; height: 420px;}
+.section#contribute {background:#2d8fc1; height: 470px;}
 .section#contribute a { color:#123d53; }
 .section .section-title { color:#123d53; font-family: Montserrat}
 .section .section-content { width:600px; margin: 20px auto 0px auto; }
@@ -199,6 +199,10 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 .blog-masthead { background: white;}
 .blog-masthead #menu li a { color: #2d8fc1;}
 .blog-container { width: 1200px; max-width: 1200px; min-width: 1200px; margin-left:auto; margin-right:auto;}
+.blog-container h1, .blog-container h2, .blog-container h3, .blog-container h4 {
+  margin-top: 25px;
+  margin-bottom: 3px;
+ }
 .posts { margin-top: 70px;}
 .posts ul {
   list-style-type: none;
@@ -262,8 +266,8 @@ a { color:rgb(110,110,110); text-decoration: underline;}
  */
 .footer { position: absolute; bottom: 0px; width:100%; min-width: 1066px;}
 .footer .logos {margin: 0px auto 10px auto; width:1000px;text-align:center;position:relative; height: 60px; color:rgb(80,80,80);}
-.footer .developers {background: #123d53; height:60px; padding-top: 10px; color:#2d8fc1; text-align:center;}
-.footer .members {font-size:15px;font-family:quicksand; margin: 5px auto 0px auto; width:800px;text-align:center;}
+.footer .developers {background: #123d53; height:61px; color:#2d8fc1; text-align:center; padding-top:5px;}
+.footer .members {font-size:15px;font-family:quicksand; margin: 0px auto 0px auto; width:800px;text-align:center;}
 .footer img { height: 35px; vertical-align: middle}
 .footer .title {font-size:15px;font-family:quicksand; margin: 0px auto 0px auto; width:400px; color:#2d8fc1}
 
