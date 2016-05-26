@@ -8,12 +8,15 @@ tags:
   - taxonomer.iobio
 ---
 
-Today we are releasing a new app, [taxonomer.iobo](http://taxonomer.iobio.io), an ultrafast metagenomics analysis web app. Taxonomer.iobio is the result of what has been a really fun and productive collaboration between the taxonomer software team and the iobio team. You can see all the groups that were part of this on the [about page here](http://taxonomer.iobio/info.html) and read all about what taxonomer does to be so fast and so accurate in the [paper published today in Genome Biology](http://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0969-1).
+We are pleased to release a new, unique web app, [taxonomer.iobio](http://taxonomer.iobio.io), for real-time interactive analysis of metagenomic data, based on the methods published today in a [paper in Genome Biology](http://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0969-1). Taxonomer.iobio is the result of what has been a really fun and productive collaboration between the Taxonomer team (the laboratories of [Mark Yandell](http://www.yandell-lab.org/), [Robert Schlaberg](http://healthcare.utah.edu/fad/mddetail.php?physicianID=u0533994), and [Karen Eilbeck](http://eilbeck_lab.topaz.genetics.utah.edu/)  developing a super fast and accurate taxonomic DNA read classification software, and the iobio team in the laboratory of [Gabor Marth](http://marthlab.org/) turning it into an intuitive and interactive web analysis tool. Taxonomer has a very wide application area, including clinical diagnostics (see press release from the ARUP Reference Diagnostic Laboratory). Here we focus on the web app that can be used as a “microscope” for essentially all types of DNA or RNA sequencing datasets.
 
-###Intro
+
+In a nutshell, users of this tool need to specify (but not upload!) a FASTA or FASTQ format sequence file containing either RNA-Seq gene expression data or the output of a DNA sequencing experiment. [Taxonmer.iobio](http://taxonomer.iobio.io) streams the first several thousand sequencing reads to Taxonomer which quickly classifies the reads, and returns the results to the analysis app where it is visualized. It should only take a few seconds to see the gross biological composition of your data, after which you can dig down into each kingdom (e.g. bacteria, viruses, fungi) to see higher-resolution classification, sometimes down to the species or even strain level.
+
+### Intro
 First a quick intro to the different parts of taxonomer.iobio.
 
-####Data Overview
+#### Data Overview
 Taxonomer analyzes the incoming read data in two steps: (1) a binner step, which is shown as a pie chart and (2) a classifier step, which is shown as a sunburst chart. The number of reads that are classified are shown in the data overview panel (red arrow below). More information regarding why some reads are not classified can be found in the [paper](http://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0969-1).
 
 <img src="/public/images/blog/tax.iobio_data_overview.png" style="width:100%"/>
@@ -22,12 +25,12 @@ Taxonomer analyzes the incoming read data in two steps: (1) a binner step, which
   span { padding: 1px 5px; color: white; }
 </style>
 
-####Binner Pie Chart
+#### Binner Pie Chart
 Taxonomer first quickly identifies each read as being in one of the following bins <span style="background:#25aaff">Human</span>, <span style="background:#ff6f03">Bacterial</span>, <span style="background:purple">Viral</span>, <span style="background:red">Phage</span>, <span style="background:green">Fungal</span>, <span style="background:#06ac61">PhiX</span>, <span style="background:#5877ab">Ambiguous</span>, or <span style="background:rgb(120,120,120)">Unknown</span>. Ambiguous is for reads that fit into 2 or more bins and unknown is for reads that do not fit into any bin. The pie chart below has two parts: (1) the traditional pie chart displays the binner information and (2) the outer edge of the pie chart (blue arrow) displays the subset of the binned reads that could be further classified. In the pie chart below only bacterial and viral reads could be further classified.
 
 <img src="/public/images/blog/binner_pie_chart.png" style="width:400px; margin:auto; display:block"/>
 
-####Classifier Sunburst
+#### Classifier Sunburst
 After binning, Taxonomer proceeds to more finely classify the reads. This could result in a read being classified into a particular phylum or even into a particular species, if sufficiently unique. For example, the Sunburst below goes from a broader classification of Bacteria Kingdom in the middle to a finer classification along the edges. Additionally, the size of each arc in the sunburst contains all the reads that classified to that specific arc and its children arcs. For example, the Class Alphaproteobacteria in the sunburst below contains all the reads that can be classified to the Alphaproteobacteria, regardless of whether those reads can be more finely classified (e.g. Order Rhizobiales).
 
 <img src="/public/images/blog/taxonomer.iobio_release.png" style="width:400px; margin:auto; display:block"/>
@@ -44,4 +47,4 @@ The [SRA database](http://www.ncbi.nlm.nih.gov/sra) can be accessed easily via t
 <img src="/public/images/blog/mozzarella.png" style="width:400px; margin:auto; display:block"/>
 
 
-We also fully support [ENA](http://www.ebi.ac.uk/ena), the EBI Nuceotid Archive. Since [ENA supplies http](http://www.ebi.ac.uk/ena/data/view/ERX979103) links to their raw fastq files, we can analyze ENA data without without any extra effort. And here is an [example in taxonomer.iobio](http://taxonomer.iobio.io/?url=ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR899/ERR899714/ERR899714_1.fastq.gz).
+We also fully support [ENA](http://www.ebi.ac.uk/ena), the EBI Nuceotid Archive. Since [ENA supplies http](http://www.ebi.ac.uk/ena/data/view/ERX979103) links to their raw fastq files, we can analyze ENA data without without any extra effort. And here's a human sequencing data sample and you can quickly see that there is a little contamination [example in taxonomer.iobio](http://taxonomer.iobio.io/?url=ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR899/ERR899714/ERR899714_1.fastq.gz).

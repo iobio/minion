@@ -1,10 +1,17 @@
-<html>
+---
+layout: default
+title: "Support Us"
+permalink: support.html
+group: "navigation"
+order: 7
+---
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-
-   <link href='http://fonts.googleapis.com/css?family=Quicksand:400|Lato:300,400|Quattrocento+Sans:400,700|Raleway:400,300' rel='stylesheet' type='text/css'>
+<!--
+   <link href='http://fonts.googleapis.com/css?family=Quicksand:400|Lato:300,400|Quattrocento+Sans:400,700|Raleway:400,300' rel='stylesheet' type='text/css'> -->
 
 
   <!-- Material Design fonts -->
@@ -16,14 +23,13 @@
 
   <link href="public/css/bootstrap-material-design.css" rel="stylesheet">
   <link href="public/css/ripples.min.css" rel="stylesheet">
-  
- 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 <style>
 
-      body {
+      /*body {
           font-family: "Quattrocento Sans", sans-serif, sans-serif !important;
-      }
+      }*/
 
       .form-group label.control-label {
           font-size: 16px !important;
@@ -34,22 +40,22 @@
       .shadow-z-1 {
           box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.12), 0px 1px 6px rgba(0, 0, 0, 0.12);
       }
-      .iobioapp {
+/*      .iobioapp {
           font-size: 24px;
           color: #5d809d;
           font-family: "Quicksand";
           float: left;
           margin-top: 0px;
-      }
+      }*/
       .btn.btn-raised {
           background-color: #fff !important;
           text-transform: none;
       }
-      a {
+/*      a {
           color: #2E73AB !important;
-      }
-      
-      section {
+      }*/
+
+/*      section {
           text-align: left;
           padding-left: 10px;
           padding-right: 10px;
@@ -63,8 +69,8 @@
           font-size:24px;
           margin-top:0px;
           padding-bottom:10px;
-          font-weight:normal;        
-      }
+          font-weight:normal;
+      }*/
 
       .form-group {
           padding-bottom: 0px;
@@ -76,7 +82,7 @@
       }
 
       .alert.alert-success {
-          background-color: #6BB340;         
+          background-color: #6BB340;
       }
       form a#template-link {
         color: #48951B  !important;
@@ -103,42 +109,44 @@
 <body style="background:white">
 
 
- 
- <section id="app-title-section" style="height:40px;padding-top:0px !important;" class="shadow-z-1">
+
+<!--  <section id="app-title-section" style="height:40px;padding-top:0px !important;" class="shadow-z-1">
     <a id="home" href="http://iobio.io" style="float: left;">
           <span class="iobioapp">iobio</span>
     </a>
-   
 
-  </section>
 
-  <div class="container" class="" style="">
-    <h1 style="margin-top:10px;">IOBIO needs your help</h1>
-    <div>
+  </section> -->
+
+  <!-- <div class="container" class="" style=""> -->
+  <div class='section'>
+    <div class='section-title'>IOBIO needs your help</div>
+    <div class="description" style="width:810px; margin: 60px auto 35px auto;font-size:16px; text-align:justify">
       <p>
-      To continue the IOBIO project, we are submitting grant proposals requesting additional funding to continue development of the IOBIO platform, improve and add features to existing apps (with input from you, the community) and build new apps.
+      To continue the IOBIO project, we are submitting grant proposals requesting additional funding to continue development of the IOBIO platform, improve and add features to existing apps (with input from you, the community) and build new apps.</p>
       <p>
-      If you use IOBIO apps and would like to see it maintained and improved, you can help us build a convincing case for continued funding by <span style="font-weight:bold">writing a letter of support</span> for the project. Securing funds for developments such as IOBIO is by no means guaranteed, and demonstrating to funding agents that the project is integral to projects to a broad range of users is essential. For this reason <span style="font-weight:bold">your letter is essential</span>.
+      If you use IOBIO apps and would like to see it maintained and improved, you can help us build a convincing case for continued funding by <span style="font-weight:bold">writing a letter of support</span> for the project. Securing funds for developments such as IOBIO is by no means guaranteed, and demonstrating to funding agents that the project is integral to projects to a broad range of users is essential. For this reason <span style="font-weight:bold">your letter is essential</span>.</p>
       <p>
-      Please address your letter to the IOBIO project Principal Investigator Gabor Marth. Use the button below to upload your letter as a PDF, Word, or plain text file, preferrably using the letterhead of your institution. Or, if you like, you can email it directly to the <a href="mailto:iobioproject@gmail.com" subject="IOBIO Support Letter">IOBIO team</a>. 
+      Please address your letter to the IOBIO project Principal Investigator Gabor Marth. Use the button below to upload your letter as a PDF, Word, or plain text file, preferrably using the letterhead of your institution. Or, if you like, you can email it directly to the <a href="mailto:iobioproject@gmail.com" subject="IOBIO Support Letter">IOBIO team</a>.</p>
     </div>
+  </div>
 
     <!-- Hidden thank you message -->
     <div id="thank-you-message" class="hidden">
-      <div 
-        style="font-size: 18px; width: 400px; margin: 20px auto 0px;" 
+      <div
+        style="font-size: 18px; width: 400px; margin: 20px auto 0px;"
         class="alert alert-dismissible alert-success">
 
         <button type="button" class="close" data-dismiss="alert">×</button>
-       
-        Your letter of support for IOBIO has been uploaded.      
-        <strong>Thank you for your support!</strong> 
+
+        Your letter of support for IOBIO has been uploaded.
+        <strong>Thank you for your support!</strong>
       </div>
     </div>
 
 
     <form id="demo-form" role="form"  class="form-horizontal"
-        action="https://getsimpleform.com/messages?form_api_token=c917210a80e5f10f490e6796642848cb" 
+        action="https://getsimpleform.com/messages?form_api_token=c917210a80e5f10f490e6796642848cb"
         method="post" enctype="multipart/form-data" >
 
         <fieldset>
@@ -197,15 +205,14 @@
             </div>
          </fieldset>
     </form>
-  </div>
 
   <!-- Request for information on research -->
-  <div class="container" class="" style="">
-    <h1 style="margin-top:10px;">How do you use IOBIO?</h1>
-    <div>
-      <p>
-      In addition to a <span style="font-weight:bold">letter of support</span>, we would love to hear how you use IOBIO in your research. The more information we have, the more we can refine the apps to your needs. If you have any research, blog posts etc. featuring IOBIO that we could use for promotional material for IOBIO, we would really appreciate it! You can <a href="mailto:iobioproject@gmail.com" subject="IOBIO user material">email the IOBIO team</a> (or fill in the form above) with papers, links, or any comments/suggestions that you have to improve IOBIO. We will use this information in IOBIO blog posts, presentations etc. benefitting both the IOBIO project and also your own work.
-    </div>
+  <div class='section'>
+    <div class='section-title'>How do you use IOBIO?</div>
+    <div class="description" style="width:810px; margin: auto;font-size:16px; text-align:justify">
+        <p>
+        In addition to a <span style="font-weight:bold">letter of support</span>, we would love to hear how you use IOBIO in your research. The more information we have, the more we can refine the apps to your needs. If you have any research, blog posts etc. featuring IOBIO that we could use for promotional material for IOBIO, we would really appreciate it! You can <a href="mailto:iobioproject@gmail.com" subject="IOBIO user material">email the IOBIO team</a> (or fill in the form above) with papers, links, or any comments/suggestions that you have to improve IOBIO. We will use this information in IOBIO blog posts, presentations etc. benefitting both the IOBIO project and also your own work.</p>
+      </div>
   </div>
 
   <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -213,11 +220,11 @@
 
   <!--
   <script src="assets/js/material/material.js"></script>
-  <script src="assets/js/material/ripples.js"></script>  
+  <script src="assets/js/material/ripples.js"></script>
   -->
 
   <script src="public/js/material.js"></script>
-  <script src="public/js/ripples.js"></script>  
+  <script src="public/js/ripples.js"></script>
 
 
   <script type="text/javascript">
@@ -234,4 +241,3 @@
     });
   </script>
 </body>
-</html>
