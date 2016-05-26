@@ -10,10 +10,6 @@ order: 7
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<!--
-   <link href='http://fonts.googleapis.com/css?family=Quicksand:400|Lato:300,400|Quattrocento+Sans:400,700|Raleway:400,300' rel='stylesheet' type='text/css'> -->
-
-
   <!-- Material Design fonts -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -85,6 +81,10 @@ order: 7
         padding-bottom: 10px;
       }
 
+      .alert.alert-info {
+        background-color: #2D8FC1;
+      }
+
 
    </style>
 </head>
@@ -121,12 +121,12 @@ order: 7
     <div id="thank-you-message" class="hidden">
       <div
         style="font-size: 18px; width: 400px; margin: 20px auto 0px;"
-        class="alert alert-dismissible alert-success">
+        class="alert alert-dismissible alert-info">
 
         <button type="button" class="close" data-dismiss="alert">X</button>
 
-        Your letter of support for IOBIO has been uploaded.
-        <strong>Thank you for your support!</strong>
+        Your letter of support for IOBIO has been uploaded.<br>
+        Thank you for your support!
       </div>
     </div>
 
@@ -203,11 +203,6 @@ order: 7
 
   <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-  <!--
-  <script src="assets/js/material/material.js"></script>
-  <script src="assets/js/material/ripples.js"></script>
-  -->
 
   <script src="public/js/material.js"></script>
   <script src="public/js/ripples.js"></script>
