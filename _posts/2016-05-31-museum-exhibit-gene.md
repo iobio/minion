@@ -14,6 +14,7 @@ Now the exhibit is traveling around the country with it’s current stop at the 
 
 When Gabor Marth was invited to show our lab’s work at the exhibit, we jumped at the chance.  IOBIO is the perfect platform to engage museum visitors since it involves real-time analysis and provides intuitive visualizations.  With the growing popularity of personal genomics along with the promising advancements in precision medicine, we chose to feature the gene.iobio app.  
 
+
 The [gene.iobio exhibit](http://learngene.iobio.io) has two components.  A two minute video introduces the visitor to key concepts and gives an overview of gene.iobio’s functionality.  
 
 
@@ -48,6 +49,8 @@ The other focuses on proper dosage of a medicine prescribed for atrial fibrillat
 </div>
 
 We use the case studies to introduce important concepts like genotypes, gene transcripts, gene annotations, and variant prioritization.
+
+Our lab gained a real appreciation for the work involved in creating an interactive exhibit.  We relied heavily on the Natural History museum's expertise on how to best present scientific ideas to the museum visitors to keep them engaged.  It was a challenge to keep the case studies realistic yet simple enough to convey the basic concepts.  One of the best perks was getting a personalized tour through the museum.  We all walked away thinking, 'Man, I love my job'.
 
 During last week’s opening night of the exhibit, it was rewarding to see the public’s interest in genomics and how doctors and researchers can benefit from our tools.
 
