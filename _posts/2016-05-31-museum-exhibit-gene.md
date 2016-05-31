@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Gene.iobio museum exhibit
-image: /public/images/blog/exhibit/exhibit_announcement.png
+image: /public/images/blog/phenolyzer/main.png
 subtitle: Gene.iobio is featured in Genome: Unlocking Life’s Code museum exhibition
 tags:
   - Tony Di Sera
