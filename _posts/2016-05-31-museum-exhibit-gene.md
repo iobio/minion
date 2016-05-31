@@ -2,7 +2,7 @@
 layout: post
 title: Gene.iobio museum exhibit
 image: /public/images/blog/exhibit/exhibit_announcement.png
-subtitle: Gene.iobio is featured in Genome Unlocking Life's Code museum exhibition
+subtitle: Gene.iobio is featured in Genome - Unlocking Life's Code museum exhibition
 tags:
   - Tony DiSera
   - gene.iobio
@@ -18,13 +18,13 @@ The [gene.iobio exhibit](http://learngene.iobio.io) has two components.  A two m
 
 
 <div style="text-align:center;padding:20px">
-	<img src="/public/images/blog/exhibit/exhibit_main.png" style="width:80%"/>
+	<img src="/public/images/blog/exhibit/exhibit_main.png" style="width:100%"/>
 </div>
 
 After watching the video, the visitor can pick between 2 interactive case studies.  
 
 <div style="text-align:center;padding:20px">
-	<img src="/public/images/blog/exhibit/exhibit_cases.png" style="width:80%"/>
+	<img src="/public/images/blog/exhibit/exhibit_cases.png" style="width:100%"/>
 </div>
 
 Here the visitor is presented with a medical case that utilizes personalized medicine to treat the patient.  Through a guided tour, the visitor is shown the variants in genes known to contribute to a medical condition.  
@@ -44,7 +44,7 @@ The other focuses on proper dosage of a medicine prescribed for atrial fibrillat
 
 
 <div style="text-align:center;padding:20px">
-	<img src="/public/images/blog/exhibit/exhibit_genotypes.png" style="width:80%"/>
+	<img src="/public/images/blog/exhibit/exhibit_genotypes.png" style="width:70%"/>
 </div>
 
 We use the case studies to introduce important concepts like genotypes, gene transcripts, gene annotations, and variant prioritization.
