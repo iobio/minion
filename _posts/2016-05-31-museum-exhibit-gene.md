@@ -15,7 +15,7 @@ Now the exhibit is traveling around the country with it’s current stop at the 
 When Gabor Marth was invited to show our lab’s work at the exhibit, we jumped at the chance.  IOBIO is the perfect platform to engage museum visitors since it involves real-time analysis and provides intuitive visualizations.  With the growing popularity of personal genomics along with the promising advancements in precision medicine, we chose to feature the gene.iobio app.  
 
 
-The [gene.iobio exhibit](http://learngene.iobio.io) has two components.  A two minute video introduces the visitor to key concepts and gives an overview of gene.iobio’s functionality.  Clicking on 'Start here' plays the introductory video.
+The [gene.iobio exhibit](http://learngene.iobio.io/exhibit.html) has two components.  A two minute video introduces the visitor to key concepts and gives an overview of gene.iobio’s functionality.  Clicking on 'Start here' plays the introductory video.
 
 
 <div style="text-align:center;padding:20px">
