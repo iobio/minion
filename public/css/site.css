@@ -165,7 +165,7 @@ a { color:rgb(110,110,110); text-decoration: underline;}
  *
  */
 .section { text-align: center; padding: 30px 0px 50px 0px;}
-.section-title { font-size: 45px;}
+.section-title { font-size: 35px;}
 .description { font-size: 14px; text-align:justify; margin-top:5px;}
 
 .section #apps {margin: 20px 0px 0px -20px; padding: 0px; list-style-type: none; text-align: center;}
