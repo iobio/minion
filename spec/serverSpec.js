@@ -13,8 +13,6 @@ var request = require("request"),
 	host = "http://localhost:"+port,
     BinaryClient = require('binaryjs').BinaryClient;
 
-var iobio = require ('../../iobio.js/src/cmd.js');
-
 var samtoolsConfig = {name : 'samtools', path: 'samtools'};
 var catConfig = {name : 'cat', path: 'cat'};
 
