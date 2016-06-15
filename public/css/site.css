@@ -44,7 +44,6 @@ a { color:rgb(110,110,110); text-decoration: underline;}
   right:0px;
   z-index: 3;
   border-bottom: #081d27;
-  box-shadow: 0px 10px 40px 4px white;
   font-family: quicksand;
   padding: 0px;
   height: 52px;
@@ -123,22 +122,42 @@ a { color:rgb(110,110,110); text-decoration: underline;}
   }
 }*/
 
-.container {
+.container, .container-fluid {
+  /*position: relative;
   max-width: 1021px;
   width: 1021px;
-  min-width: 1021px;
+  min-width: 1021px;*/
   z-index: 1;
   font-size:30px;
-  width:100%;
+  /*width:100%;*/
   margin-top: 60px;
   padding-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  color: rgb(110,110,110);
+  /*margin-left: auto;
+  margin-right: auto;*/
+  /*color: rgb(110,110,110);*/
   text-align:justify;
   font-family: Montserrat;
   padding-bottom: 173px;
 }
+
+
+.news {
+  background: #2d8fc1;
+  text-align: left;
+  margin: -60px 25px 0px -15px;
+  padding: 40px 10px 5px 15px;
+  /*margin-top: -60px;*/
+  /*padding-top: 40px;*/
+  /*margin-right:25px;*/
+  /*margin-left: -15px;*/
+  /*padding-left: 15px;
+  padding-right: 5px;*/
+}
+.news ul { list-style-type: none;  padding-left: 0px;  font-size: 12px; }
+.news li { margin-bottom: 8px; line-height: 12px;}
+.news li a { color: white; }
+.news h4 { margin-top: 12px; margin-bottom: 0px; }
+
 
 
 /*
@@ -227,7 +246,7 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 .posts .snippet {
   /*border: 1px solid rgb(200,200,200);*/
   /*font-family: 'Open Sans', sans-serif;*/
-  height: 300px;
+  height: 250px;
   box-shadow: 2px 2px 6px 2px rgb(200,200,200);
   /*border-radius: 3px;*/
 }
@@ -244,7 +263,7 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 .posts .snippet-headshot { height: 50px; position: absolute; right: 15px; top: 126px; border: 3px solid white; border-radius: 50px;}
 .posts .snippet-title { font-size: 1.5rem;  }
 .posts .snippet-title a { text-decoration: none; font-weight: 600; color: rgb(70,70,70);}
-.posts .snippet-subtitle { font-size: 0.875rem; color: rgb(120,120,120); margin-top: 7px; margin-bottom: 16px; }
+.posts .snippet-subtitle { font-size: 11px; color: rgb(120,120,120); margin-top: 7px; margin-bottom: 16px; text-align:left;}
 
 .post { width: 900px; margin-left: auto; margin-right: auto;}
 .post .post-title { font-size: 60px;}
@@ -276,6 +295,7 @@ a { color:rgb(110,110,110); text-decoration: underline;}
     margin:0 auto !important;
     display:block;
 }
+
 
 
 /* For mobile phones in portrait view */

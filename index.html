@@ -5,92 +5,130 @@ group: "navigation"
 order: 1
 ---
 <!-- special padding for what's next block -->
-<style> body{padding-bottom: 850px;}</style>
+<style> body{padding-bottom: 450px;}</style>
 
-<div style="margin: 0px auto; margin-top: 40px; width:1050px; ">
-        <div style="font-size:32px;text-align:left;margin: 10px 0px 30px 0px; float:left; width:455px">
-          <div style="color:#123d53;">
 
-            Real-time Genomic Analysis
-          </div>
-          <div class="description" style="margin-top: 10px;font-size:16px; color:#2d8fc1">iobio uses immediate visual feedback to make understanding complex genomic datasets more intuitive, and analysis more interactive
-          </div>
+
+
+
+<div class='row' >
+  <div class='col-sm-2'>
+    <div class='news'>
+      <ul>
+        {% for post in site.posts limit:20 %}
+          {% unless post.next %}
+            <h4>{{ post.date | date: '%Y %b' }}</h4>
+          {% else %}
+            {% capture year %}{{ post.date | date: '%Y %b' }}{% endcapture %}
+            {% capture nyear %}{{ post.next.date | date: '%Y %b' }}{% endcapture %}
+            {% if year != nyear %}
+              <h4>{{ post.date | date: '%Y %b' }}</h4>
+            {% endif %}
+          {% endunless %}
+
+          <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+<!--     {% for post in site.posts limit:6 %}
+      <li class="news-item">
+        <div class='snippet-title'><a href="{{ post.url }}">{{ post.title }}</a></div>
+        <div class='news-text'>
+          <div class='snippet-byline'>BY {{ post.tags | first }} ON {{ post.date | date: "%b %-d, %Y" }}</div>
+
         </div>
-        <div style="float:right">
-          <video id="MY_VIDEO_1" class="video-js vjs-default-skin " style="margin: 0 auto;width:554px;" controls
-            preload="auto" width="554" height="312" poster="public/images/animation_still_white_bg_small.png"
-            data-setup="{}">
-            <source src="https://s3.amazonaws.com/iobio/Al(music).small.mp4" type='video/mp4'>
-            <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
-          </video>
-        </div>
+      </li>
+    {% endfor %} -->
 
-        <div style="text-align:center;width: 450px; float:left">
-          <div style="margin-top:40px; ">
+  </div>
+  <div class='col-sm-10'>
+      <div style='width: 950px; margin-left:auto; margin-right:auto'>
+          <div class='landing-intro' style="font-size:28px;text-align:left;margin: 10px 0px 30px 0px; float:left; width:400px">
+            <div style="color:#123d53;">
 
-            <link href="http://cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
-            <style type="text/css">
-              #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
-
-            </style>
-            <div id="mc_embed_signup">
-            <form action="http://iobio.us9.list-manage.com/subscribe/post?u=ddbe7be3d1ca18356bf5c0404&amp;id=ace369fbec" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate style="padding: 0px">
-                <div id="mc_embed_signup_scroll">
-              <div style="font-size: 14px; color: rgb(110,110,110);margin-bottom: 4px">
-
-              </div>
-            <div class="mc-field-group" style="width:100%; margin:0px">
-              <label for="mce-EMAIL" style="color:rgb(150,150,150">Sign up to hear about new apps and when you can build your own </label>
-              <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+              Real-time Genomic Analysis
             </div>
-              <div id="mce-responses" class="clear">
-                <div class="response" id="mce-error-response" style="display:none"></div>
-                <div class="response" id="mce-success-response" style="display:none"></div>
-              </div>
-                <div style="position: absolute; left: -5000px;">
-                  <input type="text" name="b_ddbe7be3d1ca18356bf5c0404_ace369fbec" tabindex="-1" value=""></div>
-                  <div class="clear" style=""><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="background: #b70e11"></div>
+            <div class="description" style="margin-top: 10px;font-size:16px; color:#2d8fc1">iobio uses immediate visual feedback to make understanding complex genomic datasets more intuitive, and analysis more interactive
+            </div>
+          </div>
+          <div class='landing-video' style="float:right">
+            <video id="MY_VIDEO_1" class="video-js vjs-default-skin " style="margin: 0 auto;width:500px;" controls
+              preload="auto" width="500" height="282" poster="public/images/animation_still_white_bg_small.png"
+              data-setup="{}">
+              <source src="https://s3.amazonaws.com/iobio/Al(music).small.mp4" type='video/mp4'>
+              <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+            </video>
+          </div>
+
+          <div style="text-align:center;width: 400px; float:left">
+            <div style="margin-top:20px; ">
+
+              <link href="http://cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
+              <style type="text/css">
+                #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+
+              </style>
+              <div id="mc_embed_signup">
+              <form action="http://iobio.us9.list-manage.com/subscribe/post?u=ddbe7be3d1ca18356bf5c0404&amp;id=ace369fbec" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate style="padding: 0px">
+                  <div id="mc_embed_signup_scroll">
+                <div style="font-size: 14px; color: rgb(110,110,110);margin-bottom: 4px">
+
                 </div>
-            </form>
-            </div>
-            <script type='text/javascript' src='http://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+              <div class="mc-field-group" style="width:100%; margin:0px">
+                <label for="mce-EMAIL" style="color:rgb(150,150,150">Sign up to hear about new apps and news for developers </label>
+                <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+              </div>
+                <div id="mce-responses" class="clear">
+                  <div class="response" id="mce-error-response" style="display:none"></div>
+                  <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>
+                  <div style="position: absolute; left: -5000px;">
+                    <input type="text" name="b_ddbe7be3d1ca18356bf5c0404_ace369fbec" tabindex="-1" value=""></div>
+                    <div class="clear" style=""><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="background: #b70e11"></div>
+                  </div>
+              </form>
+              </div>
+              <script type='text/javascript' src='http://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
 
+            </div>
           </div>
+          <div style="clear:both"></div>
+          <!-- <div class="" style="font-size: 28px;text-align: center;">
+            <a href="/support.html">Support the iobio project</a></div> -->
         </div>
-        <div style="clear:both"></div>
-        <!-- <div class="" style="font-size: 28px;text-align: center;">
-          <a href="/support.html">Support the iobio project</a></div> -->
-      </div>
 
 
-      <!-- try it apps -->
-      <div class="divider" ></div>
-      <div class='section'>
-        <div class='section-title'>Try It</div>
-        <ul id="apps">
-          <li>
-            <div class='app'>
-              <div class="app-title"><a href="http://gene.iobio.io/">gene.iobio.io</div>
-              <a href="http://gene.iobio.io"><img src="public/images/gene.iobio_wide.png" style="height:247px" ></img></a>
-              <div class="description">a web app for investigating potential disease-causing variants
+        <!-- try it apps -->
+        <div class="divider" ></div>
+        <div class='section'>
+          <div class='section-title'>Try It</div>
+          <ul id="apps">
+            <li>
+              <div class='app'>
+                <div class="app-title"><a href="http://gene.iobio.io/">gene.iobio.io</div>
+                <a href="http://gene.iobio.io"><img src="public/images/gene.iobio_wide.png" style="height:247px" ></img></a>
+                <div class="description">a web app for investigating potential disease-causing variants
+                </div>
               </div>
-            </div>
-          </li>
-          <li>
-            <div class='app'>
-              <div class="app-title"><a href="/2016/05/26/taxonomer.iobio/" style="color:red">New!</a> <a href="http://taxonomer.iobio.io/">taxonomer.iobio.io</a></div>
-              <a href="http://taxonomer.iobio.io"><img src="public/images/taxonomer.iobio_wide.png" style="height:247px" ></img></a>
-              <div class="description">an ultra fast metagenomics classification and analysis app. <a href="/2016/05/26/taxonomer.iobio/">Read the blog post</a>
+            </li>
+            <li>
+              <div class='app'>
+                <div class="app-title"><a href="/2016/05/26/taxonomer.iobio/" style="color:red">New!</a> <a href="http://taxonomer.iobio.io/">taxonomer.iobio.io</a></div>
+                <a href="http://taxonomer.iobio.io"><img src="public/images/taxonomer.iobio_wide.png" style="height:247px" ></img></a>
+                <div class="description">an ultra fast metagenomics classification and analysis app. <a href="/2016/05/26/taxonomer.iobio/">Read the blog post</a>
+                </div>
               </div>
-            </div>
-          </li>
-        </ul>
-        <div style="margin-top:30px;font-size:18px"><a href="applications.html"> See more</a></div>
+            </li>
+          </ul>
+          <div style="margin-top:30px;font-size:18px"><a href="applications.html"> See more</a></div>
+        </div>
       </div>
+    </div> <!-- /column -->
 
     <!-- most recent blog posts -->
     <!-- <div class="divider" ></div> -->
-      <div class='section'>
+      <div class='section' style='max-width: 1021px; margin-left: auto; margin-right: auto;'>
         <div class='section-title'>Recent Blog Posts</div>
           <div class="posts blog-container" style="margin-left:-89.5px;height:300px;">
             {% for post in site.posts limit:6 %}
@@ -109,7 +147,7 @@ order: 1
           </div>
       </div>
 
-    </div>  <!-- /container -->
+</div>
 
     <div class="footer">
       <div class="logos">
