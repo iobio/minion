@@ -12,7 +12,8 @@ var request = require("request"),
 	port = 8060,
 	host = "http://localhost:"+port,
     BinaryClient = require('binaryjs').BinaryClient;
-// var     iobio = require ('../../iobio.js/src/cmd.js');
+
+var iobio = require ('../../iobio.js/src/cmd.js');
 
 var samtoolsConfig = {name : 'samtools', path: 'samtools'};
 var catConfig = {name : 'cat', path: 'cat'};
@@ -90,8 +91,7 @@ describe("Server", function() {
 			this.minion = require('../index.js')(port);
 			this.minion.listen( catConfig );
 
-			// create file
-			var files = ["file1", "file2", "file3"];
+			var files = ["text1", "text2", "text3"];
 
 			var url = host + '?cmd=http%3A%2F%2Fclient%20http%3A%2F%2Fclient%20http%3A%2F%2Fclient';
 			var client = new BinaryClient(url);
@@ -121,7 +121,7 @@ describe("Server", function() {
 	      	});
 		})
 	    it("ws command with multiple files", function() {
-			expect(this.result).toEqual("file1file2file3");
+			expect(this.result).toEqual("text1text2text3");
 	    });
 	    afterEach(function() {
 	    	this.minion.close();
