@@ -83,48 +83,48 @@ describe("Server", function() {
 	    })
 	});
 
-	describe("execute", function() {
-		beforeEach(function(done) {
-			// turn on server
-			this.minion = require('../index.js')(port);
-			this.minion.listen( catConfig );
+	// describe("execute", function() {
+	// 	beforeEach(function(done) {
+	// 		// turn on server
+	// 		this.minion = require('../index.js')(port);
+	// 		this.minion.listen( catConfig );
 
-			var files = ["text1", "text2", "text3"];
+	// 		var files = ["text1", "text2", "text3"];
 
-			var url = host + '?cmd=http%3A%2F%2Fclient%20http%3A%2F%2Fclient%20http%3A%2F%2Fclient';
-			var client = new BinaryClient(url);
-			var me = this;
-			client.on("open", function() {
-				var stream = client.createStream({event:'run', params: {'url':url} });
-				var result = '';
-				stream.on('createClientConnection', function(connection) {
-					var serverAddress = connection.serverAddress || 'localhost:' + port;
-					var dataClient = BinaryClient('ws://' + serverAddress);
-					dataClient.on('open', function() {
-						var dataStream = dataClient.createStream({event:'clientConnected', 'connectionID' : connection.id});
-						var argPos = connection.argPos || 0;
-						dataStream.write(files[argPos]);
-						dataStream.end();
-					})
-	            })
+	// 		var url = host + '?cmd=http%3A%2F%2Fclient%20http%3A%2F%2Fclient%20http%3A%2F%2Fclient';
+	// 		var client = new BinaryClient(url);
+	// 		var me = this;
+	// 		client.on("open", function() {
+	// 			var stream = client.createStream({event:'run', params: {'url':url} });
+	// 			var result = '';
+	// 			stream.on('createClientConnection', function(connection) {
+	// 				var serverAddress = connection.serverAddress || 'localhost:' + port;
+	// 				var dataClient = BinaryClient('ws://' + serverAddress);
+	// 				dataClient.on('open', function() {
+	// 					var dataStream = dataClient.createStream({event:'clientConnected', 'connectionID' : connection.id});
+	// 					var argPos = connection.argPos || 0;
+	// 					dataStream.write(files[argPos]);
+	// 					dataStream.end();
+	// 				})
+	//             })
 
-				stream.on("data", function(d) {
-		            result += d;
-	          	})
-	          	stream.on('end', function() {
-	          		me.result = result;
-	          		done();
-	          	})
-	          	stream.on('err', function(error) { console.log('errors = ' + error) /* ignore errors */ })
-	      	});
-		})
-	    it("ws command with multiple files", function() {
-			expect(this.result).toEqual("text1text2text3");
-	    });
-	    afterEach(function() {
-	    	this.minion.close();
-	    })
-	});
+	// 			stream.on("data", function(d) {
+	// 	            result += d;
+	//           	})
+	//           	stream.on('end', function() {
+	//           		me.result = result;
+	//           		done();
+	//           	})
+	//           	stream.on('err', function(error) { console.log('errors = ' + error) /* ignore errors */ })
+	//       	});
+	// 	})
+	//     it("ws command with multiple files", function() {
+	// 		expect(this.result).toEqual("text1text2text3");
+	//     });
+	//     afterEach(function() {
+	//     	this.minion.close();
+	//     })
+	// });
 
 	describe("execute", function() {
 		beforeEach(function(done) {
