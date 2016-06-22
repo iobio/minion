@@ -154,9 +154,10 @@ a { color:rgb(110,110,110); text-decoration: underline;}
   padding-right: 5px;*/
 }
 .news ul { list-style-type: none;  padding-left: 0px;  font-size: 12px; }
-.news li { margin-bottom: 8px; line-height: 12px;}
-.news li a { color: white; }
-.news h4 { margin-top: 12px; margin-bottom: 0px; }
+.news li { margin-bottom: 11px; line-height: 12px;}
+.news li a { color: white; text-decoration: none; }
+.news h4 { margin-top: 22px; margin-bottom: 3px; }
+.news h4:first-child { margin-top: 2px; margin-bottom: 3px; }
 
 
 
