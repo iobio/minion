@@ -8,14 +8,14 @@ tags:
   - gene.iobio
 ---
 
-Gene.iobio is currently featured at the Natural History Museum of Utah’s exhibit [Genome:  Unlocking Life’s Code](https://nhmu.utah.edu/genome).   NHGRI partnered with the Smithsonian’s National Museum of Natural History (NMNH) to create an [exhibit](https://unlockinglifescode.org/about) that chronicles the advancements in genomics and showcases how these discoveries impact people’s lives.  
+Gene.iobio is currently featured at the Natural History Museum of Utah\'s exhibit [Genome:  Unlocking Life\'s Code](https://nhmu.utah.edu/genome).   NHGRI partnered with the Smithsonian\'s National Museum of Natural History (NMNH) to create an [exhibit](https://unlockinglifescode.org/about) that chronicles the advancements in genomics and showcases how these discoveries impact people\'s lives.  
 
-Now the exhibit is traveling around the country with it’s current stop at the University of Utah from May 21st through September 5th.
+Now the exhibit is traveling around the country with it\'s current stop at the University of Utah from May 21st through September 5th.
 
-When Gabor Marth was invited to show our lab’s work at the exhibit, we jumped at the chance.  IOBIO is the perfect platform to engage museum visitors since it involves real-time analysis and provides intuitive visualizations.  With the growing popularity of personal genomics along with the promising advancements in precision medicine, we chose to feature the gene.iobio app.  
+When Gabor Marth was invited to show our lab\'s work at the exhibit, we jumped at the chance.  IOBIO is the perfect platform to engage museum visitors since it involves real-time analysis and provides intuitive visualizations.  With the growing popularity of personal genomics along with the promising advancements in precision medicine, we chose to feature the gene.iobio app.  
 
 
-The [gene.iobio exhibit](http://learngene.iobio.io/exhibit.html) has two components.  A two minute video introduces the visitor to key concepts and gives an overview of gene.iobio’s functionality.  Clicking on 'Start here' plays the introductory video.
+The [gene.iobio exhibit](http://learngene.iobio.io/exhibit.html) has two components.  A two minute video introduces the visitor to key concepts and gives an overview of gene.iobio\'s functionality.  Clicking on \'Start here\' plays the introductory video.
 
 
 <div style="text-align:center;padding:20px">
@@ -50,9 +50,9 @@ The other focuses on proper dosage of a medicine prescribed for atrial fibrillat
 
 We use the case studies to introduce important concepts like genotypes, gene transcripts, gene annotations, and variant prioritization.
 
-Our lab gained a real appreciation for the work involved in creating an interactive exhibit.  We relied heavily on the Natural History museum's expertise on how to best present scientific ideas to the museum visitors to keep them engaged.  It was a challenge to keep the case studies realistic yet simple enough to convey the basic concepts.  One of the best perks was getting a personalized tour through the museum.  We all walked away thinking, 'Man, I love my job'.
+Our lab gained a real appreciation for the work involved in creating an interactive exhibit.  We relied heavily on the Natural History museum\'s expertise on how to best present scientific ideas to the museum visitors to keep them engaged.  It was a challenge to keep the case studies realistic yet simple enough to convey the basic concepts.  One of the best perks was getting a personalized tour through the museum.  We all walked away thinking, \'Man, I love my job\'.
 
-During last week’s opening night of the exhibit, it was rewarding to see the public’s interest in genomics and how doctors and researchers can benefit from our tools.
+During last week\'s opening night of the exhibit, it was rewarding to see the public\'s interest in genomics and how doctors and researchers can benefit from our tools.
 
 A big thanks goes out to Tony Di Sera for modifying gene.iobio for use in the exhibit and creating the content for the main video and case studies,  Alistair Ward for doing the voice recordings and creating the data and script for the guided tours, Yi Qiao for turning our IOBIO backend services into an offline, self-contained server, Mary Anne Karren, Lisa Thompson, and Gabor Marth for their support and contribution throughout this project.  Also, Brett Thompson from [Pixelcrane](http://www.pixelcrane.com/) did an outstanding job on the video and all of the animations.
 
