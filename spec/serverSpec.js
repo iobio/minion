@@ -10,14 +10,14 @@
 
 var request = require("request"),
 	port = 8060,
-	host = "http://localhost:"+port,    
+	host = "http://localhost:"+port,
     BinaryClient = require('binaryjs').BinaryClient;
-// var     iobio = require ('../../iobio.js/src/cmd.js');    
 
-var samtoolsConfig = {name : 'samtools', path: 'samtools',args: ['-']};
+var samtoolsConfig = {name : 'samtools', path: 'samtools'};
+var catConfig = {name : 'cat', path: 'cat'};
 
 
-describe("Server", function() {	
+describe("Server", function() {
 
 	describe("execute", function() {
 		beforeEach(function(done) {
@@ -31,7 +31,7 @@ describe("Server", function() {
 				stream.on("data", function(d) {
 		            me.result = d.split("\t")[0];
 		            done();
-	          	})   
+	          	})
 	          	stream.on('err', function(error) {  /* ignore errors */ })
 	      	});
 		})
@@ -50,7 +50,7 @@ describe("Server", function() {
 			this.minion.listen( samtoolsConfig );
 
 			// create file
-			var file = "@HD\tVN:1.3\tSO:coordinate\n@SQ\tSN:1\tLN:249250621\n@RG\tID:ERR194147\tLB:NA12878_1\tPL:ILLUMINA\tPU:ILLUMINA-1\tSM:NA12878\nERR194147.602999777 147 1   11919   0   101M    =   11675   -345\   ATTTGCTGTCTCTTAGCCCAGACTTCCCGTGTCCTTTCCACCGGGCCTTTGAGAGGTCACAGGGTCTTGATGCTGTGGTCTTCATCTGCAGGTGTCTGACT   B@>CEIIIJJJJGHJIGGIIGDIEHFFCFHFGHIFFHEFCE@BBEBECDFDDDDBEDGEFEABEDEBDCDDEFEDDADCDBCEDCDDDECBDEDEECB?AA   MC:Z:101M   BD:Z:KBKOSRLQNONMLMPPKOOKONLLMJLLIINMNLBLMNIMLLJNNMKAJLJJJLMMMHHNLIMMKKJLMLNONHHMMMKKKMMLKNNNOMNIJONRPONJJ  MD:Z:101    PG:Z:MarkDuplicates RG:Z:ERR194147  BI:Z:OFMQTTNRPRPQOQRRMQRORQONPLNPLLPPOOFNPPLPNNLPQOOFMPLNKONOPKKPOKNOMNLOOOPQQKKPNOMNMPPOMQPPPOOLLPOSRQQMM  NM:i:0  MQ:i:0  AS:i:101    XS:i:101\n";            
+			var file = "@HD\tVN:1.3\tSO:coordinate\n@SQ\tSN:1\tLN:249250621\n@RG\tID:ERR194147\tLB:NA12878_1\tPL:ILLUMINA\tPU:ILLUMINA-1\tSM:NA12878\nERR194147.602999777 147 1   11919   0   101M    =   11675   -345\   ATTTGCTGTCTCTTAGCCCAGACTTCCCGTGTCCTTTCCACCGGGCCTTTGAGAGGTCACAGGGTCTTGATGCTGTGGTCTTCATCTGCAGGTGTCTGACT   B@>CEIIIJJJJGHJIGGIIGDIEHFFCFHFGHIFFHEFCE@BBEBECDFDDDDBEDGEFEABEDEBDCDDEFEDDADCDBCEDCDDDECBDEDEECB?AA   MC:Z:101M   BD:Z:KBKOSRLQNONMLMPPKOOKONLLMJLLIINMNLBLMNIMLLJNNMKAJLJJJLMMMHHNLIMMKKJLMLNONHHMMMKKKMMLKNNNOMNIJONRPONJJ  MD:Z:101    PG:Z:MarkDuplicates RG:Z:ERR194147  BI:Z:OFMQTTNRPRPQOQRRMQRORQONPLNPLLPPOOFNPPLPNNLPQOOFMPLNKONOPKKPOKNOMNLOOOPQQKKPNOMNMPPOMQPPPOOLLPOSRQQMM  NM:i:0  MQ:i:0  AS:i:101    XS:i:101\n";
 
 			var url = host + '?cmd=view%20-S%20-H%20http%3A%2F%2Fclient';
 			var client = new BinaryClient(url);
@@ -72,7 +72,7 @@ describe("Server", function() {
 		            me.result = d.split("\t").join("").split("\n").join("");
 		            done();
 	          	})
-	          	stream.on('err', function(error) {  /* ignore errors */ })
+	          	stream.on('err', function(error) { console.log('errors = ' + error) /* ignore errors */ })
 	      	});
 		})
 	    it("simple ws file command", function() {
@@ -82,6 +82,49 @@ describe("Server", function() {
 	    	this.minion.close();
 	    })
 	});
+
+	// describe("execute", function() {
+	// 	beforeEach(function(done) {
+	// 		// turn on server
+	// 		this.minion = require('../index.js')(port);
+	// 		this.minion.listen( catConfig );
+
+	// 		var files = ["text1", "text2", "text3"];
+
+	// 		var url = host + '?cmd=http%3A%2F%2Fclient%20http%3A%2F%2Fclient%20http%3A%2F%2Fclient';
+	// 		var client = new BinaryClient(url);
+	// 		var me = this;
+	// 		client.on("open", function() {
+	// 			var stream = client.createStream({event:'run', params: {'url':url} });
+	// 			var result = '';
+	// 			stream.on('createClientConnection', function(connection) {
+	// 				var serverAddress = connection.serverAddress || 'localhost:' + port;
+	// 				var dataClient = BinaryClient('ws://' + serverAddress);
+	// 				dataClient.on('open', function() {
+	// 					var dataStream = dataClient.createStream({event:'clientConnected', 'connectionID' : connection.id});
+	// 					var argPos = connection.argPos || 0;
+	// 					dataStream.write(files[argPos]);
+	// 					dataStream.end();
+	// 				})
+	//             })
+
+	// 			stream.on("data", function(d) {
+	// 	            result += d;
+	//           	})
+	//           	stream.on('end', function() {
+	//           		me.result = result;
+	//           		done();
+	//           	})
+	//           	stream.on('err', function(error) { console.log('errors = ' + error) /* ignore errors */ })
+	//       	});
+	// 	})
+	//     it("ws command with multiple files", function() {
+	// 		expect(this.result).toEqual("text1text2text3");
+	//     });
+	//     afterEach(function() {
+	//     	this.minion.close();
+	//     })
+	// });
 
 	describe("execute", function() {
 		beforeEach(function(done) {
