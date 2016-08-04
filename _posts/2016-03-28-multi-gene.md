@@ -17,7 +17,7 @@ So what does all this mean? Here are some details about these gene badges and ho
 
 <ul>
   <li>Clicking on a gene badge will take you to that gene,</li>
-  <li>If any interesting variants are present in the gene, the glyphs indicate what. In the RAI1 gene, they indicate there is a least one variant (each glyph can be referring to a different variant) in the gene that is:
+  <li>If any interesting variants are present in the gene, the glyphs indicate what. In the RAI1 gene, they indicate there is a least one variant (each glyph can be referring to a different variant) in the gene that is:</li>
     <ul>
       <li>a high impact variant, as predicted by VEP (<img src="/public/images/blog/multiple-genes/high-impact.png" style="width:2%; margin:-2px 0px;">),</li>
       <li>a pathogenic variant in ClinVar (<img src="/public/images/blog/multiple-genes/clinvar.png" style="width:2%; margin:0px 0px;">),</li>
@@ -28,21 +28,22 @@ So what does all this mean? Here are some details about these gene badges and ho
   <li>Hovering over the HPO gene-to-phenotype glyph (<img src="/public/images/blog/multiple-genes/gene-pheno-glyph.png" style="width:2%; margin:-2px 0px;">), when present, provides information on gene associated phenotypes. For example, these are the phenotypes associated with the RAI gene:</li>
 
   <div><img src="/public/images/blog/multiple-genes/gene-pheno.png" style="width:100%; margin:20px 0px;"></div>
+</ul>
 
 These gene badges make it simple to jump around a set of genes, analyzing data and identifying potentially interesting variants within them. An important question you might ask is how do we define a list of genes to look at? We can add each gene one by one, but we might want to look at a set of genes that we know are associated with a disease, or are the output of gene prioritization software. The next but one post will discuss using <a href='http://phenolyzer.usc.edu/' target='_blank'>Phenolyzer</a> to generate a gene list, but here we will touch on two simple methods.
 
 ## Import a gene list  
  
-In the left panel, we can click the 'Genes' button to bring up a menu that lets us define gene lists. The 'Import Gene set' dropdown provides a space where we can manually import or paste a comma separated list of genes. Pressing 'Done' will prompt <a href='http://gene.iobio.io' target="_blank">gene.iobio</a> to add all defined genes as badges in the top panel so we can start working with them.
+In the left panel, we can click the \'Genes\' button to bring up a menu that lets us define gene lists. The \'Import Gene set\' dropdown provides a space where we can manually import or paste a comma separated list of genes. Pressing \'Done\' will prompt <a href='http://gene.iobio.io' target="_blank">gene.iobio</a> to add all defined genes as badges in the top panel so we can start working with them.
 
 <img src="/public/images/blog/multiple-genes/gene-import.png" style="width:75%; margin:20px 0px;">
 
 ## Analyze the ACMG56 genes  
 
-<a href='https://www.acmg.net/' target='_blank'>The American College of Medical Genetics and Genomics (ACMG)</a> has defined a list of 56 genes that have been implicated predominantly in cancer and cardiovascular disease risk. It can be good practice to look for any known pathogenic variants in these genes, so you can add them by clicking the 'Import ACMG56 Genes' button. By clicking this, all 56 genes will be added to the top panel and be ready for analysis. The next post in the series will give a brief discussion of ths feature.
+<a href='https://www.acmg.net/' target='_blank'>The American College of Medical Genetics and Genomics (ACMG)</a> has defined a list of 56 genes that have been implicated predominantly in cancer and cardiovascular disease risk. It can be good practice to look for any known pathogenic variants in these genes, so you can add them by clicking the \'Import ACMG56 Genes\' button. By clicking this, all 56 genes will be added to the top panel and be ready for analysis. The next post in the series will give a brief discussion of ths feature.
 
 ## Analyze all genes  
 
-Once a set of genes has been defined, the next step is usually to see if any of them harbour potentially interesting variants. Preferably, we would like to achieve this without having to click through every gene individiually. Luckily, we are not forced to do that! Instead, we can just click 'Analyze all' to the left of the gene badges and each gene will be analyzed in turn; the gene being analyzed has a working symbol (<img src="/public/images/blog/multiple-genes/working.png" style="width:2%; margin:-2px 0px;">) to identify which gene is being processed. As each gene is analyzed the check mark (<img src="/public/images/blog/multiple-genes/checkmark.png" style="width:2%; margin:0px 0px;">) appears along with any glyphs describing contained variants. Once complete, the glyphs appearing in each gene badge direct us to where interesting variants lie (note that you can click on an analyzed gene to investigate, while <a href='http://gene.iobio.io' target="_blank">gene.iobio</a> continues to work through the rest of the genes).
+Once a set of genes has been defined, the next step is usually to see if any of them harbour potentially interesting variants. Preferably, we would like to achieve this without having to click through every gene individiually. Luckily, we are not forced to do that! Instead, we can just click \'Analyze all\' to the left of the gene badges and each gene will be analyzed in turn; the gene being analyzed has a working symbol (<img src="/public/images/blog/multiple-genes/working.png" style="width:2%; margin:-2px 0px;">) to identify which gene is being processed. As each gene is analyzed the check mark (<img src="/public/images/blog/multiple-genes/checkmark.png" style="width:2%; margin:0px 0px;">) appears along with any glyphs describing contained variants. Once complete, the glyphs appearing in each gene badge direct us to where interesting variants lie (note that you can click on an analyzed gene to investigate, while <a href='http://gene.iobio.io' target="_blank">gene.iobio</a> continues to work through the rest of the genes).
 
 As always, <a href="mailto:iobioproject@gmail.com" subject="gene.iobio suggestions">contact us</a> with any questions or comments, and stay tuned for the next two posts describing using the ACMG56 genes and the use of <a href='http://phenolyzer.usc.edu/' target='_blank'>Phenolyzer</a> to turn your phenotype into a prioritized gene list.
