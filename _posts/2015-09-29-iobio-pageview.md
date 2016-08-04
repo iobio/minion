@@ -13,9 +13,7 @@ Last night I decided to take a look at the site analytics for all the iobio web 
 
 <div style="margin-top: 20px;">
 	One more interesting thing I found in google analytics was an animation showing the amount of new users (blue ball) and returning users  (green ball) and the amount of time they spend on the site over the last 6 months. 
-</div>
-<img src="/public/images/blog/newVsReturning.gif" style="width:100%"></img>
-<div>
+</div><img src="/public/images/blog/newVsReturning.gif" style="width:100%"><div>
 	You can see that the returning users spend more time on the site, which is not surprising since they are coming back to use it with a purpose. Also you can see that with the huge influx of new users, we are getting a steady growth of returning users. So it seems that a good percentage of people are sticking around.
 </div>
 
