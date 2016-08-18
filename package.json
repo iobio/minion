@@ -1,6 +1,6 @@
 {
   "name": "minion",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "dependencies": {
     "binaryjs": "git://github.com/chmille4/binaryjs.git",
     "bluebird": "^3.4.0",
