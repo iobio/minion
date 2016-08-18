@@ -3,7 +3,7 @@ iobio server that easily turns a command line program into an iobio web service.
 
 ## Description
 Minion is the server side code that powers all iobio web services. It wraps a command line program and hooks the
-stdin and stdout streams to websocket streams, enabling multiple web services to be piped together. It also handles
+input files/streams and stdout streams to websocket streams, enabling multiple web services to be piped together. It also handles
 converting the URL into a command and error handling. If you are wanting run a particular iobio webservice see the minion-services repo.
 
 ## Web Services
@@ -70,8 +70,7 @@ module.exports = config;
 ```
 
 #### Create Your Own Web Service
-Minion wraps command line tools and converts them into iobio web services that are instantly pluggable into the
-iobio ecosystem. Minion works best on programs that take data on stdin and prints the results on stdout.
+Minion wraps command line tools and converts them into iobio web services that are instantly pluggable into the iobio ecosystem.
 
 ##### Simple example
 For this example we will create a service from the linux utility wc to count lines, words, and characters.
@@ -172,7 +171,7 @@ To add parameters, add them as you would any iobio command. Here we add the ```-
 ```javascript
 var tool = {
    apiVersion : "0.1",
-   name : 'sometool',   
+   name : 'sometool',
    path: 'sometool/' // path to directory where subprograms live
 }
 ```
@@ -188,3 +187,4 @@ var tool = {
    cacheTransform: lastRecord
 };
 ```
+
