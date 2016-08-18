@@ -177,28 +177,6 @@ var tool = {
 }
 ```
 
-##### Tool that need flag for stdin
-./sometool --stdin --flag1 arg1 arg2
-```javascript
-var tool = {
-   apiVersion : "0.1",
-   name : 'sometool',
-   path :  'sometool',
-   inputOption: '--stdin' // input Options are placed before the arguments
-}
-```
-
-##### Tool that need argument for stdin
-./sometool --flag1 arg1 -
-```javascript
-var tool = {
-   apiVersion : "0.1",
-   name : 'sometool',   
-   path: 'sometool',
-   args: ['-'] // args are placed at the end of the argument list
-}
-```
-
 ##### CacheTransform
 cacheTransform allows a stream to be piped through a transform pipe before being cached. Here's an example of using the [last-record-stream utility](https://www.npmjs.com/package/last-record-stream) to cache only the last record coming back from bamstatsalive
 
