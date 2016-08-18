@@ -172,7 +172,7 @@ To add parameters, add them as you would any iobio command. Here we add the ```-
 ```javascript
 var tool = {
    apiVersion : "0.1",
-   name : 'sometool',   
+   name : 'sometool',
    path: 'sometool/' // path to directory where subprograms live
 }
 ```
@@ -188,3 +188,4 @@ var tool = {
    cacheTransform: lastRecord
 };
 ```
+
