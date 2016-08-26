@@ -12,15 +12,51 @@ server.on('connection', function(client){
     client.on('stream', function(stream, meta){
 
         var sendEmail = function() {
+
+            // Use oauth2 autentication
+            var user         = 'email_address_goes_here';
+            var clientId     = 'client_id_goes_here';
+            var clientSecret = 'client_secret_goes_here';
+            var accessToken  = 'access_token_goes_here';
+            var refreshToken = 'refresh_token_goes_here';
+
+            var nodemailer = require('nodemailer');
+            var generator = require('xoauth2').createXOAuth2Generator({
+                user: user,
+                clientId: clientId,
+                clientSecret: clientSecret,
+                refreshToken: refreshToken,
+                accessToken: accessToken
+            });
+
+
+            // listen for token updates (if refreshToken is set)
+            // you probably want to store these to a db
+            generator.on('token', function(token){
+                console.log('New token for %s: %s', token.user, token.accessToken);
+                accessToken = token.accessToken;
+            });
+
+            // login
+            var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    xoauth2: generator
+                }
+            });
+
+
             // Configure nodemailer to use the gmail smtp server
+            /*
             var nodemailer = require('nodemailer');
             var transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                    user: 'support@somewhere.com',
-                    pass: 'password_goes_here'
+                    user: 'gene.iobio.feedback@gmail.com',
+                    pass: 'jeans-paving-apron'
                 }
             });
+            */
 
             // Send the email.  Fill in the email address from, email address to,
             // subject, note.  Attach the file that was streamed.
