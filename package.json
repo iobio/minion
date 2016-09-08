@@ -4,6 +4,7 @@
   "dependencies": {
     "binaryjs": "git://github.com/chmille4/binaryjs.git",
     "bluebird": "^3.4.0",
+    "console-stamp": "^0.2.2",
     "ejs": "^2.3.1",
     "express": "^4.12.3",
     "follow-redirects": "0.0.3",
