@@ -164,7 +164,7 @@ describe("Server", function() {
 	      	});
 		})
 	    it("errors when path is outside of bin sandbox", function() {
-			expect(this.result).toEqual('notool Error: Program path not in executable directory. Only programs in minion/bin/ directory are executable');
+			expect(this.result.split('Program path ')[1]).toEqual('not in executable directory. Only programs in minion/bin/ directory are executable');
 	    });
 	    afterEach(function() {
 	    	this.minion.close();
@@ -188,7 +188,7 @@ describe("Server", function() {
 	      	});
 		})
 	    it("errors when tool doesn't exist", function() {
-			expect(this.result).toEqual('notool Error: Program not found. Only programs in minion/bin/ directory are executable');
+			expect(this.result.split('Program not found. ')[1]).toEqual('Only programs in minion/bin/ directory are executable');
 	    });
 	    afterEach(function() {
 	    	this.minion.close();
