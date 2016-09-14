@@ -267,17 +267,17 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 .posts .snippet-subtitle { font-size: 11px; color: rgb(120,120,120); margin-top: 7px; margin-bottom: 16px; text-align:left;}
 
 .post { width: 900px; margin-left: auto; margin-right: auto;}
-.post .post-title { font-size: 60px;}
+.post .post-title { font-size: 42px;}
 .post .post-image { text-align: center;}
 .post .post-image img { width: 900px; }
 .post .post-date { font: 300 17px "Open Sans"; color: rgb(160,160,160); display: inline-block; }
 .post .post-author { font: 400 17px "Open Sans"; color: rgb(120,120,120); display: inline-block;}
-.post .post-content { font: 400 20px "Open Sans"; color: rgb(100,100,100); margin-top: 30px; margin-bottom: 50px;}
+.post .post-content { font: 400 16px "Open Sans"; color: rgb(100,100,100); margin-top: 30px; margin-bottom: 50px;}
 .post .post-headshot { height: 30px; vertical-align: middle}
-.post h1 { font-size: 48px; font-weight: bold;}
-.post h2 { font-size: 44px; font-weight: bold;}
-.post h3 { font-size: 40px; font-weight: bold;}
-.post h4 { font-size: 30px; font-weight: bold;}
+.post h1 { font-size: 38px; font-weight: bold;}
+.post h2 { font-size: 34px; font-weight: bold;}
+.post h3 { font-size: 30px; font-weight: bold;}
+.post h4 { font-size: 20px; font-weight: bold;}
 
 
 /*
