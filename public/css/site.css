@@ -261,7 +261,7 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 .posts .snippet-thumbnail img { width: 100%; height: 145px; border: 1px solid rgb(230,230,230); border-radius: 3px; margin: 0px;}
 .posts .snippet-text { margin: -10px 15px 2px 15px }
 .posts .snippet-byline { font-size: 15px; color: rgb(120,120,120); font-weight: 300; font-size: 0.875rem; text-transform: uppercase; }
-.posts .snippet-headshot { height: 50px; position: absolute; right: 15px; top: 126px; border: 3px solid white; border-radius: 50px;}
+.posts .snippet-headshot { height: 50px; width: 50px; position: absolute; right: 15px; top: 126px; border: 3px solid white; border-radius: 50px;}
 .posts .snippet-title { font-size: 1.5rem;  }
 .posts .snippet-title a { text-decoration: none; font-weight: 600; color: rgb(70,70,70);}
 .posts .snippet-subtitle { font-size: 11px; color: rgb(120,120,120); margin-top: 7px; margin-bottom: 16px; text-align:left;}
@@ -278,6 +278,7 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 .post h2 { font-size: 34px; font-weight: bold;}
 .post h3 { font-size: 30px; font-weight: bold;}
 .post h4 { font-size: 20px; font-weight: bold;}
+.related-posts img { width: 400px; }
 
 
 /*

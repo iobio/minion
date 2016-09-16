@@ -4,7 +4,7 @@ comments: true
 ---
 
 <div class="post post-main" style="margin-top: 100px;">
-  <div class="post-title">{{ page.title }}</div> 
+  <div class="post-title">{{ page.title }}</div>
   <div style="line-height: 17px; margin-top: -9px">
     <div class="post-date">{{ page.date | date_to_string }}</div>
     <div class="post-author">{{ page.tags  | first }}</div>
@@ -20,7 +20,7 @@ comments: true
     <script type="text/javascript">
         /* * * CONFIGURATION VARIABLES * * */
         var disqus_shortname = 'iobio';
-        
+
         /* * * DON'T EDIT BELOW THIS LINE * * */
         (function() {
             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -32,17 +32,28 @@ comments: true
   {% endif %}
 </div>
 
-<div class="related">
+<div class="related posts">
   <h2>Related Posts</h2>
   <ul class="related-posts">
     {% for post in site.related_posts limit:3 %}
-      <li>
+<!--       <li>
         <h3>
           <a href="{{ post.url }}">
             {{ post.title }}
             <small>{{ post.date | date_to_string }}</small>
+            <div><img src={{ post.image }}/></div>
           </a>
         </h3>
+      </li> -->
+      <li class="snippet">
+        <div class='snippet-thumbnail'><a href="{{ post.url }}"><img src={{ post.image }}></img></a></div>
+        <div class='snippet-text'>
+          <div class='snippet-byline'>BY {{ post.tags | first }} ON {{ post.date | date: "%b %-d, %Y" }}</div>
+          <div></div>
+          <img class='snippet-headshot' src="../../../../public/images/team/{{ post.tags | first | replace:' ','_'  }}.png"/>
+          <div class='snippet-title'><a href="{{ post.url }}">{{ post.title }}</a></div>
+          <div class='snippet-subtitle'>{{ post.subtitle }}</div>
+        </div>
       </li>
     {% endfor %}
   </ul>
