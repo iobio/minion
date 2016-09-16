@@ -8,6 +8,8 @@ highlighter:         rouge
 permalink:           pretty
 #relative_permalinks: true
 
+future:              false
+
 # Setup
 name:                iobio home
 title:               iobio
