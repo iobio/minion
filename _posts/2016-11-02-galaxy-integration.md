@@ -7,7 +7,7 @@ tags:
   - Chase Miller
 ---
 
-bam.iobio and vcf.iobio can now be launched directly from galaxy using your data already store there.
+bam.iobio and vcf.iobio can now be launched directly from galaxy using your data already stored there.
 
 To give it a spin, you can use a public dataset already in galaxy. Login to [galaxy](https://usegalaxy.org/) and go to the [iobio demo data folder](https://usegalaxy.org/library/list?#folders/Fabe1072935a8f2e4)
 
