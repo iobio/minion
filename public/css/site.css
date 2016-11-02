@@ -272,8 +272,11 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 .post .post-image img { width: 900px; }
 .post .post-date { font: 300 17px "Open Sans"; color: rgb(160,160,160); display: inline-block; }
 .post .post-author { font: 400 17px "Open Sans"; color: rgb(120,120,120); display: inline-block;}
+.post .post-author a { text-decoration: none; }
 .post .post-content { font: 400 16px "Open Sans"; color: rgb(100,100,100); margin-top: 30px; margin-bottom: 50px;}
-.post .post-headshot { height: 30px; vertical-align: middle}
+.post .post-headshot { display: inline-block; }
+.post .post-headshot img { height: 30px; vertical-align: middle}
+.post .post-headshot a { text-decoration: none; }
 .post h1 { font-size: 38px; font-weight: bold;}
 .post h2 { font-size: 34px; font-weight: bold;}
 .post h3 { font-size: 30px; font-weight: bold;}
