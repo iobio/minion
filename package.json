@@ -2,6 +2,7 @@
   "name": "minion",
   "version": "1.1.0",
   "dependencies": {
+    "aws-sdk": "^2.7.5",
     "binaryjs": "git://github.com/chmille4/binaryjs.git",
     "bluebird": "^3.4.0",
     "console-stamp": "^0.2.2",
