@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Reference genomes
-image: /public/images/blog/clinvar_viewer/main.png
+image: /public/images/blog/grch38/main.png
 subtitle: Using alternate references
 tags:
   - Alistair Ward
