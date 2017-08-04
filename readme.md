@@ -135,7 +135,7 @@ To seriously use this service, you'll want to use the ```iobio.js``` library whi
 
 			// Create command
 			var cmd = new iobio.cmd(
-		        '0.0.0.0:4003',
+		        '0.0.0.0:4003/',
 		        [url], // parameters
 		        { 'urlparams': {'protocol':'http'} } // use http option since input origin is a http server and not a iobio web service
 		    );
@@ -159,7 +159,7 @@ To add parameters, add them as you would any iobio command. Here we add the ```-
 ```javascript
   // Create command
   var cmd = new iobio.cmd(
-  	'0.0.0.0:4003',
+  	'0.0.0.0:4003/',
     ['-c', url],
     { 'urlparams': {'protocol':'http'} } // use http sense input origin is a http server and not a iobio web service
   );
