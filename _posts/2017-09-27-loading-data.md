@@ -82,7 +82,7 @@ Then **_multi-select both_** the vcf.gz and the vcf.gz.tbi files.
 
 For Trio analysis, specify the files for Mother and Father.  Additionally, you can specify affected and unaffected sibs.
 
-<div><img src="/public/images/blog/loading_data/trio.png" style="width:80%; margin:0px 0px 15px 0px;"></div>
+<div><img src="/public/images/blog/loading_data/trio.png" style="width:100%; margin:0px 0px 15px 0px;"></div>
 
 If you would like to load previously bookmarked variants, click on the 'Bookmark files' button and then specify the file format.  
 
@@ -90,5 +90,5 @@ If you would like to load previously bookmarked variants, click on the 'Bookmark
 
 After the file is selected, the bookmarks will load and show in the left hand panel.
 
-<div><img src="/public/images/blog/loading_data/bookmarks_loaded.png" style="width:300px; margin:0px 0px 15px 120px;"></div>
+<div><img src="/public/images/blog/loading_data/bookmarks_loaded.png" class="shadow-z-2" style="width:300px; margin:0px 0px 15px 120px;"></div>
 
