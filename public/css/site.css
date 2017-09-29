@@ -346,3 +346,9 @@ a { color:rgb(110,110,110); text-decoration: underline;}
 .footer { width: 1100px; margin: auto; position: absolute; bottom: 0px; left:0px;right:0px;}
 
 }*/
+
+
+
+.shadow-z-2 {
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.17), 0px 1px 6px rgba(0, 0, 0, 0.17);
+}
