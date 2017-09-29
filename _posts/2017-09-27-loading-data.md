@@ -8,12 +8,12 @@ tags:
   - gene.iobio
 ---
 
-Gene.iobio accesses variant and (optionally) sequence alignment files to perform real-time analysis.  This blog post explains how to load your data files.
+Gene.iobio accesses variant and sequence alignment files to perform real-time analysis.  This blog post explains how to load your data files.
 
 ### File formats
 
 #### VCF file ####
-The main input to gene.iobio is the variant file.  You will need access to a VCF file that has been compressed and indexed.  If you have a .vcf file, but it has not been compressed and indexed, you can learn more in the blog post [Compressing and indexing VCF files]({% post_url 2015-09-03-install-run-tabix %}).  The app will need access to both the compressed VCF and the index file.  For example, the demo variant data shown in gene.iobio uses these files:
+The main input to gene.iobio is the variant file.  You will need access to a VCF file that has been compressed and indexed.  If you have a VCF file, but it has not been compressed and indexed, you can learn more in the blog post [Compressing and indexing VCF files]({% post_url 2015-09-03-install-run-tabix %}).  The app will need access to both the compressed VCF and the index file.  For example, the demo variant data shown in gene.iobio uses these files:
 
 <pre>
 platinum-exome.vcf.gz
