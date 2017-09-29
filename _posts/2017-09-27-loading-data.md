@@ -69,7 +69,7 @@ To specify your data files, click on the 'Files' link in the nav bar.
 
 Specify your data files from the Files dialog.  
 
-<div><img src="/public/images/blog/loading_data/files_dialog.png" style="width:80%; margin:0px 0px 15px 0px;"></div>
+<div><img src="/public/images/blog/loading_data/files_dialog.png" style="width:100%; margin:0px 0px 15px 0px;"></div>
 
 If your files are stored locally, selected 'Choose VCF file' from the 'Variants' dropdown.  
 
