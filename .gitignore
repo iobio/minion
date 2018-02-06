@@ -2,7 +2,7 @@
 node_modules
 
 // ignore iobio services directory
-services
+services/*.js
 
 // ignore iobio executable directory
 bin
