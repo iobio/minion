@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <!-- <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"> -->
+
+  <!-- Enable responsiveness on mobile devices-->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"> -->
+
+  <title>
+    
+      Using bookmarks &middot; iobio
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/iobio.viz.min.css">
+  <link rel="stylesheet" href="/public/js/jquery.min.js">
+  <!-- <link rel="stylesheet" href="/public/css/bootstrap/css/bootstrap.min.css">   -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+  <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Overlock+SC' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'>
+  <link href="/public/js/video-js/video-js.css" rel="stylesheet">
+  <link rel="stylesheet" href="/public/css/site.css">
+
+  <!-- JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="/public/js/video-js/video.js"></script>
+  <script src="/public/js/d3.min.js"></script>
+  <script src="/public/js/iobio.viz.min.js"></script>
+
+  <!-- Icons -->
+  <!-- <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png"> -->
+  <link rel="icon" type="image/png" href="/public/favicon.ico?v=5">
+  <link rel="shortcut icon" href="/public/favicon.ico?v=5">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- tracking code -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-47481907-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+
+  <body>
+    <div class="masthead blog-masthead">   
+      <div class='masthead-container'>     
+        <h3 class="masthead-title">
+          <a href="/" title="Home">iobio</a>            
+        </h3>
+        <div id="menu">
+          <ul>
+              
+              
+              
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+      <li><a href="/">What is it?</a></li>
+    
+  
+
+  
+    
+      <li><a href="/applications.html">Applications</a></li>
+    
+  
+
+  
+    
+      <li><a href="/developers.html">Developers</a></li>
+    
+  
+
+  
+    
+      <li><a href="/blog.html">Blog</a></li>
+    
+  
+
+  
+    
+      <li><a href="/about.html">About us</a></li>
+    
+  
+
+  
+    
+      <li><a href="/support.html">Support Us</a></li>
+    
+  
+
+
+
+          </ul>
+        </div>
+        <div style="clear:both"></div>
+      </div>        
+    </div>
+
+    <div class="container blog-container">
+      <div class="post post-main" style="margin-top: 100px;">
+  <div class="post-title">Using bookmarks</div>
+  <div style="line-height: 17px; margin-top: -9px">
+    <div class="post-date">03 Aug 2016</div>
+    <div class="post-author"><a href="http://marthlab.org/people.html">Alistair Ward</a></div>
+    <div class='post-headshot'>
+      <a href="http://marthlab.org/people.html">
+      <img src="/public/images/team/Alistair_Ward.png"/></a>
+    </div>
+  </div>
+  <div class='post-image'> <img src=/public/images/blog/bookmarks/main.png></img></div>
+  <div class='post-content'>
+    <h2 id="general-use">General use</h2>
+
+<p>The <a href="http://gene.iobio.io" target="_blank">gene.iobio</a> version 2 blog series marches on with a discussion of bookmarks. A future post in this series will talk about importing bookmarks from external tools, e.g. <a href="https://gemini.readthedocs.org/en/latest/" target="_blank">Gemini</a>. In this post, I will demonstrate how to use bookmarks, beginning with the <a href="http://gene.iobio.io/?rel0=proband&amp;rel1=mother&amp;rel2=father&amp;name0=&amp;vcf0=https://s3.amazonaws.com/iobio/gene/wgs_platinum/platinum-trio.vcf.gz&amp;bam0=https://s3.amazonaws.com/iobio/gene/wgs_platinum/NA12878.bam&amp;name1=&amp;vcf1=https://s3.amazonaws.com/iobio/gene/wgs_platinum/platinum-trio.vcf.gz&amp;bam1=https://s3.amazonaws.com/iobio/gene/wgs_platinum/NA12892.bam&amp;name2=&amp;vcf2=https://s3.amazonaws.com/iobio/gene/wgs_platinum/platinum-trio.vcf.gz&amp;bam2=https://s3.amazonaws.com/iobio/gene/wgs_platinum/NA12891.bam&amp;sample0=NA12878&amp;sample1=NA12891&amp;sample2=NA12892&amp;genes=RAI1&amp;gene=RAI1" target="_blank">RAI1</a> usecase. In this gene, we can see a variant that is associated with smith-magenis syndrome and is marked as pathogenic in ClinVar (this is the variant at the far left in the ranking table and marked with the <img src="/public/images/blog/multiple-genes/clinvar.png" style="width:2%; margin:0px 0px;" /> symbol). If we click on the variant (either clicking the column in the ranking table, or clicking on the actual variant in the proband variants), details about the variant will appear in a mouseover and in the panel to the left of the screen as shown below:</p>
+<div><img src="/public/images/blog/bookmarks/bookmark-select.png" style="width:75%; margin:20px 100px;" /></div>
+
+<p>We can "bookmark" this variant by clicking "Bookmark" in either the left panel, or in the tooltip. Once bookmarked, we are free to continue looking at other variants, or analyzing other genes, knowing that we can easily return to this variant if needed. To return to the variant, we will use the "Bookmarks" panel to the left of the screen. If we open the bookmarks panel, we see the following at the left of the screen:</p>
+<div><img src="/public/images/blog/bookmarks/bookmark-panel.png" style="width:60%; margin:20px 150px;" /></div>
+
+<p>The glyphs associated with the variant are visible along with the gene, coordinate and alleles, so we can quickly identify the important attributes of the variant (see <a href="http://iobio.io/2016/03/28/multi-gene/" target="_blank">here</a> for an explanation of the glyphs) - in this case a "high impact", ClinVar pathogenic, recessive variant. Clicking on the variant will return us to the correct gene and highlight the variant. All bookmarked variants will have the <img src="/public/images/blog/bookmarks/bookmark-glyph.png" style="width:2%; margin:0px 0px;" /> glyph in the ranked variants table, and the glyph will appear in the gene badge at the top of the page - if multiple genes are open - (<img src="/public/images/blog/bookmarks/gene-badge.png" />), so you will always know which genes contain bookmarked variants.</p>
+
+<h2 id="editing-and-exporting-bookmarks">Editing and exporting bookmarks</h2>
+
+<p>From the "Bookmarks" panel at the left, bookmarks can be:</p>
+
+<ol>
+  <li>Selected; this will load the gene containing that variant and highlight the bookmarked variant,</li>
+  <li>Starred, allowing important variants to be identified among all the bookmarked variants,</li>
+  <li>Removed by clicking edit and then the red cross that appears next to the bookmark. <img src="/public/images/blog/bookmarks/bookmark-delete.png" style="width:45%; margin:20px 200px;" /></li>
+  <li>Imported, which will be discussed in a later blog post,</li>
+  <li>Exported. When we've finished analysis with gene.iobio, click on the "Export" button and we are given the option of exporting all variants, or just those that are starred. Choosing one of these options then opens a new tab, containing a text output of all the variants. This output includes not only positional information, but the ref and alt alleles, inheritance mode and gene. This file can then be saved, and can be imported back into gene.iobio at a later date.</li>
+</ol>
+
+  </div>
+
+  
+</div>
+
+<div class="related posts">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+<!--       <li>
+        <h3>
+          <a href="/2017/09/29/gene_2.5.0/">
+            ClinVar variants, gnomAD, affected status
+            <small>29 Sep 2017</small>
+            <div><img src=/public/images/blog/gene_2.5.0/banner.png/></div>
+          </a>
+        </h3>
+      </li> -->
+      <li class="snippet">
+        <div class='snippet-thumbnail'><a href="/2017/09/29/gene_2.5.0/"><img src=/public/images/blog/gene_2.5.0/banner.png></img></a></div>
+        <div class='snippet-text'>
+          <div class='snippet-byline'>BY Tony DiSera ON Sep 29, 2017</div>
+          <div></div>
+          <img class='snippet-headshot' src="../../../../public/images/team/Tony_DiSera.png"/>
+          <div class='snippet-title'><a href="/2017/09/29/gene_2.5.0/">ClinVar variants, gnomAD, affected status</a></div>
+          <div class='snippet-subtitle'>What's new in gene.iobio 2.5.0</div>
+        </div>
+      </li>
+    
+<!--       <li>
+        <h3>
+          <a href="/2017/09/27/loading-data/">
+            Loading data into gene.iobio
+            <small>27 Sep 2017</small>
+            <div><img src=/public/images/blog/loading_data/blog_image_data.jpg/></div>
+          </a>
+        </h3>
+      </li> -->
+      <li class="snippet">
+        <div class='snippet-thumbnail'><a href="/2017/09/27/loading-data/"><img src=/public/images/blog/loading_data/blog_image_data.jpg></img></a></div>
+        <div class='snippet-text'>
+          <div class='snippet-byline'>BY Tony DiSera ON Sep 27, 2017</div>
+          <div></div>
+          <img class='snippet-headshot' src="../../../../public/images/team/Tony_DiSera.png"/>
+          <div class='snippet-title'><a href="/2017/09/27/loading-data/">Loading data into gene.iobio</a></div>
+          <div class='snippet-subtitle'>Loading your variant and alignment files</div>
+        </div>
+      </li>
+    
+<!--       <li>
+        <h3>
+          <a href="/2017/07/11/coverage/">
+            Coverage analysis
+            <small>11 Jul 2017</small>
+            <div><img src=/public/images/blog/coverage/main.png/></div>
+          </a>
+        </h3>
+      </li> -->
+      <li class="snippet">
+        <div class='snippet-thumbnail'><a href="/2017/07/11/coverage/"><img src=/public/images/blog/coverage/main.png></img></a></div>
+        <div class='snippet-text'>
+          <div class='snippet-byline'>BY Alistair Ward ON Jul 11, 2017</div>
+          <div></div>
+          <img class='snippet-headshot' src="../../../../public/images/team/Alistair_Ward.png"/>
+          <div class='snippet-title'><a href="/2017/07/11/coverage/">Coverage analysis</a></div>
+          <div class='snippet-subtitle'>Identifying problems with coverage</div>
+        </div>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+    <div class="footer">
+  
+    <div class="logos">
+      <div style="position:absolute; left: 100px; top:0px; font-size:50px;font-family:'Overlock SC', cursive;"><a href="http://marthlab.org" style="color:black; text-decoration:none;">Marthlab</a></div>
+      <a href="http://ucgd.genetics.utah.edu/"><img src="/public/images/ustar-ucgd-logo.jpg" style="height:60px;"/></a>
+      <a href="http://www.genetics.utah.edu/"><img src="/public/images/genetics_mainlogo3_lrg.png" style="height:50px;position:absolute;right:0px;top:7px"/></a>
+    </div>
+  
+  <div class="developers">
+        <div class='title'>Developed in the <a href="http://marthlab.org/">Marth Lab by</a></div>
+
+        <div class="members">
+          <span style="margin-right:15px">
+            <a href="https://github.com/chmille4"><img src="/public/images/github_2d8fc1.png"/></a>
+            Chase Miller
+          </span>
+          <span style="margin-right: 15px">
+            <a href="https://github.com/yiq"><img src="/public/images/github_2d8fc1.png"/></a>
+            Yi Qiao
+          </span>
+          <span style="margin-right: 15px">
+            <a href="https://github.com/tonydisera"><img src="/public/images/github_2d8fc1.png"/></a>
+            Tony DiSera
+          </span>
+          <span style="margin-right: 15px">
+            <a href="https://github.com/alistairnward"><img src="/public/images/github_2d8fc1.png"/></a>
+            Alistair Ward
+          </span>
+        </div>
+    </div>
+</div>
+  </body>
+</html>

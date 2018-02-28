@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <!-- <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"> -->
+
+  <!-- Enable responsiveness on mobile devices-->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"> -->
+
+  <title>
+    
+      Multi gene analysis &middot; iobio
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/iobio.viz.min.css">
+  <link rel="stylesheet" href="/public/js/jquery.min.js">
+  <!-- <link rel="stylesheet" href="/public/css/bootstrap/css/bootstrap.min.css">   -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+  <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Overlock+SC' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'>
+  <link href="/public/js/video-js/video-js.css" rel="stylesheet">
+  <link rel="stylesheet" href="/public/css/site.css">
+
+  <!-- JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="/public/js/video-js/video.js"></script>
+  <script src="/public/js/d3.min.js"></script>
+  <script src="/public/js/iobio.viz.min.js"></script>
+
+  <!-- Icons -->
+  <!-- <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png"> -->
+  <link rel="icon" type="image/png" href="/public/favicon.ico?v=5">
+  <link rel="shortcut icon" href="/public/favicon.ico?v=5">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- tracking code -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-47481907-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+
+  <body>
+    <div class="masthead blog-masthead">   
+      <div class='masthead-container'>     
+        <h3 class="masthead-title">
+          <a href="/" title="Home">iobio</a>            
+        </h3>
+        <div id="menu">
+          <ul>
+              
+              
+              
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+      <li><a href="/">What is it?</a></li>
+    
+  
+
+  
+    
+      <li><a href="/applications.html">Applications</a></li>
+    
+  
+
+  
+    
+      <li><a href="/developers.html">Developers</a></li>
+    
+  
+
+  
+    
+      <li><a href="/blog.html">Blog</a></li>
+    
+  
+
+  
+    
+      <li><a href="/about.html">About us</a></li>
+    
+  
+
+  
+    
+      <li><a href="/support.html">Support Us</a></li>
+    
+  
+
+
+
+          </ul>
+        </div>
+        <div style="clear:both"></div>
+      </div>        
+    </div>
+
+    <div class="container blog-container">
+      <div class="post post-main" style="margin-top: 100px;">
+  <div class="post-title">Multi gene analysis</div>
+  <div style="line-height: 17px; margin-top: -9px">
+    <div class="post-date">28 Mar 2016</div>
+    <div class="post-author"><a href="http://marthlab.org/people.html">Alistair Ward</a></div>
+    <div class='post-headshot'>
+      <a href="http://marthlab.org/people.html">
+      <img src="/public/images/team/Alistair_Ward.png"/></a>
+    </div>
+  </div>
+  <div class='post-image'> <img src=/public/images/blog/multiple-genes/main.png></img></div>
+  <div class='post-content'>
+    <p>The <a href="http://gene.iobio.io" target="_blank">gene.iobio</a> version 2 blog series marches on with a discussion of multi-gene analysis. We think this is a major advancement and takes <a href="http://gene.iobio.io" target="_blank">gene.iobio</a> from a cool way of visualizing integrated data in a single gene, to a powerful method of performing analysis across sets of relevant genes. A following post in the series will look at generating gene lists based on phenotype using <a href="http://phenolyzer.usc.edu/" target="_blank">Phenolyzer</a>, which really helps direct analysis.</p>
+
+<p>To demonstrate functionality, we will look at the <a href="http://127.0.0.1:4000/?rel0=proband&amp;rel1=mother&amp;rel2=father&amp;name0=&amp;vcf0=https://s3.amazonaws.com/iobio/gene/wgs_platinum/platinum-trio.vcf.gz&amp;bam0=https://s3.amazonaws.com/iobio/gene/wgs_platinum/NA12878.bam&amp;name1=&amp;vcf1=https://s3.amazonaws.com/iobio/gene/wgs_platinum/platinum-trio.vcf.gz&amp;bam1=https://s3.amazonaws.com/iobio/gene/wgs_platinum/NA12892.bam&amp;name2=&amp;vcf2=https://s3.amazonaws.com/iobio/gene/wgs_platinum/platinum-trio.vcf.gz&amp;bam2=https://s3.amazonaws.com/iobio/gene/wgs_platinum/NA12891.bam&amp;sample0=NA12878&amp;sample1=NA12891&amp;sample2=NA12892&amp;genes=RAI1&amp;gene=RAI1" target="_blank">RAI1</a> usecase. Here we see a familiar view of the Platinum trio data, which we can interrogate as we see fit. But what if we are interested in looking at variants in a different gene? We can add another gene, say AIRE, using the gene entry box at the top of the screen. Now we see both genes have a <i>badge</i> below the gene entry box, with a raft of glyphs in them, as shown below:</p>
+
+<p><img src="/public/images/blog/multiple-genes/gene-badges.png" style="width:75%; margin:20px 100px;" /></p>
+
+<p>So what does all this mean? Here are some details about these gene badges and how to use them:</p>
+
+<ul>
+  <li>Clicking on a gene badge will take you to that gene,</li>
+  <li>If any interesting variants are present in the gene, the glyphs indicate what. In the RAI1 gene, they indicate there is a least one variant (each glyph can be referring to a different variant) in the gene that is:</li>
+    <ul>
+      <li>a high impact variant, as predicted by VEP (<img src="/public/images/blog/multiple-genes/high-impact.png" style="width:2%; margin:-2px 0px;" />),</li>
+      <li>a pathogenic variant in ClinVar (<img src="/public/images/blog/multiple-genes/clinvar.png" style="width:2%; margin:0px 0px;" />),</li>
+      <li>a <i>de novo</i> variant (<img src="/public/images/blog/multiple-genes/denovo.png" style="width:2%; margin:-2px 0px;" />),</li>
+      <li>a recessive variant (<img src="/public/images/blog/multiple-genes/recessive.png" style="width:2%; margin:-2px 0px;" />).</li>
+    </ul>
+  <li>If the checkmark (<img src="/public/images/blog/multiple-genes/checkmark.png" style="width:2%; margin:0px 0px;" />) is present at the left of the gene badge, this indicates that the gene has been analyzed. The other glyphs will only be present if the gene has been analyzed, so this checkmark can differentiate between the case where the gene has been analyzed, but there are no interesting variants in the gene (<img src="/public/images/blog/multiple-genes/analyzed.png" style="width:10%; margin:-5px 0px;" />), or that analysis on the gene has yet to be performed (<img src="/public/images/blog/multiple-genes/not_analyzed.png" style="width:8%; margin:-5px 0px;" />), so we need to analyze the gene to determine if interesting variants are present.</li>
+  <li>Hovering over the HPO gene-to-phenotype glyph (<img src="/public/images/blog/multiple-genes/gene-pheno-glyph.png" style="width:2%; margin:-2px 0px;" />), when present, provides information on gene associated phenotypes. For example, these are the phenotypes associated with the RAI gene:</li>
+
+  <div><img src="/public/images/blog/multiple-genes/gene-pheno.png" style="width:100%; margin:20px 0px;" /></div>
+</ul>
+
+<p>These gene badges make it simple to jump around a set of genes, analyzing data and identifying potentially interesting variants within them. An important question you might ask is how do we define a list of genes to look at? We can add each gene one by one, but we might want to look at a set of genes that we know are associated with a disease, or are the output of gene prioritization software. The next but one post will discuss using <a href="http://phenolyzer.usc.edu/" target="_blank">Phenolyzer</a> to generate a gene list, but here we will touch on two simple methods.</p>
+
+<h2 id="import-a-gene-list">Import a gene list</h2>
+
+<p>In the left panel, we can click the 'Genes' button to bring up a menu that lets us define gene lists. The 'Import Gene set' dropdown provides a space where we can manually import or paste a comma separated list of genes. Pressing 'Done' will prompt <a href="http://gene.iobio.io" target="_blank">gene.iobio</a> to add all defined genes as badges in the top panel so we can start working with them.</p>
+
+<p><img src="/public/images/blog/multiple-genes/gene-import.png" style="width:75%; margin:20px 0px;" /></p>
+
+<h2 id="analyze-the-acmg56-genes">Analyze the ACMG56 genes</h2>
+
+<p><a href="https://www.acmg.net/" target="_blank">The American College of Medical Genetics and Genomics (ACMG)</a> has defined a list of 56 genes that have been implicated predominantly in cancer and cardiovascular disease risk. It can be good practice to look for any known pathogenic variants in these genes, so you can add them by clicking the 'Import ACMG56 Genes' button. By clicking this, all 56 genes will be added to the top panel and be ready for analysis. The next post in the series will give a brief discussion of ths feature.</p>
+
+<h2 id="analyze-all-genes">Analyze all genes</h2>
+
+<p>Once a set of genes has been defined, the next step is usually to see if any of them harbour potentially interesting variants. Preferably, we would like to achieve this without having to click through every gene individiually. Luckily, we are not forced to do that! Instead, we can just click 'Analyze all' to the left of the gene badges and each gene will be analyzed in turn; the gene being analyzed has a working symbol (<img src="/public/images/blog/multiple-genes/working.png" style="width:2%; margin:-2px 0px;" />) to identify which gene is being processed. As each gene is analyzed the check mark (<img src="/public/images/blog/multiple-genes/checkmark.png" style="width:2%; margin:0px 0px;" />) appears along with any glyphs describing contained variants. Once complete, the glyphs appearing in each gene badge direct us to where interesting variants lie (note that you can click on an analyzed gene to investigate, while <a href="http://gene.iobio.io" target="_blank">gene.iobio</a> continues to work through the rest of the genes).</p>
+
+<p>As always, <a href="mailto:iobioproject@gmail.com" subject="gene.iobio suggestions">contact us</a> with any questions or comments, and stay tuned for the next two posts describing using the ACMG56 genes and the use of <a href="http://phenolyzer.usc.edu/" target="_blank">Phenolyzer</a> to turn your phenotype into a prioritized gene list.</p>
+
+  </div>
+
+  
+</div>
+
+<div class="related posts">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+<!--       <li>
+        <h3>
+          <a href="/2017/09/29/gene_2.5.0/">
+            ClinVar variants, gnomAD, affected status
+            <small>29 Sep 2017</small>
+            <div><img src=/public/images/blog/gene_2.5.0/banner.png/></div>
+          </a>
+        </h3>
+      </li> -->
+      <li class="snippet">
+        <div class='snippet-thumbnail'><a href="/2017/09/29/gene_2.5.0/"><img src=/public/images/blog/gene_2.5.0/banner.png></img></a></div>
+        <div class='snippet-text'>
+          <div class='snippet-byline'>BY Tony DiSera ON Sep 29, 2017</div>
+          <div></div>
+          <img class='snippet-headshot' src="../../../../public/images/team/Tony_DiSera.png"/>
+          <div class='snippet-title'><a href="/2017/09/29/gene_2.5.0/">ClinVar variants, gnomAD, affected status</a></div>
+          <div class='snippet-subtitle'>What's new in gene.iobio 2.5.0</div>
+        </div>
+      </li>
+    
+<!--       <li>
+        <h3>
+          <a href="/2017/09/27/loading-data/">
+            Loading data into gene.iobio
+            <small>27 Sep 2017</small>
+            <div><img src=/public/images/blog/loading_data/blog_image_data.jpg/></div>
+          </a>
+        </h3>
+      </li> -->
+      <li class="snippet">
+        <div class='snippet-thumbnail'><a href="/2017/09/27/loading-data/"><img src=/public/images/blog/loading_data/blog_image_data.jpg></img></a></div>
+        <div class='snippet-text'>
+          <div class='snippet-byline'>BY Tony DiSera ON Sep 27, 2017</div>
+          <div></div>
+          <img class='snippet-headshot' src="../../../../public/images/team/Tony_DiSera.png"/>
+          <div class='snippet-title'><a href="/2017/09/27/loading-data/">Loading data into gene.iobio</a></div>
+          <div class='snippet-subtitle'>Loading your variant and alignment files</div>
+        </div>
+      </li>
+    
+<!--       <li>
+        <h3>
+          <a href="/2017/07/11/coverage/">
+            Coverage analysis
+            <small>11 Jul 2017</small>
+            <div><img src=/public/images/blog/coverage/main.png/></div>
+          </a>
+        </h3>
+      </li> -->
+      <li class="snippet">
+        <div class='snippet-thumbnail'><a href="/2017/07/11/coverage/"><img src=/public/images/blog/coverage/main.png></img></a></div>
+        <div class='snippet-text'>
+          <div class='snippet-byline'>BY Alistair Ward ON Jul 11, 2017</div>
+          <div></div>
+          <img class='snippet-headshot' src="../../../../public/images/team/Alistair_Ward.png"/>
+          <div class='snippet-title'><a href="/2017/07/11/coverage/">Coverage analysis</a></div>
+          <div class='snippet-subtitle'>Identifying problems with coverage</div>
+        </div>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+    <div class="footer">
+  
+    <div class="logos">
+      <div style="position:absolute; left: 100px; top:0px; font-size:50px;font-family:'Overlock SC', cursive;"><a href="http://marthlab.org" style="color:black; text-decoration:none;">Marthlab</a></div>
+      <a href="http://ucgd.genetics.utah.edu/"><img src="/public/images/ustar-ucgd-logo.jpg" style="height:60px;"/></a>
+      <a href="http://www.genetics.utah.edu/"><img src="/public/images/genetics_mainlogo3_lrg.png" style="height:50px;position:absolute;right:0px;top:7px"/></a>
+    </div>
+  
+  <div class="developers">
+        <div class='title'>Developed in the <a href="http://marthlab.org/">Marth Lab by</a></div>
+
+        <div class="members">
+          <span style="margin-right:15px">
+            <a href="https://github.com/chmille4"><img src="/public/images/github_2d8fc1.png"/></a>
+            Chase Miller
+          </span>
+          <span style="margin-right: 15px">
+            <a href="https://github.com/yiq"><img src="/public/images/github_2d8fc1.png"/></a>
+            Yi Qiao
+          </span>
+          <span style="margin-right: 15px">
+            <a href="https://github.com/tonydisera"><img src="/public/images/github_2d8fc1.png"/></a>
+            Tony DiSera
+          </span>
+          <span style="margin-right: 15px">
+            <a href="https://github.com/alistairnward"><img src="/public/images/github_2d8fc1.png"/></a>
+            Alistair Ward
+          </span>
+        </div>
+    </div>
+</div>
+  </body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <!-- <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"> -->
+
+  <!-- Enable responsiveness on mobile devices-->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"> -->
+
+  <title>
+    
+      Coverage analysis &middot; iobio
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/iobio.viz.min.css">
+  <link rel="stylesheet" href="/public/js/jquery.min.js">
+  <!-- <link rel="stylesheet" href="/public/css/bootstrap/css/bootstrap.min.css">   -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+  <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Overlock+SC' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'>
+  <link href="/public/js/video-js/video-js.css" rel="stylesheet">
+  <link rel="stylesheet" href="/public/css/site.css">
+
+  <!-- JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="/public/js/video-js/video.js"></script>
+  <script src="/public/js/d3.min.js"></script>
+  <script src="/public/js/iobio.viz.min.js"></script>
+
+  <!-- Icons -->
+  <!-- <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png"> -->
+  <link rel="icon" type="image/png" href="/public/favicon.ico?v=5">
+  <link rel="shortcut icon" href="/public/favicon.ico?v=5">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- tracking code -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-47481907-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+
+  <body>
+    <div class="masthead blog-masthead">   
+      <div class='masthead-container'>     
+        <h3 class="masthead-title">
+          <a href="/" title="Home">iobio</a>            
+        </h3>
+        <div id="menu">
+          <ul>
+              
+              
+              
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+      <li><a href="/">What is it?</a></li>
+    
+  
+
+  
+    
+      <li><a href="/applications.html">Applications</a></li>
+    
+  
+
+  
+    
+      <li><a href="/developers.html">Developers</a></li>
+    
+  
+
+  
+    
+      <li><a href="/blog.html">Blog</a></li>
+    
+  
+
+  
+    
+      <li><a href="/about.html">About us</a></li>
+    
+  
+
+  
+    
+      <li><a href="/support.html">Support Us</a></li>
+    
+  
+
+
+
+          </ul>
+        </div>
+        <div style="clear:both"></div>
+      </div>        
+    </div>
+
+    <div class="container blog-container">
+      <div class="post post-main" style="margin-top: 100px;">
+  <div class="post-title">Coverage analysis</div>
+  <div style="line-height: 17px; margin-top: -9px">
+    <div class="post-date">11 Jul 2017</div>
+    <div class="post-author"><a href="http://marthlab.org/people.html">Alistair Ward</a></div>
+    <div class='post-headshot'>
+      <a href="http://marthlab.org/people.html">
+      <img src="/public/images/team/Alistair_Ward.png"/></a>
+    </div>
+  </div>
+  <div class='post-image'> <img src=/public/images/blog/coverage/main.png></img></div>
+  <div class='post-content'>
+    <p>A new version of <a href="http://gene.iobio.io/" target="_blank">gene.iobio</a> is up, and this one has a really big feature addition that is really powerful. This update will help identify possible false negative calls due to data insufficiency, and is extremely important in any diagnostic analysis.</p>
+
+<h3 id="updates-to-the-user-interface">Updates to the user interface</h3>
+<p>The best way to see the power of this update is through an example, so we will use the <a href="http://gene.iobio.io/?species=Human&amp;rel0=proband&amp;rel1=mother&amp;rel2=father&amp;build=GRCh37&amp;rel=mother&amp;name0=NA12878&amp;vcf0=https://s3.amazonaws.com/iobio/samples/vcf/platinum-exome.vcf.gz&amp;tbi0=&amp;bam0=https://s3.amazonaws.com/iobio/samples/bam/NA12878.exome.bam&amp;bai0=&amp;sample0=NA12878&amp;name1=NA12891&amp;vcf1=https://s3.amazonaws.com/iobio/samples/vcf/platinum-exome.vcf.gz&amp;tbi1=&amp;bam1=https://s3.amazonaws.com/iobio/samples/bam/NA12891.exome.bam&amp;bai1=&amp;sample1=NA12891&amp;name2=NA12892&amp;vcf2=https://s3.amazonaws.com/iobio/samples/vcf/platinum-exome.vcf.gz&amp;tbi2=&amp;bam2=https://s3.amazonaws.com/iobio/samples/bam/NA12892.exome.bam&amp;bai2=&amp;sample2=NA12892&amp;gene=AIRE&amp;genes=RAI1,AIRE,MYLK2,PDGFB,PDHA1" target="_blank">demo dataset</a> so that you can follow along. Imagine that we have a patient suffering from autoimmune polyendocrinopathy-candidiasis-ectodermal dystrophy (APECED). We know that mutations in the AIRE gene can be associated with this disorder, so we are using gene.iobio to check for any mutations. The dataset we are looking at is modified public data, not a real patient, but in this example, we see no variants in the AIRE gene that stand out as interesting (e.g. no annotations suggesting likely pathogenicity). We might be tempted to move on and look at other genes, but before we do, let’s take a closer look at the coverage for the proband.</p>
+
+<div><img src="/public/images/blog/coverage/AIRE.png" style="width:90%; margin:15px 0px 15px 0px;" /></div>
+
+<p>The coverage track shows how the coverage varies across the gene for each sample. We can see that this is exome sequencing as we only see coverage across the exons, and nothing in the intronic regions. One thing stands out for the proband though. Exon 3 appears coloured in red in the gene model, and has a warning symbol to alert you to the fact that the coverage in this exon fails the default parameters for defining a “passing” exon. Hovering over the exon shows the coverage metrics (mean, median, min, max, etc.) for the exon, as well as which metrics “fail”. In this case, the exon has been completely skipped, so there is zero coverage across the whole exon. This means that no variant caller would be able to identify mutations in this exon, as there is no data - but they would not alert the user to the potential problem. We can see that both parents are hets for a likely pathogenic variant in this exon, so it is possible the child has inherited two bad copies of this gene; but we would never know! In this case, it would be important to resequence this gene in the proband and look for this variant.</p>
+
+<hr style="border-width:5px; margin-left:100px; margin-right:100px;" />
+
+<div style="margin-left:100px; margin-right:100px;">
+<h4>Filtering metrics</h4>
+There are a number of different metrics that are tested to determine if an exon "fails". The user can set the cutoffs for these metrics in the filter panel (5). The values that can be set are:
+</div>
+<p><br /></p>
+<div style="margin-left:100px; margin-right:100px;"><strong>mean</strong>: By default, the mean coverage in an exon must be greater than 30 to pass.</div>
+<div style="margin-left:100px; margin-right:100px;"><strong>median</strong>: By default, the median coverage in an exon must be greater than 30 to pass.</div>
+<div style="margin-left:100px; margin-right:100px;"><strong>min</strong>: By default, the minimum observed coverage in an exon must be greater than 10. It is certainly possible that an exon has adequate median coverage, but one, or a handful, of nucleotides have very low coverage.</div>
+<hr style="border-width:5px; margin-left:100px; margin-right:100px;" />
+
+<h3 id="filtering-genes-on-coverage">Filtering genes on coverage</h3>
+<p>It is really important to visualize the coverage problems when looking at a gene, but we need to be sure that you look at all genes that harbour coverage problems. Gene.iobio helps you do this. Again using the <a href="http://gene.iobio.io/?species=Human&amp;rel0=proband&amp;rel1=mother&amp;rel2=father&amp;build=GRCh37&amp;rel=mother&amp;name0=NA12878&amp;vcf0=https://s3.amazonaws.com/iobio/samples/vcf/platinum-exome.vcf.gz&amp;tbi0=&amp;bam0=https://s3.amazonaws.com/iobio/samples/bam/NA12878.exome.bam&amp;bai0=&amp;sample0=NA12878&amp;name1=NA12891&amp;vcf1=https://s3.amazonaws.com/iobio/samples/vcf/platinum-exome.vcf.gz&amp;tbi1=&amp;bam1=https://s3.amazonaws.com/iobio/samples/bam/NA12891.exome.bam&amp;bai1=&amp;sample1=NA12891&amp;name2=NA12892&amp;vcf2=https://s3.amazonaws.com/iobio/samples/vcf/platinum-exome.vcf.gz&amp;tbi2=&amp;bam2=https://s3.amazonaws.com/iobio/samples/bam/NA12892.exome.bam&amp;bai2=&amp;sample2=NA12892&amp;gene=RAI1&amp;genes=RAI1,AIRE,MYLK2,PDGFB,PDHA1" target="_blank">demo dataset</a>, we will demonstrate how. Once we open the demo data, we select “Analyze all genes”. In a few seconds, all the gene badges at the top of the page show a summary of each gene.</p>
+
+<div><center><img src="/public/images/blog/coverage/gene_badges.png" style="width:80%; margin:8px 0px 10px 0px;" align="middle" /></center></div>
+
+<p>Both AIRE and PDHA1 badges include a glyph indicating coverage problems (<img src="/public/images/blog/coverage/coverage_glyph.png" style="width:2%; margin:0px 0px;" />), so we know we need to take a look at them. If the gene list is large, rather than looking through all these gene badges, we can apply a filter to identify genes harbouring coverage problems. To do this, we select the “Filter” option (1 in the above figure), and from the side panel, click the “Insufficient coverage in exons” button (2).</p>
+
+<div><img src="/public/images/blog/coverage/filter.png" style="width:90%; margin:15px 0px 15px 0px;" /></div>
+
+<p>The summary (3) shows us that two genes fail this filter, and the gene badges are now sorted to put these genes first (4). In this case, the PDHA1 and AIRE genes are shown first, with the other genes fading into the background. Now we can look at each of these genes in turn to identify what the problems are, and if we think they are a genuine problem that we need to take action on.</p>
+
+  </div>
+
+  
+</div>
+
+<div class="related posts">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+<!--       <li>
+        <h3>
+          <a href="/2017/09/29/gene_2.5.0/">
+            ClinVar variants, gnomAD, affected status
+            <small>29 Sep 2017</small>
+            <div><img src=/public/images/blog/gene_2.5.0/banner.png/></div>
+          </a>
+        </h3>
+      </li> -->
+      <li class="snippet">
+        <div class='snippet-thumbnail'><a href="/2017/09/29/gene_2.5.0/"><img src=/public/images/blog/gene_2.5.0/banner.png></img></a></div>
+        <div class='snippet-text'>
+          <div class='snippet-byline'>BY Tony DiSera ON Sep 29, 2017</div>
+          <div></div>
+          <img class='snippet-headshot' src="../../../../public/images/team/Tony_DiSera.png"/>
+          <div class='snippet-title'><a href="/2017/09/29/gene_2.5.0/">ClinVar variants, gnomAD, affected status</a></div>
+          <div class='snippet-subtitle'>What's new in gene.iobio 2.5.0</div>
+        </div>
+      </li>
+    
+<!--       <li>
+        <h3>
+          <a href="/2017/09/27/loading-data/">
+            Loading data into gene.iobio
+            <small>27 Sep 2017</small>
+            <div><img src=/public/images/blog/loading_data/blog_image_data.jpg/></div>
+          </a>
+        </h3>
+      </li> -->
+      <li class="snippet">
+        <div class='snippet-thumbnail'><a href="/2017/09/27/loading-data/"><img src=/public/images/blog/loading_data/blog_image_data.jpg></img></a></div>
+        <div class='snippet-text'>
+          <div class='snippet-byline'>BY Tony DiSera ON Sep 27, 2017</div>
+          <div></div>
+          <img class='snippet-headshot' src="../../../../public/images/team/Tony_DiSera.png"/>
+          <div class='snippet-title'><a href="/2017/09/27/loading-data/">Loading data into gene.iobio</a></div>
+          <div class='snippet-subtitle'>Loading your variant and alignment files</div>
+        </div>
+      </li>
+    
+<!--       <li>
+        <h3>
+          <a href="/2017/04/26/gene_2.3.0/">
+            Gene.iobio 2.3.0
+            <small>26 Apr 2017</small>
+            <div><img src=/public/images/blog/gene_2.3.0/main.png/></div>
+          </a>
+        </h3>
+      </li> -->
+      <li class="snippet">
+        <div class='snippet-thumbnail'><a href="/2017/04/26/gene_2.3.0/"><img src=/public/images/blog/gene_2.3.0/main.png></img></a></div>
+        <div class='snippet-text'>
+          <div class='snippet-byline'>BY Alistair Ward ON Apr 26, 2017</div>
+          <div></div>
+          <img class='snippet-headshot' src="../../../../public/images/team/Alistair_Ward.png"/>
+          <div class='snippet-title'><a href="/2017/04/26/gene_2.3.0/">Gene.iobio 2.3.0</a></div>
+          <div class='snippet-subtitle'>Output data from gene.iobio</div>
+        </div>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+    <div class="footer">
+  
+    <div class="logos">
+      <div style="position:absolute; left: 100px; top:0px; font-size:50px;font-family:'Overlock SC', cursive;"><a href="http://marthlab.org" style="color:black; text-decoration:none;">Marthlab</a></div>
+      <a href="http://ucgd.genetics.utah.edu/"><img src="/public/images/ustar-ucgd-logo.jpg" style="height:60px;"/></a>
+      <a href="http://www.genetics.utah.edu/"><img src="/public/images/genetics_mainlogo3_lrg.png" style="height:50px;position:absolute;right:0px;top:7px"/></a>
+    </div>
+  
+  <div class="developers">
+        <div class='title'>Developed in the <a href="http://marthlab.org/">Marth Lab by</a></div>
+
+        <div class="members">
+          <span style="margin-right:15px">
+            <a href="https://github.com/chmille4"><img src="/public/images/github_2d8fc1.png"/></a>
+            Chase Miller
+          </span>
+          <span style="margin-right: 15px">
+            <a href="https://github.com/yiq"><img src="/public/images/github_2d8fc1.png"/></a>
+            Yi Qiao
+          </span>
+          <span style="margin-right: 15px">
+            <a href="https://github.com/tonydisera"><img src="/public/images/github_2d8fc1.png"/></a>
+            Tony DiSera
+          </span>
+          <span style="margin-right: 15px">
+            <a href="https://github.com/alistairnward"><img src="/public/images/github_2d8fc1.png"/></a>
+            Alistair Ward
+          </span>
+        </div>
+    </div>
+</div>
+  </body>
+</html>

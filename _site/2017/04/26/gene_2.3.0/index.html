@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <!-- <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"> -->
+
+  <!-- Enable responsiveness on mobile devices-->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"> -->
+
+  <title>
+    
+      Gene.iobio 2.3.0 &middot; iobio
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/iobio.viz.min.css">
+  <link rel="stylesheet" href="/public/js/jquery.min.js">
+  <!-- <link rel="stylesheet" href="/public/css/bootstrap/css/bootstrap.min.css">   -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+  <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Overlock+SC' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'>
+  <link href="/public/js/video-js/video-js.css" rel="stylesheet">
+  <link rel="stylesheet" href="/public/css/site.css">
+
+  <!-- JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="/public/js/video-js/video.js"></script>
+  <script src="/public/js/d3.min.js"></script>
+  <script src="/public/js/iobio.viz.min.js"></script>
+
+  <!-- Icons -->
+  <!-- <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png"> -->
+  <link rel="icon" type="image/png" href="/public/favicon.ico?v=5">
+  <link rel="shortcut icon" href="/public/favicon.ico?v=5">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- tracking code -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-47481907-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+
+  <body>
+    <div class="masthead blog-masthead">   
+      <div class='masthead-container'>     
+        <h3 class="masthead-title">
+          <a href="/" title="Home">iobio</a>            
+        </h3>
+        <div id="menu">
+          <ul>
+              
+              
+              
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+      <li><a href="/">What is it?</a></li>
+    
+  
+
+  
+    
+      <li><a href="/applications.html">Applications</a></li>
+    
+  
+
+  
+    
+      <li><a href="/developers.html">Developers</a></li>
+    
+  
+
+  
+    
+      <li><a href="/blog.html">Blog</a></li>
+    
+  
+
+  
+    
+      <li><a href="/about.html">About us</a></li>
+    
+  
+
+  
+    
+      <li><a href="/support.html">Support Us</a></li>
+    
+  
+
+
+
+          </ul>
+        </div>
+        <div style="clear:both"></div>
+      </div>        
+    </div>
+
+    <div class="container blog-container">
+      <div class="post post-main" style="margin-top: 100px;">
+  <div class="post-title">Gene.iobio 2.3.0</div>
+  <div style="line-height: 17px; margin-top: -9px">
+    <div class="post-date">26 Apr 2017</div>
+    <div class="post-author"><a href="http://marthlab.org/people.html">Alistair Ward</a></div>
+    <div class='post-headshot'>
+      <a href="http://marthlab.org/people.html">
+      <img src="/public/images/team/Alistair_Ward.png"/></a>
+    </div>
+  </div>
+  <div class='post-image'> <img src=/public/images/blog/gene_2.3.0/main.png></img></div>
+  <div class='post-content'>
+    <p>A new version of <a href="http://gene.iobio.io/" target="_blank">gene.iobio</a> is now up and running, featuring several improvements that are another big step forwards!</p>
+
+<h3 id="outputting-variants">Outputting variants</h3>
+<p>The "bookmarks" functionality lets us store variants that we are interested in, so that we can easily jump back to them whenever we want. We heard from many users that they want to be able to output these variants, either to a VCF file, or to an Excel spreadsheet. We now support this functionality. If you select a variant (either by clicking on a variant, or a column in the "Ranked variants" table), a tooltip appears showing a whole host of information about the variant. In the bottom left corner of this tooltip, we can click to "bookmark this variant". This variant is now stored. By clicking on the "Bookmarks" tab at the top of the page, we can look at a summary of all bookmarks.</p>
+
+<div><img src="/public/images/blog/gene_2.3.0/bookmarks.png" style="width:100%; margin:0px 0px 0px 0px;" /></div>
+
+<p>Using the "Export" option, we can choose to export the bookmarked variants as either an Excel, or a VCF file.</p>
+
+<div><img src="/public/images/blog/gene_2.3.0/export.png" style="width:65%; margin:20px 0px 0px 160px;" /></div>
+
+<p>Whichever option you choose, the output file contains a list of all the variants, along with all of the annotation information that was available within gene.iobio.</p>
+
+<h3 id="calling-variants">Calling variants</h3>
+<p>We have removed the "Call variants" tab from the top of gene.iobio and instead, integrated calling into the "Selected genes" panel at the top of the screen. There have also been a number of improvements to the user interface, that we think really improve the user experience.</p>
+
+<div><img src="/public/images/blog/gene_2.3.0/calling.png" style="width:100%; margin:20px 0px 0px 0px;" /></div>
+
+<h4 id="1-which-genes-to-call-variants-for">1. Which genes to call variants for?</h4>
+<p>In the "Call variants" dropdown you can choose to call variants in the gene that you are currently looking at, or you can choose to call variants in all the genes in your list. Once selected, gene will start calling variants.</p>
+
+<h4 id="2-calling-progress">2. Calling progress</h4>
+<p>The coloured bars keep track of how many genes have been analyzed, and how many have had new variants called using Freebayes within gene.iobio. In the demo data example above, there are five genes in the list. The top (blue) bar shows how many genes have had the "loaded" variants, i.e. those in the selected VCF file, analyzed, and the lower (green) bar shows how many genes have had variants called. These bars are explained in more detail in the Filtering variants section below.</p>
+
+<p>The gene badges also contain checkmarks to make it clear what analyses have occurred. In the above example, the loaded variants have been analyzed, but no variant calling has happened for the AIRE and PDGFB genes. Both these genes have the check mark (<img src="/public/images/blog/gene_2.3.0/single.png" style="width:2%; margin:-2px 0px;" />) that indicates this. RAI1 and PDHA1 have two check marks (<img src="/public/images/blog/gene_2.3.0/both.png" style="width:3%; margin:-2px 0px;" />). The blue check mark indicates that the loaded variants have been analyzed and the green one, that variants have been called. Finally, MYLK2 shows <img src="/public/images/blog/gene_2.3.0/both_called.png" style="width:3%; margin:-2px 0px;" />. Again, the loaded variants have been analyzed, but the called check mark is now in a green circle. This check mark is used to identify when uniquely called variants are present in the gene. The simple green check mark, by contrast, means that variant calling has taken place, but no unique variants were discovered.</p>
+
+<h4 id="3-filtering-variants">3. Filtering variants</h4>
+<p>In this example, I have already applied variant filters. The panel at the left shows the results from applying the standard set of filters. Next to the "Known pathogenic" filter, we are presented with three glyphs. The first, <img src="/public/images/blog/gene_2.3.0/missing.png" style="width:3%; margin:0px 0px;" />, is provided as a warning to note that not all of the genes have been analyzed. Next we see <img src="/public/images/blog/gene_2.3.0/loaded_count.png" style="width:3%; margin:0px 0px;" />. This is a count of the number of genes with a <i>loaded</i> variant that passes the filters. Finally, we can see the number of genes with a <i>called</i> variant that passes the filters (<img src="/public/images/blog/gene_2.3.0/called_count.png" style="width:3%; margin:0px 0px;" />). So in this case, there is one gene with a <i>loaded</i> variant, and one gene with a <i>called</i> variant that counts as a "Known pathogenic" variant. But how do we know which genes these counts are referring to?</p>
+
+<div><img src="/public/images/blog/gene_2.3.0/badges.png" style="width:75%; margin:20px 0px 30px 100px;" /></div>
+
+<p>The gene badges are automatically sorted so that the genes with variants that pass filters appear to the left. So we can see that the furthest left gene badge is for RAI1, followed by MYLK2. Both these genes have other glyphs that indicate properties of the contained variants (see this <a href="http://iobio.io/2016/03/28/multi-gene/" target="_blank">post</a> for more details), whereas the remaining genes do not. So we know that these are the only two genes we need to look in. Only MYLK2 has the <img src="/public/images/blog/gene_2.3.0/both_called.png" style="width:3%; margin:0px 0px;" />, indicating that variants were called in this gene, so we know that MYLK2 contains the <i>called</i> known pathogenic variant, and RAI1 contains the <i>loaded</i> known pathogenic variant.</p>
+
+<p>Finally, gene provides a visual summary of the analyses that have occured and the filtering results.</p>
+
+<div><img src="/public/images/blog/gene_2.3.0/bars.png" style="width:50%; margin:20px 0px 30px 200px;" /></div>
+
+<p>The top bar refers to the <i>loaded</i> variant (remember, these are the variants pulled from the selected vcf file). The bar is split into two. The first segment (in blue) refers to the number of genes that contain a variant passing currently selected filters. In this case, that is one gene. Then we see the remainder of the bar is gray, indicating that the other four genes have been analyzed, but do not contain any variants that pass the filters. The bottom bar works in the same way, but for the <i>called</i> variants. We again see that one gene contains a variant passing the filters. We then see that two genes have had variants called, but no passing variants are present in them (the gray segment). Finally, we see a white segment, indicating that two genes have not yet had variants called. We can confirm this by noting that the AIRE and PDGFB gene badges do not contain the green checkmarks indicating calling has happened.</p>
+
+<p>We hope that these improvements will make it even easier to understand your data and, as always, we encourage you to give <a href="mailto:iobioproject@gmail.com" subject="gene.iobio suggestions">feedback</a> on everything <strong><i>iobio</i></strong> related!</p>
+
+  </div>
+
+  
+</div>
+
+<div class="related posts">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+<!--       <li>
+        <h3>
+          <a href="/2017/09/29/gene_2.5.0/">
+            ClinVar variants, gnomAD, affected status
+            <small>29 Sep 2017</small>
+            <div><img src=/public/images/blog/gene_2.5.0/banner.png/></div>
+          </a>
+        </h3>
+      </li> -->
+      <li class="snippet">
+        <div class='snippet-thumbnail'><a href="/2017/09/29/gene_2.5.0/"><img src=/public/images/blog/gene_2.5.0/banner.png></img></a></div>
+        <div class='snippet-text'>
+          <div class='snippet-byline'>BY Tony DiSera ON Sep 29, 2017</div>
+          <div></div>
+          <img class='snippet-headshot' src="../../../../public/images/team/Tony_DiSera.png"/>
+          <div class='snippet-title'><a href="/2017/09/29/gene_2.5.0/">ClinVar variants, gnomAD, affected status</a></div>
+          <div class='snippet-subtitle'>What's new in gene.iobio 2.5.0</div>
+        </div>
+      </li>
+    
+<!--       <li>
+        <h3>
+          <a href="/2017/09/27/loading-data/">
+            Loading data into gene.iobio
+            <small>27 Sep 2017</small>
+            <div><img src=/public/images/blog/loading_data/blog_image_data.jpg/></div>
+          </a>
+        </h3>
+      </li> -->
+      <li class="snippet">
+        <div class='snippet-thumbnail'><a href="/2017/09/27/loading-data/"><img src=/public/images/blog/loading_data/blog_image_data.jpg></img></a></div>
+        <div class='snippet-text'>
+          <div class='snippet-byline'>BY Tony DiSera ON Sep 27, 2017</div>
+          <div></div>
+          <img class='snippet-headshot' src="../../../../public/images/team/Tony_DiSera.png"/>
+          <div class='snippet-title'><a href="/2017/09/27/loading-data/">Loading data into gene.iobio</a></div>
+          <div class='snippet-subtitle'>Loading your variant and alignment files</div>
+        </div>
+      </li>
+    
+<!--       <li>
+        <h3>
+          <a href="/2017/07/11/coverage/">
+            Coverage analysis
+            <small>11 Jul 2017</small>
+            <div><img src=/public/images/blog/coverage/main.png/></div>
+          </a>
+        </h3>
+      </li> -->
+      <li class="snippet">
+        <div class='snippet-thumbnail'><a href="/2017/07/11/coverage/"><img src=/public/images/blog/coverage/main.png></img></a></div>
+        <div class='snippet-text'>
+          <div class='snippet-byline'>BY Alistair Ward ON Jul 11, 2017</div>
+          <div></div>
+          <img class='snippet-headshot' src="../../../../public/images/team/Alistair_Ward.png"/>
+          <div class='snippet-title'><a href="/2017/07/11/coverage/">Coverage analysis</a></div>
+          <div class='snippet-subtitle'>Identifying problems with coverage</div>
+        </div>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+    <div class="footer">
+  
+    <div class="logos">
+      <div style="position:absolute; left: 100px; top:0px; font-size:50px;font-family:'Overlock SC', cursive;"><a href="http://marthlab.org" style="color:black; text-decoration:none;">Marthlab</a></div>
+      <a href="http://ucgd.genetics.utah.edu/"><img src="/public/images/ustar-ucgd-logo.jpg" style="height:60px;"/></a>
+      <a href="http://www.genetics.utah.edu/"><img src="/public/images/genetics_mainlogo3_lrg.png" style="height:50px;position:absolute;right:0px;top:7px"/></a>
+    </div>
+  
+  <div class="developers">
+        <div class='title'>Developed in the <a href="http://marthlab.org/">Marth Lab by</a></div>
+
+        <div class="members">
+          <span style="margin-right:15px">
+            <a href="https://github.com/chmille4"><img src="/public/images/github_2d8fc1.png"/></a>
+            Chase Miller
+          </span>
+          <span style="margin-right: 15px">
+            <a href="https://github.com/yiq"><img src="/public/images/github_2d8fc1.png"/></a>
+            Yi Qiao
+          </span>
+          <span style="margin-right: 15px">
+            <a href="https://github.com/tonydisera"><img src="/public/images/github_2d8fc1.png"/></a>
+            Tony DiSera
+          </span>
+          <span style="margin-right: 15px">
+            <a href="https://github.com/alistairnward"><img src="/public/images/github_2d8fc1.png"/></a>
+            Alistair Ward
+          </span>
+        </div>
+    </div>
+</div>
+  </body>
+</html>

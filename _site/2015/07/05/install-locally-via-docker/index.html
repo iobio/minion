@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <!-- <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"> -->
+
+  <!-- Enable responsiveness on mobile devices-->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"> -->
+
+  <title>
+    
+      Install Locally Via Docker &middot; iobio
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/iobio.viz.min.css">
+  <link rel="stylesheet" href="/public/js/jquery.min.js">
+  <!-- <link rel="stylesheet" href="/public/css/bootstrap/css/bootstrap.min.css">   -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+  <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Overlock+SC' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'>
+  <link href="/public/js/video-js/video-js.css" rel="stylesheet">
+  <link rel="stylesheet" href="/public/css/site.css">
+
+  <!-- JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="/public/js/video-js/video.js"></script>
+  <script src="/public/js/d3.min.js"></script>
+  <script src="/public/js/iobio.viz.min.js"></script>
+
+  <!-- Icons -->
+  <!-- <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png"> -->
+  <link rel="icon" type="image/png" href="/public/favicon.ico?v=5">
+  <link rel="shortcut icon" href="/public/favicon.ico?v=5">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- tracking code -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-47481907-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+
+  <body>
+    <div class="masthead blog-masthead">   
+      <div class='masthead-container'>     
+        <h3 class="masthead-title">
+          <a href="/" title="Home">iobio</a>            
+        </h3>
+        <div id="menu">
+          <ul>
+              
+              
+              
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+      <li><a href="/">What is it?</a></li>
+    
+  
+
+  
+    
+      <li><a href="/applications.html">Applications</a></li>
+    
+  
+
+  
+    
+      <li><a href="/developers.html">Developers</a></li>
+    
+  
+
+  
+    
+      <li><a href="/blog.html">Blog</a></li>
+    
+  
+
+  
+    
+      <li><a href="/about.html">About us</a></li>
+    
+  
+
+  
+    
+      <li><a href="/support.html">Support Us</a></li>
+    
+  
+
+
+
+          </ul>
+        </div>
+        <div style="clear:both"></div>
+      </div>        
+    </div>
+
+    <div class="container blog-container">
+      <div class="post post-main" style="margin-top: 100px;">
+  <div class="post-title">Install Locally Via Docker</div>
+  <div style="line-height: 17px; margin-top: -9px">
+    <div class="post-date">05 Jul 2015</div>
+    <div class="post-author"><a href="http://marthlab.org/people.html">Yi Qiao</a></div>
+    <div class='post-headshot'>
+      <a href="http://marthlab.org/people.html">
+      <img src="/public/images/team/Yi_Qiao.png"/></a>
+    </div>
+  </div>
+  <div class='post-image'> <img src=/public/images/blog/local_install_docker.jpg></img></div>
+  <div class='post-content'>
+    <p>Often people need to run iobio apps locally. Two common reasons are to work with sensitive data that can not leave your organizations network or to have more control of deployment and access. This can be a complicated process since it requires the installation of the multiple web services that support an iobio web app. To make this easier, We have created several docker images so that the process is greatly simplified and can now be completed with just a few commands. Depending on your particular needs and infrastructure design, docker based installation can be done in several modes. In the following sessions, each of these modes are discussed in respect to particular apps.</p>
+
+<h2 id="bamiobio">bam.iobio</h2>
+
+<p>If you have a local directory, or locally mounted network directory, which contains bam files you would like to visualize inside bam.iobio, you can spin up the whole stack of bam.iobio via docker-compose. First create a directory and inside which create a docker-compose.yaml that looks something like this:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">data</span><span class="pi">:</span>
+  <span class="na">image</span><span class="pi">:</span> <span class="s">nginx</span>
+  <span class="na">volumes</span><span class="pi">:</span> <span class="s">/mnt/storage:/usr/share/nginx/html:ro</span>
+<span class="na">bamiobio</span><span class="pi">:</span>
+  <span class="na">image</span><span class="pi">:</span> <span class="s">qiaoy/iobio-bundle.bam-iobio</span>
+  <span class="na">links</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">data</span>
+  <span class="na">ports</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">8000:80"</span>
+  <span class="na">environment</span><span class="pi">:</span>
+    <span class="na">PUB_HOSTNAME</span><span class="pi">:</span> <span class="s">bam.iobio.local</span>
+    <span class="na">PUB_HTTP_PORT</span><span class="pi">:</span> <span class="s">8000</span>
+</code></pre></div></div>
+
+<p>or using a shell script without docker-compose</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+docker run <span class="nt">--name</span> data <span class="se">\</span>
+    <span class="nt">-v</span> /mnt/storage:/usr/share/nginx/html:ro <span class="se">\</span>
+    <span class="nt">-d</span> nginx
+
+docker run <span class="nt">--name</span> bamiobio <span class="se">\</span>
+    <span class="nt">--link</span> data:data <span class="nt">-p</span> 8000:80 <span class="se">\</span>
+    <span class="nt">-e</span> <span class="nv">PUB_HOSTNAME</span><span class="o">=</span>bam.iobio.local <span class="se">\</span>
+    <span class="nt">-e</span> <span class="nv">PUB_HTTP_PORT</span><span class="o">=</span>8000 <span class="se">\</span>
+    <span class="nt">-d</span> qiaoy/iobio-bundle.bam-iobio
+</code></pre></div></div>
+
+<p>If your files are already accessibly over http, or you are planning on using the local file feature only, you can omit the nginx container and the linking, i.e.:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">bamiobio</span><span class="pi">:</span>
+  <span class="na">image</span><span class="pi">:</span> <span class="s">qiaoy/iobio-bundle.bam-iobio</span>
+  <span class="na">ports</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">8000:80"</span>
+  <span class="na">environment</span><span class="pi">:</span>
+    <span class="na">PUB_HOSTNAME</span><span class="pi">:</span> <span class="s">bam.iobio.local</span>
+    <span class="na">PUB_HTTP_PORT</span><span class="pi">:</span> <span class="s">8000</span>
+</code></pre></div></div>
+
+<p>or using a shell script without docker-compose</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+docker run <span class="se">\</span>
+    <span class="nt">--name</span> bamiobio <span class="nt">-p</span> 8000:80 <span class="se">\</span>
+    <span class="nt">-e</span> <span class="nv">PUB_HOSTNAME</span><span class="o">=</span>bam.iobio.local <span class="se">\</span>
+    <span class="nt">-e</span> <span class="nv">PUB_HTTP_PORT</span><span class="o">=</span>8000 <span class="se">\</span>
+    <span class="nt">-d</span> qiaoy/iobio-bundle.bam-iobio
+</code></pre></div></div>
+
+<p>Some explanations:</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">volumes: /mnt/storage:/usr/share/nginx/html:ro</code> maps the local directory <code class="highlighter-rouge">/mnt/storage</code> into the www-root of the nginx service, so that files inside the directory can be accessed via http from within the bam.iobio bundle container</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">ports: -"8000:80"</code> defines port mapping of 8000 on the host to 80 inside the container. The web app is always served on port 80 inside the container. You can, however, choose a different port (e.g. 80) on the host side, but make sure you also change the <code class="highlighter-rouge">PUB_HTTP_PORT</code></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">PUB_HOSTNAME: bam.iobio.local</code> defines a public accessible hostname to the host that is serving the web app. The content of this field, along with <code class="highlighter-rouge">PUB_HTTP_PORT</code>, will be used to modify the javascript inside bam.iobio so that the client knows where to connect. Note that this hostname / port combination needs to be also valid from within the container, which is usually the case if you provide the Full-Qualified Domain Name of the host server. We have, however, witnessed weird network topologies that the ip address of hostname is not accessible from within the host. See below for special cases</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">PUB_HTTP_PORT: 8000</code> is the port mapped on the host side. If you change the <code class="highlighter-rouge">ports: "8000:80"</code> line, you need to make sure that they match up with this environment variable</p>
+  </li>
+</ul>
+
+<p>With the file in place, you can spin up the stack with</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker-compose up
+</code></pre></div></div>
+
+<p>and navigate to <code class="highlighter-rouge">http://${PUB_HOSTNAME}:${PUB_HTTP_PORT}/</code></p>
+
+<p>To visualize files in <code class="highlighter-rouge">/mnt/storage</code>, e.g. <code class="highlighter-rouge">/mnt/storage/project1/patient1/diagnosis_tumor.bam</code>, click on “choose bam url” from the main page, and give it <code class="highlighter-rouge">http://data/project1/patient1/diagnosis_tumor.bam</code> (note that the file needs to be indexed first, i.e. the file <code class="highlighter-rouge">/mnt/storage/project1/patient1/diagnosis_tumor.bam.bai</code> needs to exist).</p>
+
+<h3 id="special-cases">Special cases</h3>
+<h4 id="trying-to-run-with-localhost-being-the-pub_hostname">Trying to run with <code class="highlighter-rouge">localhost</code> being the <code class="highlighter-rouge">PUB_HOSTNAME</code></h4>
+<p>The meaning of localhost differs between from within the container and from without. When it is outside of the container, localhost means the docker host machine, and the port to the reverse proxy inside the container is the <code class="highlighter-rouge">PUB_HTTP_PORT</code>; when inside the container, localhost means the virtual ethernet interface private to the container, and the port to the reverse proxy is always <code class="highlighter-rouge">80</code>. Thus if you use <code class="highlighter-rouge">localhost</code> as the <code class="highlighter-rouge">PUB_HOSTNAME</code>, and <code class="highlighter-rouge">PUB_HTTP_PORT</code> some value other than <code class="highlighter-rouge">80</code>, the client app running inside the browser will be able to make the first hop of the connection, but the iobio service will not be able to make the second because <code class="highlighter-rouge">${PUB_HOSTNAME}:${PUB_HTTP_PORT}</code> does not correspond to a valid service address from within the container. <strong>WORKAROUND</strong>: always use <code class="highlighter-rouge">PUB_HTTP_PORT=80</code> if you want to use <code class="highlighter-rouge">localhost</code> as the <code class="highlighter-rouge">PUB_HOSTNAME</code></p>
+<h4 id="different-ip-address-between-from-inside-the-host-machine-and-from-outside">Different IP address between from inside the host machine and from outside</h4>
+<p>We have a high performance server hosted at a server center, with a hostname <code class="highlighter-rouge">server.iobio</code> (of course fake). From our workstations, the hostname resolves to IP address <code class="highlighter-rouge">x.x.x.x</code>, whereas the address attached to the actual ethernet interface is <code class="highlighter-rouge">y.y.y.y</code>. Moreover, from within the container, the hostname resolves to <code class="highlighter-rouge">y.y.y.y</code>, which is unreachable from inside the container for some reason. So pretty much the only way to access the services within the container is to use <code class="highlighter-rouge">http://127.0.0.1:80/</code>. <strong>WORKAROUND</strong>: Use <code class="highlighter-rouge">80</code> for <code class="highlighter-rouge">PUB_HTTP_PORT</code>, and add a segment to the docker-compose.yml that looks like</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">bamiobio</span><span class="pi">:</span>
+  <span class="s">...</span>
+  <span class="s">extra_hosts</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">server.iobio:127.0.0.1"</span>
+</code></pre></div></div>
+
+<p>This ensures that when the client connects to the service, <code class="highlighter-rouge">http://server.iobio/</code> resolves to <code class="highlighter-rouge">http://x.x.x.x/</code>, but when a service connects to another service, <code class="highlighter-rouge">http://server.iobio</code> resolves to <code class="highlighter-rouge">http://127.0.0.1</code>. Because within the container the reverse proxy always listens on port 80, <code class="highlighter-rouge">PUB_HTTP_PORT</code> has to be 80 as well.</p>
+
+<h2 id="vcfiobio">vcf.iobio</h2>
+<p>The bundle image is made in a very similar way as bam.iobio, thus it is only necessary to change the image name in the <code class="highlighter-rouge">docker-compose.yml</code> file or the shell script.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">data</span><span class="pi">:</span>
+  <span class="na">image</span><span class="pi">:</span> <span class="s">nginx</span>
+  <span class="na">volumes</span><span class="pi">:</span> <span class="s">/mnt/storage:/usr/share/nginx/html:ro</span>
+<span class="na">bamiobio</span><span class="pi">:</span>
+  <span class="na">image</span><span class="pi">:</span> <span class="s">qiaoy/iobio-bundle.vcf-iobio</span>
+  <span class="na">links</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">data</span>
+  <span class="na">ports</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">8000:80"</span>
+  <span class="na">environment</span><span class="pi">:</span>
+    <span class="na">PUB_HOSTNAME</span><span class="pi">:</span> <span class="s">vcf.iobio.local</span>
+    <span class="na">PUB_HTTP_PORT</span><span class="pi">:</span> <span class="s">8000</span>
+</code></pre></div></div>
+
+<p>The vcf files need to be bgzipped and indexed by tabix(now part of <a href="http://www.htslib.org">htslib</a>) for vcf.iobio to load. The discussion on special cases for bam.iobio also applies here.</p>
+
+  </div>
+
+  
+</div>
+
+<div class="related posts">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+<!--       <li>
+        <h3>
+          <a href="/2017/09/29/gene_2.5.0/">
+            ClinVar variants, gnomAD, affected status
+            <small>29 Sep 2017</small>
+            <div><img src=/public/images/blog/gene_2.5.0/banner.png/></div>
+          </a>
+        </h3>
+      </li> -->
+      <li class="snippet">
+        <div class='snippet-thumbnail'><a href="/2017/09/29/gene_2.5.0/"><img src=/public/images/blog/gene_2.5.0/banner.png></img></a></div>
+        <div class='snippet-text'>
+          <div class='snippet-byline'>BY Tony DiSera ON Sep 29, 2017</div>
+          <div></div>
+          <img class='snippet-headshot' src="../../../../public/images/team/Tony_DiSera.png"/>
+          <div class='snippet-title'><a href="/2017/09/29/gene_2.5.0/">ClinVar variants, gnomAD, affected status</a></div>
+          <div class='snippet-subtitle'>What's new in gene.iobio 2.5.0</div>
+        </div>
+      </li>
+    
+<!--       <li>
+        <h3>
+          <a href="/2017/09/27/loading-data/">
+            Loading data into gene.iobio
+            <small>27 Sep 2017</small>
+            <div><img src=/public/images/blog/loading_data/blog_image_data.jpg/></div>
+          </a>
+        </h3>
+      </li> -->
+      <li class="snippet">
+        <div class='snippet-thumbnail'><a href="/2017/09/27/loading-data/"><img src=/public/images/blog/loading_data/blog_image_data.jpg></img></a></div>
+        <div class='snippet-text'>
+          <div class='snippet-byline'>BY Tony DiSera ON Sep 27, 2017</div>
+          <div></div>
+          <img class='snippet-headshot' src="../../../../public/images/team/Tony_DiSera.png"/>
+          <div class='snippet-title'><a href="/2017/09/27/loading-data/">Loading data into gene.iobio</a></div>
+          <div class='snippet-subtitle'>Loading your variant and alignment files</div>
+        </div>
+      </li>
+    
+<!--       <li>
+        <h3>
+          <a href="/2017/07/11/coverage/">
+            Coverage analysis
+            <small>11 Jul 2017</small>
+            <div><img src=/public/images/blog/coverage/main.png/></div>
+          </a>
+        </h3>
+      </li> -->
+      <li class="snippet">
+        <div class='snippet-thumbnail'><a href="/2017/07/11/coverage/"><img src=/public/images/blog/coverage/main.png></img></a></div>
+        <div class='snippet-text'>
+          <div class='snippet-byline'>BY Alistair Ward ON Jul 11, 2017</div>
+          <div></div>
+          <img class='snippet-headshot' src="../../../../public/images/team/Alistair_Ward.png"/>
+          <div class='snippet-title'><a href="/2017/07/11/coverage/">Coverage analysis</a></div>
+          <div class='snippet-subtitle'>Identifying problems with coverage</div>
+        </div>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+    <div class="footer">
+  
+    <div class="logos">
+      <div style="position:absolute; left: 100px; top:0px; font-size:50px;font-family:'Overlock SC', cursive;"><a href="http://marthlab.org" style="color:black; text-decoration:none;">Marthlab</a></div>
+      <a href="http://ucgd.genetics.utah.edu/"><img src="/public/images/ustar-ucgd-logo.jpg" style="height:60px;"/></a>
+      <a href="http://www.genetics.utah.edu/"><img src="/public/images/genetics_mainlogo3_lrg.png" style="height:50px;position:absolute;right:0px;top:7px"/></a>
+    </div>
+  
+  <div class="developers">
+        <div class='title'>Developed in the <a href="http://marthlab.org/">Marth Lab by</a></div>
+
+        <div class="members">
+          <span style="margin-right:15px">
+            <a href="https://github.com/chmille4"><img src="/public/images/github_2d8fc1.png"/></a>
+            Chase Miller
+          </span>
+          <span style="margin-right: 15px">
+            <a href="https://github.com/yiq"><img src="/public/images/github_2d8fc1.png"/></a>
+            Yi Qiao
+          </span>
+          <span style="margin-right: 15px">
+            <a href="https://github.com/tonydisera"><img src="/public/images/github_2d8fc1.png"/></a>
+            Tony DiSera
+          </span>
+          <span style="margin-right: 15px">
+            <a href="https://github.com/alistairnward"><img src="/public/images/github_2d8fc1.png"/></a>
+            Alistair Ward
+          </span>
+        </div>
+    </div>
+</div>
+  </body>
+</html>
