@@ -13,7 +13,7 @@ future:              false
 # Setup
 name:                iobio home
 title:               iobio
-tagline:             'real-time genomic analysis'
+tagline:             'Real-time Visual Genomics'
 description:         blog on iobio, genomics, and visualization
 url:                 http://iobio.io
 baseurl:             /
