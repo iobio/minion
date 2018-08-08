@@ -10,12 +10,12 @@ converting the URL into a command and error handling. If you are wanting run a p
 iobio is made up of numerous micro web services that are each capable of supporting multiple apps. These web services can be mixed and matched to create a wide range of functionality. In this way a new web app can grab a set of relevant web services and then build a UI and visualization around them.
 
 #### Public Web Services
-You can develop apps against our public web services but due to resource constraints we can only run a set number of concurrent requests. Requests that can not be proccessed immediately are placed in a queue and processed in turn. If you need more power, you can install the web services yourself or contact us. All public services are located at https://github.com/iobio/minion-services
+You can develop apps against our public web services but due to resource constraints we can only run a set number of concurrent requests. Requests that can not be processed immediately are placed in a queue and processed in turn. If you need more power, you can install the web services yourself or contact us. All public services are located at https://github.com/iobio/minion-services
 
 #### Local Install
 If you need to install webservices locally there are two ways to do it
 ###### Directly
-For testing it's often easier to install minion directly and place your required services in the service directory. First [install minion](#download) then place your web service definition file in the ```minion/services/``` directory. A list of web service definition files can be found in the [minion-services](https://github.com/iobio/minion-services) repo. Lastly you'll need copy the tool you are turning into a web service into the ```minion/bin/``` directory or it won't run ([see create your own web service for more details](#create-your-own-web-service)).
+For testing it's often easier to install minion directly and place your required services in the service directory. First [install minion](#download) then place your web service definition file in the ```minion/services/``` directory. A list of web service definition files can be found in the [minion-services](https://github.com/iobio/minion-services) repo. Lastly you'll need to copy the tool you are turning into a web service into the ```minion/bin/``` directory or it won't run ([see create your own web service for more details](#create-your-own-web-service)).
 ```
 // where someService is the service definition file for a tool (e.g. samtools) you want to turn into a webservice
 cd minion/
@@ -48,7 +48,7 @@ npm test
 ```
 
 #### Config File
-Minion services can take a config file on startup. Otherwise the default config file ```lib/config.js``` will be used
+Minion services can take a config file on startup. Otherwise the default config file ```lib/config.js``` will be used.
 
 ###### To use config file
 ```
@@ -79,7 +79,7 @@ For this example we will create a service from the linux utility wc to count lin
 Create a new file called ```wc-iobio.js``` in ```minion/services/``` and paste the following js into it.
 
 ```javascript
-var port = 4003;
+var port = 4003,
     minion = require('../index.js')(port);
 
 
